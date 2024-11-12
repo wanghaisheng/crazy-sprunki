@@ -21,6 +21,8 @@ import heroImage from '../../../assets/hero-01.png'
 import user1 from '../../../assets/avatars/avatar-01.webp'
 import user2 from '../../../assets/avatars/avatar-02.webp'
 import user3 from '../../../assets/avatars/avatar-03.webp'
+import HeroData from '../data/json-files/HeroData.json'
+
 const avatars = [
 	{ image: { src: user1.src, alt: 'user name' }, link: '/' },
 	{ image: { src: user2.src, alt: 'user name' }, link: '/' },
@@ -33,13 +35,20 @@ const avatars = [
 		<Col span="2" />
 		<Col span="8" align="center">
 			<ChipNotification radius="rounded-full" classes="mb-6">
-				<strong>30K+</strong> satisfied customers
+				<strong>{HeroData.customercount}</strong> {HeroData.customertext} 
 				<AvatarGroup avatars={avatars} radius="rounded-full" slot="button" />
 			</ChipNotification>
-			<h1>Enhance team <strong>performance</strong> with seamless integration</h1>
+			<h1>
+				{HeroData.h1content}
+			</h1>
 
-			<p class="pb-0 text-lg">Work smarter, not harder, with our innovative platform</p>
-			<Button size="lg" link="/">Get started for free</Button>
+			<p class="pb-0 text-lg">
+				{HeroData.h1subtitle}
+
+			</p>
+			<Button size="lg" link={HeroData.ctalink}>
+				{HeroData.ctatext}
+			</Button>
 		</Col>
 		<Col span="2" />
 		<Col span="2" />
@@ -49,7 +58,8 @@ const avatars = [
 				alt="Foxi. The tailwind astro theme"
 				class="translate-y-8 shadow-2xl shadow-neutral-200 dark:shadow-neutral-950"
 				format="webp"
-			/></Col
+			/>
+			</Col
 		>
 		<Col span="2" />
 	</Row>

@@ -2,12 +2,15 @@
 // Imports
 import { ViewTransitions } from 'astro:transitions'
 import GoogleAnalytics from '../../scripts/googleAnalytics.astro'
+import Clarity from '../../scripts/clarity.astro'
+
 import GoogleTagManagerHead from '../../scripts/googleTagManagerHead.astro'
 import GoogleSearchConsole from '../../scripts/googleSearchConsole.astro'
 // Partials
 import Seo from './partials/Seo.astro'
 // Data
 import { configData } from '../../../config/config'
+import { microsoftClarityMeasurementID } from '../../../config/clarity'
 
 import { googleAnalyticsMeasurementID } from '../../../config/analytics'
 import { googleTagManagerID } from '../../../config/analytics'
@@ -31,7 +34,9 @@ const {
 ---
 
 <head>
+	{microsoftClarityMeasurementID && <Clarity/>}
 	{googleAnalyticsMeasurementID && <GoogleAnalytics />}
+
 	{googleTagManagerID && <GoogleTagManagerHead />}
 	<GoogleSearchConsole />
 	<meta charset="UTF-8" />
