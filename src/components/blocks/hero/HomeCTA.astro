@@ -38,9 +38,8 @@ const avatars = [
 				<strong>{HeroData.customercount}</strong> {HeroData.customertext} 
 				<AvatarGroup avatars={avatars} radius="rounded-full" slot="button" />
 			</ChipNotification>
-			<h1>
-				{HeroData.h1content}
-			</h1>
+			<h1 set:html=
+				{HeroData.h1content}/>
 
 			<p class="pb-0 text-lg">
 				{HeroData.h1subtitle}

@@ -36,9 +36,7 @@ const features = Array.from({ length: maxCol }, (_, i) => {
 <Section id="features">
     <Row>
         <Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
-            <h2 class="text-pretty">
-                {HomeFeaturetitle.title}
-            </h2>
+            <h2 class="text-pretty"           set:html={HomeFeaturetitle.title}			/>
             <p class="pb-0 text-lg">
                 {HomeFeaturetitle.subtitle}
             </p>
