@@ -13,8 +13,8 @@ import Card from '../../ui/cards/FeatureCard.astro'
 
 // Content
 // - Cards
-import HomeFeatureData from '../../../data/json-files/homefeaturesData.json'
-import HomeFeaturetitle from '../../../data/json-files/homefeaturetitle.json'
+import HomeFeatureData from '../data/json-files/homefeaturesData.json'
+import HomeFeaturetitle from '../data/json-files/homefeaturetitle.json'
 
 // Define the Feature interface
 interface Feature {
@@ -25,14 +25,25 @@ interface Feature {
     col: string;
 }
 
+// Dynamically import all feature images
+const imageCount = HomeFeatureData.length
+const imageMap = Object.fromEntries(
+    await Promise.all(
+        Array.from({ length: imageCount }, async (_, i) => {
+            const num = (i + 1).toString().padStart(2, '0')
+            const path = `../../../assets/cards/feature-${num}.svg`
+            const image = await import(path)
+            return [path, image.default]
+        })
+    )
+)
+
 // Dynamic column determination
 const maxCol = Math.max(...HomeFeatureData.map((feature: Feature) => parseInt(feature.col)))
 const features = Array.from({ length: maxCol }, (_, i) => {
     const colNum = (i + 1).toString()
     return HomeFeatureData.filter((feature: Feature) => feature.col === colNum)
 })
-
-// Map image paths to imported images
 ---
 
 <Section id="features">
@@ -53,7 +64,7 @@ const features = Array.from({ length: maxCol }, (_, i) => {
                     <Card
                         title={feature.title}
                         subtitle={feature.subtitle}
-                        image={feature.image}
+                        image={imageMap[feature.image]}
                         link={feature.link}
                     />
                 ))}
