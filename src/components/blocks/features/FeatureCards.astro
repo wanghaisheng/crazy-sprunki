@@ -16,11 +16,20 @@ import Card from '../../ui/cards/FeatureCard.astro'
 import HomeFeatureData from '../../../data/json-files/homefeaturesData.json'
 import HomeFeaturetitle from '../../../data/json-files/homefeaturetitle.json'
 
+// Define the Feature interface
+interface Feature {
+    title: string;
+    subtitle: string;
+    image: string;
+    link?: string;
+    col: string;
+}
+
 // Dynamic column determination
-const maxCol = Math.max(...HomeFeatureData.map(feature => parseInt(feature.col)))
+const maxCol = Math.max(...HomeFeatureData.map((feature: Feature) => parseInt(feature.col)))
 const features = Array.from({ length: maxCol }, (_, i) => {
     const colNum = (i + 1).toString()
-    return HomeFeatureData.filter((feature) => feature.col === colNum)
+    return HomeFeatureData.filter((feature: Feature) => feature.col === colNum)
 })
 
 // Map image paths to imported images
@@ -40,7 +49,7 @@ const features = Array.from({ length: maxCol }, (_, i) => {
     <Row>
         {features.map((colFeatures) => (
             <Col span="4" classes={colFeatures.length > 1 ? "flex flex-col gap-6" : ""}>
-                {colFeatures.map((feature) => (
+                {colFeatures.map((feature: Feature) => (
                     <Card
                         title={feature.title}
                         subtitle={feature.subtitle}
