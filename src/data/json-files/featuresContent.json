@@ -1,0 +1,28 @@
+{
+    "header": {
+        "title": "Why you and your team will <strong>love</strong> foxi.",
+        "text": "Streamline your tasks, protect your data, and enjoy working with our tools!"
+    },
+    "sections": {
+        "analytics": {
+            "title": "Analytics & Insights",
+            "text": "Track performance and make data-driven decisions with powerful analytics tools."
+        },
+        "productivity": {
+            "title": "Productivity Tools",
+            "text": "Boost your team's efficiency with our comprehensive productivity features."
+        },
+        "security": {
+            "title": "Security & Protection",
+            "text": "Keep your data secure with enterprise-grade security features and controls."
+        },
+        "integrations": {
+            "title": "Seamless Integrations",
+            "text": "Connect and automate your workflow with powerful integration capabilities."
+        },
+        "support": {
+            "title": "24/7 Support & Resources",
+            "text": "Get help when you need it with our comprehensive support system."
+        }
+    }
+} 
