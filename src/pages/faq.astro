@@ -21,7 +21,7 @@ const faqPricing = FAQData.filter((faq) => faq.category === 'pricing')
 const faqIntegrations = FAQData.filter((faq) => faq.category === 'integrations')
 ---
 
-<Layout {...pageSEO}>
+<Layout title={SEOData.faq.title} description={SEOData.faq.description}>
     <Hero 
         title={SEOData.faq.headertitle} 
         text={SEOData.faq.headertext} 
