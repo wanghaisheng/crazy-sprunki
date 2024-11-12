@@ -19,60 +19,47 @@ const {
     classes
 } = Astro.props
 
-// Get ad configuration
-const { ads } = configData
-const client = ads.client
-const slot = ads.slots[layout] || ads.slots.horizontal
-
-// Define ad sizes based on layout
+// Define ad sizes with all possible formats
 const adSizes = {
-    horizontal: {
-        width: '728',
-        height: '90'
-    },
-    vertical: {
-        width: '160',
-        height: '600'
-    },
-    rectangle: {
-        width: '300',
-        height: '250'
-    }
+    horizontal: { width: '728', height: '90' },
+    vertical: { width: '160', height: '600' },
+    rectangle: { width: '300', height: '250' },
+    fluid: { width: 'fluid', height: 'fluid' }  // Add fluid format
+} as const
+
+// Type guard to check if format is a valid key of adSizes
+const isValidFormat = (format: string): format is keyof typeof adSizes => {
+    return format in adSizes
 }
 
-const currentSize = format === 'auto' ? adSizes[layout] : adSizes[format] || adSizes.horizontal
-if (format === 'fluid')
+// Get the current size with proper type checking
+const currentSize = format === 'auto' 
+    ? adSizes[layout] 
+    : isValidFormat(format) 
+        ? adSizes[format] 
+        : adSizes.horizontal
+
+const { width, height } = currentSize
 ---
 
-<div 
-    class:list={[
-        'google-ad',
-        `google-ad--${layout}`,
-        { 'google-ad--responsive': responsive },
-        classes
-    ]}
->
-    {import.meta.env.PROD ? (
-        <ins
-            class="adsbygoogle"
-            style={`display:block; ${responsive ? '' : `width:${currentSize.width}px; height:${currentSize.height}px;`}`}
-            data-ad-client={client}
-            data-ad-slot={slot}
-            data-ad-format={format}
-            data-full-width-responsive={responsive ? 'true' : 'false'}
-        />
-        <script is:inline>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    ) : (
-        <div 
-            class="ad-placeholder"
-            style={`width:${responsive ? '100%' : currentSize.width + 'px'}; height:${currentSize.height}px;`}
-        >
-            <span>Advertisement</span>
-            <span class="ad-details">
-                {layout} - {currentSize.width}x{currentSize.height}
-            </span>
-        </div>
-    )}
-</div> 
+<div class:list={[
+    'google-ad',
+    responsive && 'responsive',
+    classes
+]}>
+    <!-- Ad content here -->
+    <slot />
+</div>
+
+<style>
+    .google-ad {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .responsive {
+        display: block;
+        overflow: hidden;
+    }
+</style> 
