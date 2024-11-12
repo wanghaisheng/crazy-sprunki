@@ -1,6 +1,3 @@
-// Google tracking
-// - Google Site Verification: for Google Search Console
-// - Google Analytics Measurement ID: for Google Analytics
-// - Google Tag Manager ID: for Google Tag Manager
+import siteConfig from '../data/json-files/siteConfig.json'
 
-export const microsoftClarityMeasurementID = 'hh1oixxx'
+export const microsoftClarityMeasurementID = siteConfig.tracking.microsoftClarity

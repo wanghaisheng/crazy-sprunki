@@ -1,0 +1,69 @@
+{
+    "main": {
+        "logo": {
+            "src": "/logo.svg",
+            "alt": "The tailwind astro theme",
+            "text": "Foxi."
+        },
+        "items": [
+            { "name": "Home", "link": "/" },
+            { "name": "Pricing", "link": "/pricing" },
+            { "name": "Features", "link": "/features" },
+            {
+                "name": "Resources",
+                "link": "#",
+                "submenu": [
+                    { "name": "Blog", "link": "/blog" },
+                    { "name": "Changelog", "link": "/changelog" },
+                    { "name": "FAQ", "link": "/faq" },
+                    { "name": "Terms", "link": "/terms" }
+                ]
+            },
+            { "name": "Contact", "link": "/contact" }
+        ],
+        "actions": [
+            { "name": "Try it now", "link": "/", "style": "primary", "size": "lg" }
+        ]
+    },
+    "footer": {
+        "about": {
+            "title": "Foxi.",
+            "aboutText": "Expertly made, responsive, accessible components in React and HTML ready to be used on your website or app. Just copy and paste them on your Tailwind CSS project.",
+            "logo": {
+                "src": "/logo.svg",
+                "alt": "The tailwind astro theme",
+                "text": "Foxi."
+            }
+        },
+        "columns": [
+            {
+                "category": "Product",
+                "subCategories": [
+                    { "subCategory": "Features", "subCategoryLink": "/features" },
+                    { "subCategory": "FAQ", "subCategoryLink": "/faq" },
+                    { "subCategory": "Pricing", "subCategoryLink": "/pricing" },
+                    { "subCategory": "Changelog", "subCategoryLink": "/changelog" },
+                    { "subCategory": "Terms", "subCategoryLink": "/terms" }
+                ]
+            }
+            // ... other columns
+        ]
+    },
+    "social": [
+        {
+            "name": "facebook",
+            "link": "/",
+            "icon": "fb-icon"
+        },
+        {
+            "name": "twitter",
+            "link": "/",
+            "icon": "twitter-icon"
+        },
+        {
+            "name": "discord",
+            "link": "/",
+            "icon": "discord-icon"
+        }
+    ]
+} 

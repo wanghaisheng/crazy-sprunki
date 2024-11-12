@@ -1,0 +1,24 @@
+---
+// Components
+import GoogleAd from '../../ui/GoogleAd.astro'
+
+interface Props {
+    classes?: string
+}
+
+const { classes } = Astro.props
+---
+
+<div class:list={["ad-block ad-block--sidebar", classes]}>
+    <GoogleAd 
+        format="rectangle"
+        layout="horizontal"
+        responsive={true}
+    />
+</div>
+
+<style>
+    .ad-block--sidebar {
+        @apply py-4 sticky top-4;
+    }
+</style> 

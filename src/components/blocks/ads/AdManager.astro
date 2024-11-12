@@ -1,0 +1,23 @@
+---
+import { configData } from '../../../config/config'
+import VerticalAd from './VerticalAd.astro'
+import HorizontalAd from './HorizontalAd.astro'
+
+interface Props {
+    position: keyof typeof configData.ads.positions
+    type: 'vertical' | 'horizontal'
+    classes?: string
+}
+
+const { position, type, classes } = Astro.props
+const { ads } = configData
+
+// Only render if ads are enabled and position is enabled
+const shouldRender = ads.enabled && ads.positions[position]
+---
+
+{shouldRender && (
+    type === 'vertical' 
+        ? <VerticalAd classes={classes} /> 
+        : <HorizontalAd classes={classes} />
+)} 

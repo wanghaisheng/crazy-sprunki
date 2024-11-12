@@ -1,4 +1,54 @@
 {
-	"title": "Foxi | Your Productivity Toolkit",
-	"description":    "Foxi is a powerful productivity toolkit designed to enhance your workflow and boost your productivity. With features like analytics, security, and integrations, Foxi is the perfect solution for your business."
+	"home": {
+		"title": "Foxi | Streamline Your Workflow with Smart Automation",
+		"description": "Boost productivity and streamline your workflow with Foxi's powerful automation tools. Experience seamless integration, real-time collaboration, and enhanced security."
+	},
+	"features": {
+		"title": "Foxi | Powerful Features for Modern Teams",
+		"description": "Explore Foxi's powerful features designed to enhance productivity, ensure top-notch security, and integrate seamlessly with your favorite tools. Transform your workflow today!"
+	},
+	"pricing": {
+		"title": "Foxi | Pricing made simple",
+		"description": 	"Discover the perfect SaaS pricing plan for your business. From startups to enterprises, our scalable solutions offer unparalleled features and 24/7 support.",
+		"headertitle": "Choose the plan that works for <strong>your</strong> needs",
+		"headertext": "All plans come with a 30-day money-back guarantee."
+
+	},
+	"changelog": {
+		"title": "Foxi | Version Updates and Improvements",
+		"description": "Stay informed about all the latest updates, improvements, and new features in Foxi. We're constantly evolving to serve you better.",
+		"headertitle": "Foxi Version Updates and <strong>Enhancements</strong>",
+
+		"headertext": "Stay informed about all the new updates and improvements in Foxi."
+
+	},
+	"contact": {
+		"title": "Foxi | Get in Touch with Our Team",
+		"description": "Need help? Contact our support team for assistance. We're here to help you make the most of Foxi's powerful features.",
+		"headertitle": "Get Answers to Your <strong>Foxi</strong> Questions.",
+		"headertext": "Whether you have a question, need support, or just want to share your feedback, we're all ears. Reach out to us and we'll get back to you as soon as possible."
+		
+	},
+	"faq":{
+		"title": "Foxi | Get Your Questions Answered with a Smile",
+		"description":"Dive into the Foxi FAQ Funhouse to get answers to all your questions about pricing, integrations, features, and more. Discover how Foxi can make your work life more productive and enjoyable.",
+		"headertitle": "Get Answers to Your <strong>Foxi</strong> Questions.",
+		"headertext": "Find answers to common questions about Foxi "
+
+
+
+	},
+	"about": {
+		"title": "Foxi | Our Story and Mission",
+		"description": "Learn about Foxi's journey, our mission to simplify workflow automation, and the team behind the platform."
+	},
+	"terms":{
+
+		"title": "Foxi | Terms of Service",
+		"description":		"Foxi's terms of service outlines the rules and regulations that govern your use of our services. Please read them carefully to understand your rights and responsibilities.",
+		"headertitle": "Terms and Conditions: Read, Relax, <strong>Enjoy!</strong>",
+		"headertext": "Please read them carefully to understand your rights and responsibilities."
+
+	}
+
 }

@@ -2,12 +2,35 @@
 // ------------
 // Description: The configuration file for the website.
 
+import siteConfig from '../data/json-files/siteConfig.json'
+
 export interface Logo {
 	src: string
 	alt: string
 }
 
 export type Mode = 'auto' | 'light' | 'dark'
+
+export interface AdSlots {
+	vertical: string
+	horizontal: string
+	rectangle: string
+}
+
+export interface AdPositions {
+	gameSides: boolean
+	gameBottom: boolean
+	betweenSections: boolean
+	beforeCTA: boolean
+}
+
+export interface AdConfig {
+	enabled: boolean
+	client: string
+	slots: AdSlots
+	positions: AdPositions
+	testMode: boolean
+}
 
 export interface Config {
 	siteTitle: string
@@ -18,19 +41,20 @@ export interface Config {
 	noindex: boolean
 	mode: Mode
 	scrollAnimations: boolean
+	ads: AdConfig
 }
 
 export const configData: Config = {
-	siteTitle: 'Foxi. Tailwind CSS Astro Starter Kit by Oxygenna',
-	siteDescription:
-		'Foxi is a design and development agency that specializes in creating beautiful and functional websites.',
-	ogImage: '/og.jpg',
-	logo: {
-		src: '/logo.svg',
-		alt: 'Foxi. logo'
-	},
-	canonical: true,
-	noindex: false,
-	mode: 'auto',
-	scrollAnimations: true
+	siteTitle: siteConfig.site.title,
+	siteDescription: siteConfig.site.description,
+	ogImage: siteConfig.site.ogImage,
+	logo: siteConfig.site.logo,
+	canonical: siteConfig.site.canonical,
+	noindex: siteConfig.site.noindex,
+	mode: siteConfig.site.mode as Mode,
+	scrollAnimations: siteConfig.site.scrollAnimations,
+	ads: {
+		...siteConfig.ads,
+		testMode: import.meta.env.DEV
+	}
 }

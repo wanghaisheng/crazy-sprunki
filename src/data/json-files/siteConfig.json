@@ -1,0 +1,38 @@
+{
+    "site": {
+        "title": "Foxi. Tailwind CSS Astro Starter Kit by Oxygenna",
+        "description": "Foxi is a design and development agency that specializes in creating beautiful and functional websites.",
+        "ogImage": "/og.jpg",
+        "logo": {
+            "src": "/logo.svg",
+            "alt": "Foxi. logo",
+            "text": "Foxi."
+        },
+        "canonical": true,
+        "noindex": false,
+        "mode": "auto",
+        "scrollAnimations": true,
+        "copyright": "© Foxi 2024."
+    },
+    "tracking": {
+        "microsoftClarity": "hh1oixxx",
+        "googleAnalytics": "",
+        "googleTagManager": "",
+        "googleSiteVerification": ""
+    },
+    "ads": {
+        "enabled": true,
+        "client": "ca-pub-XXXXXXXXXXXXXXXX",
+        "slots": {
+            "vertical": "XXXXXXXXXX",
+            "horizontal": "XXXXXXXXXX",
+            "rectangle": "XXXXXXXXXX"
+        },
+        "positions": {
+            "gameSides": true,
+            "gameBottom": true,
+            "betweenSections": true,
+            "beforeCTA": true
+        }
+    }
+} 

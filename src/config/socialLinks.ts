@@ -2,26 +2,12 @@
 // ------------
 // Description: The social links data for the website.
 
+import navigationConfig from '../data/json-files/navigationConfig.json'
+
 export interface SocialLink {
 	name: string
 	link: string
 	icon: string
 }
 
-export const socialLinks: SocialLink[] = [
-	{
-		name: 'facebook',
-		link: '/',
-		icon: 'fb-icon'
-	},
-	{
-		name: 'twitter',
-		link: '/',
-		icon: 'twitter-icon'
-	},
-	{
-		name: 'discord',
-		link: '/',
-		icon: 'discord-icon'
-	}
-]
+export const socialLinks: SocialLink[] = navigationConfig.social

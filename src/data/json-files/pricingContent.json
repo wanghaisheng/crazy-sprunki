@@ -1,0 +1,102 @@
+{
+    "header": {
+        "title": "Choose the plan that works for <strong>your</strong> needs",
+        "text": "All plans come with a 30-day money-back guarantee"
+    },
+    "testimonial": {
+        "quote": "Foxi isn't just an app—it's like having a mischievous yet brilliant sidekick for your business. It streamlines tasks and also cracks jokes to keep spirits high",
+        "author": "Max Widgetson",
+        "role": "CEO, Widgetify Ltd",
+        "background": "/assets/testimonial-bg-02.webp"
+    },
+    "plans": {
+        "monthly": [
+            {
+                "name": "Starter",
+                "description": "Perfect for individuals and small teams",
+                "price": {
+                    "amount": 29,
+                    "currency": "USD",
+                    "period": "month"
+                },
+                "features": [
+                    "Up to 5 team members",
+                    "Basic automation",
+                    "2GB storage",
+                    "Email support"
+                ],
+                "cta": {
+                    "text": "Get started",
+                    "link": "/signup"
+                },
+                "popular": false
+            },
+            {
+                "name": "Pro",
+                "description": "Best for growing businesses",
+                "price": {
+                    "amount": 79,
+                    "currency": "USD",
+                    "period": "month"
+                },
+                "features": [
+                    "Up to 20 team members",
+                    "Advanced automation",
+                    "20GB storage",
+                    "Priority support",
+                    "Custom integrations"
+                ],
+                "cta": {
+                    "text": "Start free trial",
+                    "link": "/signup"
+                },
+                "popular": true
+            },
+            {
+                "name": "Enterprise",
+                "description": "For large organizations",
+                "price": {
+                    "amount": 199,
+                    "currency": "USD",
+                    "period": "month"
+                },
+                "features": [
+                    "Unlimited team members",
+                    "Custom automation",
+                    "Unlimited storage",
+                    "24/7 support",
+                    "Dedicated account manager",
+                    "Custom development"
+                ],
+                "cta": {
+                    "text": "Contact sales",
+                    "link": "/contact"
+                },
+                "popular": false
+            }
+        ],
+        "annual": [
+            {
+                "name": "Starter",
+                "description": "Perfect for individuals and small teams",
+                "price": {
+                    "amount": 24,
+                    "currency": "USD",
+                    "period": "month"
+                },
+                "features": [
+                    "Up to 5 team members",
+                    "Basic automation",
+                    "2GB storage",
+                    "Email support"
+                ],
+                "cta": {
+                    "text": "Get started",
+                    "link": "/signup"
+                },
+                "popular": false,
+                "savings": "Save 17%"
+            }
+        ]
+    }
+} 

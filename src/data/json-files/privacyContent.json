@@ -1,0 +1,157 @@
+{
+    "header": {
+        "title": "Privacy Policy: Your Data, <strong>Your Trust</strong>",
+        "text": "Learn how we collect, use, and protect your personal information.",
+        "lastUpdated": "January 22, 2023"
+    },
+    "sections": [
+        {
+            "sidebar": {
+                "title": "Introduction",
+                "text": "Please take a moment to read through these terms to understand your rights and responsibilities."
+            },
+            "content": [
+                {
+                    "title": "Overview",
+                    "text": [
+                        "${companyName} ("we," "our," and/or "us") value the privacy of individuals who use our website, mobile applications ("Apps"), and related services (collectively, our "Services"). This privacy policy (the "Privacy Policy") explains how we collect, use, and share information from users of our Services ("Users") to improve the gaming experience.",
+                        "For users of our Apps that are part of Apple Arcade, please refer to the "Apple Arcade" section below.",
+                        "By using our Services, you agree to the collection, use, disclosure, and procedures this Privacy Policy describes. Beyond this Privacy Policy, your use of our Services is subject to our Terms of Service."
+                    ]
+                }
+            ]
+        },
+        {
+            "sidebar": {
+                "title": "Information Collection",
+                "text": "Understanding what information we collect and how we use it."
+            },
+            "content": [
+                {
+                    "title": "Information You Provide Us",
+                    "text": [
+                        "We may collect a variety of information from or about you or your devices from various sources, as described below.",
+                        "If you do not provide your information as requested, you may not be able to use our Services if that information is necessary to provide our Services or we are legally required to collect it."
+                    ]
+                },
+                {
+                    "title": "Registration and Profile",
+                    "text": [
+                        "If you link our Services to a third party account, such as a Game Center, Google Play, or Facebook account, we may receive information about you from these third party services such as your email address, profile information, and friends list.",
+                        "If you wish to limit the information these third parties make available to us, we encourage you to visit the privacy settings for those third party accounts to learn about your options."
+                    ]
+                }
+            ]
+        },
+        {
+            "sidebar": {
+                "title": "Information Usage",
+                "text": "How we use the information we collect from you."
+            },
+            "content": [
+                {
+                    "title": "How We Use Your Information",
+                    "text": [
+                        "To provide, maintain, improve, and enhance our Services",
+                        "To personalize your experience on our Services",
+                        "To understand and analyze how you use our Services",
+                        "To communicate with you and provide customer support",
+                        "To facilitate transactions and payments",
+                        "For marketing and advertising purposes",
+                        "To find and prevent fraud",
+                        "For compliance purposes"
+                    ]
+                }
+            ]
+        },
+        {
+            "sidebar": {
+                "title": "Information Sharing",
+                "text": "How we share your information with third parties."
+            },
+            "content": [
+                {
+                    "title": "How We Share Your Information",
+                    "text": [
+                        "With service providers and partners who assist in operating our Services",
+                        "When required by law or to protect rights",
+                        "In connection with a business transaction",
+                        "With your consent or at your direction"
+                    ]
+                }
+            ]
+        },
+        {
+            "sidebar": {
+                "title": "Data Protection",
+                "text": "How we protect your information and keep it secure."
+            },
+            "content": [
+                {
+                    "title": "Security Measures",
+                    "text": [
+                        "We make reasonable efforts to protect your information by using physical and electronic safeguards designed to improve the security of the information we maintain. However, as our Services are hosted electronically, we can make no guarantees as to the security or privacy of your information."
+                    ]
+                }
+            ]
+        },
+        {
+            "sidebar": {
+                "title": "Children's Privacy",
+                "text": "How we handle information from children."
+            },
+            "content": [
+                {
+                    "title": "Children Under 13",
+                    "text": [
+                        "No part of our Services is directed to children, and we do not knowingly collect, maintain, or use personal information from children under 13 years of age. If you learn that a child has provided us with personal information in violation of this Privacy Policy, then you may alert us at ${companyEmail}."
+                    ]
+                }
+            ]
+        },
+        {
+            "sidebar": {
+                "title": "International Users",
+                "text": "Information for users outside the United States."
+            },
+            "content": [
+                {
+                    "title": "International Data Transfers",
+                    "text": [
+                        "Our Services are hosted in the United States. If you choose to use our Services from other regions of the world, please note that you are transferring your personal information outside of those regions to the United States for storage and processing."
+                    ]
+                }
+            ]
+        },
+        {
+            "sidebar": {
+                "title": "Your Rights",
+                "text": "Understanding your privacy rights and choices."
+            },
+            "content": [
+                {
+                    "title": "Your Privacy Rights",
+                    "text": [
+                        "You can update your account and profile information through your profile settings.",
+                        "You can request the deletion of your personal information by submitting a request to ${companyEmail}.",
+                        "You can ask us to restrict the processing of your personal information by submitting a request to ${companyEmail}."
+                    ]
+                }
+            ]
+        },
+        {
+            "sidebar": {
+                "title": "Contact Information",
+                "text": "How to reach us with privacy questions."
+            },
+            "content": [
+                {
+                    "title": "Contact Us",
+                    "text": [
+                        "${companyName} is responsible for processing your information. If you have any questions, comments, or concerns about our processing activities, please email us at ${companyEmail} or write to us at ${companyAddress}."
+                    ]
+                }
+            ]
+        }
+    ]
+} 

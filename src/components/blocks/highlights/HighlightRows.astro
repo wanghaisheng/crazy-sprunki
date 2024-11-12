@@ -1,0 +1,51 @@
+---
+// Highlights Section
+// ------------
+// Description: A section with multiple text and image rows.
+
+// Components
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+import TextImage from '../basic/TextImage.astro'
+
+// Content
+import HighlightData from '../../../data/json-files/highlightData.json'
+import HighlightTitle from '../../../data/json-files/highlightTitle.json'
+
+interface Highlight {
+    title: string
+    text: string
+    image: string
+    mobileImage?: string
+    imageWidth: number
+    imageHeight: number
+    imagePosition: 'left' | 'right'
+}
+---
+
+<Section id="highlights">
+    <Row>
+        <Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
+            <h2 class="text-pretty" set:html={HighlightTitle.title} />
+            <p class="pb-0 text-lg">
+                {HighlightTitle.subtitle}
+            </p>
+        </Col>
+    </Row>
+    {
+        HighlightData.map((highlight, key) => (
+            <TextImage
+                id={`highlight-${key}`}
+                title={highlight.title}
+                text={highlight.text}
+                image={highlight.image}
+                imageWidth={highlight.imageWidth}
+                imageHeight={highlight.imageHeight}
+                mobileImage={highlight.mobileImage}
+                imagePosition={highlight.imagePosition}
+                classes={key === 0 ? '!pb-0' : key === HighlightData.length - 1 ? '!pt-0' : '!py-0'}
+            />
+        ))
+    }
+</Section> 

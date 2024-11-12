@@ -1,0 +1,96 @@
+---
+// Components
+// - Layout
+import Layout from '../layouts/Layout.astro'
+// - UI
+import SidebarContent from '../components/blocks/basic/StickySidebar.astro'
+import Hero from '../components/blocks/hero/PageHeader.astro'
+
+// Content
+import SEOData from '../data/json-files/seoData.json'
+import PrivacyContent from '../data/json-files/privacyContent.json'
+import CompanyInfo from '../data/json-files/companyInfo.json'
+
+// Get SEO data
+const { global, pages } = SEOData
+const pageSEO = {
+    title: `${global.siteName}${global.separator}${pages.privacy.title}`,
+    description: pages.privacy.description,
+    image: pages.privacy.image || global.defaultImage,
+    type: global.defaultType,
+    keywords: pages.privacy.keywords
+}
+
+// Process content with company info
+const processText = (text: string) => {
+    return text.replace(/\${companyName}/g, CompanyInfo.name)
+              .replace(/\${companyShortName}/g, CompanyInfo.shortName)
+              .replace(/\${companyEmail}/g, CompanyInfo.contact.email)
+              .replace(/\${companyAddress}/g, CompanyInfo.contact.address)
+}
+
+// Process all content sections
+const processedSections = PrivacyContent.sections.map(section => ({
+    ...section,
+    content: section.content.map(contentItem => ({
+        ...contentItem,
+        text: contentItem.text.map(text => processText(text))
+    }))
+}))
+---
+
+<Layout {...pageSEO}>
+    <Hero 
+        title={PrivacyContent.header.title}
+        text={PrivacyContent.header.text}
+    />
+    
+    <div class="text-sm text-neutral-600 dark:text-neutral-400 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+        Last Updated: {PrivacyContent.header.lastUpdated}
+    </div>
+    
+    {processedSections.map((section, index) => (
+        <SidebarContent 
+            classes={index % 2 === 1 ? "bg-neutral-50 dark:bg-neutral-900" : ""}
+        >
+            <div slot="sidebar">
+                <h3>{section.sidebar.title}</h3>
+                <p>{section.sidebar.text}</p>
+            </div>
+            <div class="basic-text">
+                {section.content.map(item => (
+                    <>
+                        <h4>{item.title}</h4>
+                        {item.text.map(paragraph => (
+                            <p set:html={paragraph} />
+                        ))}
+                    </>
+                ))}
+            </div>
+        </SidebarContent>
+    ))}
+
+    {CompanyInfo.thirdPartyServices.length > 0 && (
+        <SidebarContent>
+            <div slot="sidebar">
+                <h3>Third Party Services</h3>
+                <p>List of third party services we work with.</p>
+            </div>
+            <div class="basic-text">
+                <h4>List of Third Party Sites:</h4>
+                <ul class="list-disc pl-4 mb-4">
+                    {CompanyInfo.thirdPartyServices.map(service => (
+                        <li>
+                            <a 
+                                href={service.link}
+                                class="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300"
+                            >
+                                {service.name}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </SidebarContent>
+    )}
+</Layout> 

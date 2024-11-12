@@ -1,0 +1,23 @@
+---
+// Components
+import GoogleAd from '../../ui/GoogleAd.astro'
+
+interface Props {
+    classes?: string
+}
+
+const { classes } = Astro.props
+---
+
+<div class:list={["ad-block ad-block--horizontal", classes]}>
+    <GoogleAd 
+        layout="horizontal"
+        responsive={true}
+    />
+</div>
+
+<style>
+    .ad-block--horizontal {
+        @apply py-8 px-4;
+    }
+</style> 

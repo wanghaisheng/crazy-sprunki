@@ -5,21 +5,85 @@ import Layout from '../layouts/Layout.astro'
 // - UI
 import Hero from '../components/blocks/hero/HomeCTA.astro'
 import Gameframe from '../components/blocks/gameframe/BasicGame.astro'
-
 import Features from '../components/blocks/features/FeatureCards.astro'
 import Testimonial from '../components/blocks/testimonials/BasicDark.astro'
 import HighlightBlocks from '../components/blocks/highlights/HightlightRows.astro'
 import CTA from '../components/blocks/CTA/BasicDark.astro'
 
+// - Ads
+import VerticalAd from '../components/blocks/ads/VerticalAd.astro'
+import HorizontalAd from '../components/blocks/ads/HorizontalAd.astro'
+
 // Content
-// - Testimonial background
 import testimonialBackground from '../assets/testimonial-bg-01.webp'
-// - SEO
 import SEO from '../data/json-files/SEOData.json'
 
 ---
 
 <Layout title={SEO.title} description={SEO.description}>
+    <Hero />
+    
+    <!-- Game section with side ads -->
+    <div class="game-section max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Game container with side ads -->
+        <div class="grid grid-cols-1 xl:grid-cols-[160px_1fr_160px] gap-4 items-start">
+            <!-- Left ad -->
+            <div class="hidden xl:block">
+                <VerticalAd classes="sticky top-4" />
+            </div>
+            
+            <!-- Game frame -->
+            <div class="flex flex-col gap-4">
+                <Gameframe />
+                <!-- Horizontal ad under the game -->
+                <HorizontalAd classes="bg-neutral-50 dark:bg-neutral-900/40 rounded-lg" />
+            </div>
+            
+            <!-- Right ad -->
+            <div class="hidden xl:block">
+                <VerticalAd classes="sticky top-4" />
+            </div>
+        </div>
+    </div>
+    
+    <Features />
+    
+    <!-- Ad between sections -->
+    <HorizontalAd classes="max-w-screen-xl mx-auto bg-white dark:bg-neutral-900 shadow-sm rounded-lg" />
+    
+    <Testimonial bg={testimonialBackground} bgPosition="right" />
+    <HighlightBlocks />
+    
+    <!-- Ad before CTA -->
+    <HorizontalAd classes="max-w-screen-xl mx-auto bg-neutral-50 dark:bg-neutral-900/40 rounded-lg" />
+    
+    <CTA />
+</Layout>
+
+<style>
+    /* Ensure ads don't overlap with fixed header if present */
+    .game-section {
+        scroll-margin-top: var(--header-height, 0px);
+    }
+    
+    /* Optional: Add smooth transitions for ads */
+    .google-ad {
+        @apply transition-opacity duration-300;
+    }
+    
+    /* Optional: Improve ad visibility on scroll */
+    @media (min-width: 1280px) {
+        .sticky {
+            animation: fade-in 0.3s ease-in-out;
+        }
+    }
+    
+    @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+</style>
+
 	<Hero />
 	<Gameframe/>
 	<Features />
