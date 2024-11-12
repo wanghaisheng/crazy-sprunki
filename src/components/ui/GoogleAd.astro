@@ -41,6 +41,7 @@ const adSizes = {
 }
 
 const currentSize = format === 'auto' ? adSizes[layout] : adSizes[format] || adSizes.horizontal
+if (format === 'fluid')
 ---
 
 <div 

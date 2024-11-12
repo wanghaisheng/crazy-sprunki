@@ -27,7 +27,7 @@ import CTALightData from '../../../data/json-files/ctaLightData.json'
 				classes="!shadow-none"
 			>
 				<Ratings 
-					rating={CTALightData.rating.stars} 
+					rating={CTALightData.rating.stars as 0 | 1 | 2 | 3 | 4 | 5} 
 					text={CTALightData.rating.text} 
 					classes="mb-4" 
 				/>

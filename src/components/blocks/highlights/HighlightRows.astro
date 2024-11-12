@@ -12,6 +12,7 @@ import TextImage from '../basic/TextImage.astro'
 // Content
 import HighlightData from '../../../data/json-files/highlightData.json'
 import HighlightTitle from '../../../data/json-files/highlightTitle.json'
+import SEOData from '../data/json-files/seoData.json'
 
 interface Highlight {
     title: string
@@ -43,7 +44,7 @@ interface Highlight {
                 imageWidth={highlight.imageWidth}
                 imageHeight={highlight.imageHeight}
                 mobileImage={highlight.mobileImage}
-                imagePosition={highlight.imagePosition}
+                imagePosition={highlight.imagePosition as "right" | "left"}
                 classes={key === 0 ? '!pb-0' : key === HighlightData.length - 1 ? '!pt-0' : '!py-0'}
             />
         ))

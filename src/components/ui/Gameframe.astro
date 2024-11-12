@@ -34,8 +34,8 @@ const {
 			src={link}
 			width={width}
 			height={height}
-			frameborder="0"
-			scrolling="no"
+			style="border: none; overflow: hidden;"
+			class="no-scroll"
 			allowfullscreen
 		></iframe>
 	</div>
@@ -54,4 +54,10 @@ const {
 		@apply absolute top-0 left-0 w-full h-full;
 		border: 0;
 	}
+	.no-scroll {
+		overflow: hidden;
+	}
 </style>
+
+<script is:inline async defer>
+</script>
