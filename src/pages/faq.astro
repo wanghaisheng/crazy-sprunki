@@ -13,15 +13,8 @@ import SEOData from '../data/json-files/seoData.json'
 import FAQData from '../data/json-files/faqData.json'
 import FAQContent from '../data/json-files/faqContent.json'
 
-// Get SEO data
-const { global, pages } = SEOData
-const pageSEO = {
-    title: `${global.siteName}${global.separator}${pages.faq.title}`,
-    description: pages.faq.description,
-    image: pages.faq.image || global.defaultImage,
-    type: global.defaultType,
-    keywords: pages.faq.keywords
-}
+// Add this import
+import { seoConfig } from '../config/seo'
 
 // Filter FAQ categories
 const faqPricing = FAQData.filter((faq) => faq.category === 'pricing')
