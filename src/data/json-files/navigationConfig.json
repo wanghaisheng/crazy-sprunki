@@ -39,14 +39,35 @@
             {
                 "category": "Product",
                 "subCategories": [
-                    { "subCategory": "Features", "subCategoryLink": "/features" },
-                    { "subCategory": "FAQ", "subCategoryLink": "/faq" },
-                    { "subCategory": "Pricing", "subCategoryLink": "/pricing" },
-                    { "subCategory": "Changelog", "subCategoryLink": "/changelog" },
-                    { "subCategory": "Terms", "subCategoryLink": "/terms" }
+                    { "subCategory": "Download", "subCategoryLink": "/features" },
+                    { "subCategory": "Characters", "subCategoryLink": "/pricing" },
+                    { "subCategory": "Blog", "subCategoryLink": "/blog" },
+                    { "subCategory": "Changelog", "subCategoryLink": "/changelog" }
                 ]
+            },
+            {
+
+                "category": "About",
+                "subCategories": [
+                    { "subCategory": "Story", "subCategoryLink": "/pricing" },
+
+                    { "subCategory": "privacy", "subCategoryLink": "/features" },
+                    { "subCategory": "terms", "subCategoryLink": "/features" }
+                ]
+
+            },
+            {
+                "category": "Links",
+                "subCategories": [
+                    { "subCategory": "Features", "subCategoryLink": "/features" },
+                    { "subCategory": "Features", "subCategoryLink": "/features" }
+                ]
+
+
             }
-            // ... other columns
+
+
+
         ]
     },
     "social": [

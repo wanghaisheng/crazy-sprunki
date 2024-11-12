@@ -17,16 +17,9 @@ import PricingContent from '../data/json-files/pricingContent.json'
 
 // Get SEO data
 const { global, pages } = SEOData
-const pageSEO = {
-	title: `${global.siteName}${global.separator}${pages.pricing.title}`,
-	description: pages.pricing.description,
-	image: pages.pricing.image || global.defaultImage,
-	type: global.defaultType,
-	keywords: pages.pricing.keywords
-}
 ---
 
-<Layout {...pageSEO}>
+<Layout title={SEOData.pricing.title} description={SEOData.pricing.description}>
 	<Hero 
 		title={SEOData.pricing.headertitle} 
 		text={SEOData.pricing.headertext} 

@@ -11,17 +11,10 @@ import SEOData from '../data/json-files/seoData.json'
 import TermsContent from '../data/json-files/termsContent.json'
 
 // Get SEO data
-const { global, pages } = SEOData
-const pageSEO = {
-    title: `${global.siteName}${global.separator}${pages.terms.title}`,
-    description: pages.terms.description,
-    image: pages.terms.image || global.defaultImage,
-    type: global.defaultType,
-    keywords: pages.terms.keywords
-}
+
 ---
 
-<Layout {...pageSEO}>
+<Layout title={SEOData.terms.title} description={SEOData.terms.description}>
     <Hero 
         title={SEOData.terms.headertitle} 
         text={SEOData.terms.headertext} 

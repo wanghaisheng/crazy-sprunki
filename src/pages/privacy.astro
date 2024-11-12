@@ -39,7 +39,7 @@ const processedSections = PrivacyContent.sections.map(section => ({
 }))
 ---
 
-<Layout {...pageSEO}>
+<Layout title={SEOData.privacy.title} description={SEOData.privacy.description}>
     <Hero 
         title={PrivacyContent.header.title}
         text={PrivacyContent.header.text}

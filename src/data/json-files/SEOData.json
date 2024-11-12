@@ -42,6 +42,12 @@
 		"title": "Foxi | Our Story and Mission",
 		"description": "Learn about Foxi's journey, our mission to simplify workflow automation, and the team behind the platform."
 	},
+	"privacy":{
+		"title": "Foxi | Privacy Policy",
+		"description":		"Foxi's terms of service outlines the rules and regulations that govern your use of our services. Please read them carefully to understand your rights and responsibilities.",
+		"headertitle": "Terms and Conditions: Read, Relax, <strong>Enjoy!</strong>",
+		"headertext": "Please read them carefully to understand your rights and responsibilities."
+	},
 	"terms":{
 
 		"title": "Foxi | Terms of Service",
