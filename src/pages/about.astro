@@ -5,10 +5,11 @@ import Layout from '../layouts/Layout.astro'
 // - UI
 import SidebarContent from '../components/blocks/basic/StickySidebar.astro'
 import Hero from '../components/blocks/hero/PageHeader.astro'
+import Testimonial from '../components/blocks/testimonials/BasicDark.astro'
 
 // Content
 import SEOData from '../data/json-files/seoData.json'
-import TermsContent from '../data/json-files/termsContent.json'
+import AboutContent from '../data/json-files/aboutContent.json'
 
 // Get SEO data
 
@@ -20,7 +21,7 @@ import TermsContent from '../data/json-files/termsContent.json'
         text={SEOData.terms.headertext} 
     />
     
-    {TermsContent.sections.map((section, index) => (
+    {AboutContent.sections.map((section, index) => (
         <SidebarContent classes={index % 2 === 1 ? "bg-neutral-50 dark:bg-neutral-900" : ""}>
             <div slot="sidebar">
                 <h3>{section.sidebar.title}</h3>
@@ -38,4 +39,13 @@ import TermsContent from '../data/json-files/termsContent.json'
             </div>
         </SidebarContent>
     ))}
+
+<Testimonial
+bg={AboutContent.testimonial.background}
+bgPosition="left"
+blockquote={AboutContent.testimonial.quote}
+figcaption={AboutContent.testimonial.author}
+cite={AboutContent.testimonial.role}
+/>
+
 </Layout>
