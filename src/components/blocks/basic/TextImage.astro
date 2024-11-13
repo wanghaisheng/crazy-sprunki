@@ -55,8 +55,8 @@ const {
 			<picture
 				class=`text-image__picture ${offsetImage  ? 'text-image__picture--offset' : ''} ${imagePosition === 'right' ? 'text-image__picture--offset-right' : ''}`
 			>
-				{mobileImage && <source srcset={mobileImage} media="(max-width: 1024px)" />}
-				<img src={image} alt={alttext} width={imageWidth} height={imageHeight} />
+				{mobileImage && <source srcset={mobileImage.src} media="(max-width: 1024px)" />}
+				<img src={image.src} alt={alttext} width={imageWidth} height={imageHeight} />
 			</picture>
 		</Col>
 		<Col span="6" classes={`self-center ${imagePosition === 'right' ? 'lg:-order-1' : ''}`}>
