@@ -1,25 +1,28 @@
 ---
-import Section from '../../ui/Section.astro'
-import Row from '../../ui/Row.astro'
-import Col from '../../ui/Col.astro'
-import TextImage from '../basic/TextImage.astro'
+import Section from '../../ui/Section.astro';
+import Row from '../../ui/Row.astro';
+import Col from '../../ui/Col.astro';
+import TextImage from '../basic/TextImage.astro';
 
-import HighlightData from '../../../data/json-files/howtoData.json'
-import HighlightTitle from '../../../data/json-files/howtoTitle.json'
-import { join } from 'path';
-import t1 from "../../../assets/highlights/highlight-01.svg"
-console.log('?????',t1)
+import HighlightData from '../../../data/json-files/howtoData.json';
+import HighlightTitle from '../../../data/json-files/howtoTitle.json';
+
+// Base path for static assets in src/assets
+const basePath = '/src/assets';
+
+// Custom function to resolve image paths
+const resolveImagePath = (imagePath) => {
+  return basePath + imagePath;
+};
+
+// Process the images using the custom resolver
 const images = Object.fromEntries(
   HighlightData.map((highlight) => {
     const id = highlight.id;
     
-    // Dynamically import the desktop and mobile images
-    const desktopImage = new URL(join('../assets/', highlight.image), import.meta.url).href;
-    console.log('========',desktopImage)
-    const mobileImage = highlight.mobileImage
-    ? new URL(join('../assets', highlight.mobileImage), import.meta.url).href
-    : null;
-    console.log('========',mobileImage)
+    // Dynamically resolve the desktop and mobile image paths
+    const desktopImage = resolveImagePath(highlight.image);
+    const mobileImage = highlight.mobileImage ? resolveImagePath(highlight.mobileImage) : null;
 
     return [
       id,
@@ -33,31 +36,29 @@ const images = Object.fromEntries(
 ---
 
 <Section id="highlights">
-    <Row>
-        <Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
-            <h2 class="text-pretty" set:html={HighlightTitle.title} />
-            <p class="pb-0 text-lg">
-                {HighlightTitle.subtitle}
-            </p>
-        </Col>
-    </Row>
+  <Row>
+    <Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
+      <h2 class="text-pretty" set:html={HighlightTitle.title} />
+      <p class="pb-0 text-lg">{HighlightTitle.subtitle}</p>
+    </Col>
+  </Row>
 
-    {HighlightData.map((highlight, key) => {
-        const { image, mobileImage } = images[highlight.id] || {};
+  {HighlightData.map((highlight, key) => {
+    const { image, mobileImage } = images[highlight.id] || {};
 
-        return (
-            <TextImage
-                id={`highlight-${key}`}
-                title={highlight.title}
-                alttext={highlight.alttext}
-                text={highlight.text}
-                image={image} 
-                image={mobileImage} 
-                imageWidth={highlight.imageWidth}
-                imageHeight={highlight.imageHeight}
-                imagePosition={highlight.imagePosition as "right" | "left"}
-                classes={key === 0 ? '!pb-0' : key === HighlightData.length - 1 ? '!pt-0' : '!py-0'}
-            />
-        );
-    })}
+    return (
+      <TextImage
+        id={`highlight-${key}`}
+        title={highlight.title}
+        alttext={highlight.alttext}
+        text={highlight.text}
+        image={image} 
+        mobileImage={mobileImage} 
+        imageWidth={highlight.imageWidth}
+        imageHeight={highlight.imageHeight}
+        imagePosition={highlight.imagePosition as "right" | "left"}
+        classes={key === 0 ? '!pb-0' : key === HighlightData.length - 1 ? '!pt-0' : '!py-0'}
+      />
+    );
+  })}
 </Section>
