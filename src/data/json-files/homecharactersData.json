@@ -1,6 +1,6 @@
 [
 	{
-		"title": "mod 1 row 2",
+		"title": "character 1 row 2",
 		"image": "mods/mod-01.svg",
 		"link":"/",
 		"subtitle":"Stay on top of your tasks and deadlines with our intuitive project management tool. Visualize progress, assign tasks, and collaborate seamlessly.",
@@ -45,7 +45,7 @@
 		"col": "3"
 	},
 	{
-		"title": "mod 1",
+		"title": "character 1",
 		"image": "mods/mod-01.svg",
 		"link":"/",
 		"subtitle":"Stay on top of your tasks and deadlines with our intuitive project management tool. Visualize progress, assign tasks, and collaborate seamlessly.",
