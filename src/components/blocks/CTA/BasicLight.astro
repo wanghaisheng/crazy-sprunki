@@ -20,12 +20,14 @@ interface RatingData {
   text?: string;
 }
 
-// Check if rating is valid
-const hasValidRating = (rating: RatingData | undefined): boolean => {
-  return !!rating && typeof rating.stars !== 'undefined' && rating.stars >= 0 && rating.stars <= 5;
-}
+// Check if rating exists and has valid stars
+const hasRating = CTALightData.rating &&
+                  typeof CTALightData.rating === 'object' &&
+                  'stars' in CTALightData.rating &&
+                  typeof CTALightData.rating.stars === 'number' &&
+                  CTALightData.rating.stars >= 0 &&
+                  CTALightData.rating.stars <= 5;
 ---
-
 <Section>
   <Row>
     <Col span="1" />
@@ -35,7 +37,7 @@ const hasValidRating = (rating: RatingData | undefined): boolean => {
         text={CTALightData.text}
         classes="!shadow-none"
       >
-        {hasValidRating(CTALightData.rating) && (
+        {hasRating && (
           <Ratings
             rating={CTALightData.rating.stars}
             text={CTALightData.rating.text}

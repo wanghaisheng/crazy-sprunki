@@ -16,11 +16,13 @@ import Highlight from '../../ui/Highlight.astro'
 // Content
 import CTAData from '../../../data/json-files/ctaData.json'
 import ctaImage from '../../../assets/cta-dark-bg.webp'
+import siteconfig from '../../../data/json-files/siteConfig.json'
 
-// Only import badge if it's needed
+// Only import badge if CTAData has badge property
 let badge;
 if (CTAData.badge) {
-  badge = await import('../../../assets/badge.svg');
+  const badgefilename=siteconfig.site.badge
+  badge = await import(`../../../assets/${badgefilename}`);
 }
 
 // Type for the badge data
@@ -30,12 +32,12 @@ interface BadgeData {
   alt: string;
 }
 
-// Check if badge is valid
-const hasValidBadge = (badge: BadgeData | undefined): boolean => {
-  return !!badge && !!badge.text && !!badge.alt;
-}
+// Check if badge exists and has required properties
+const hasBadge = CTAData.badge && 
+                 typeof CTAData.badge === 'object' && 
+                 'text' in CTAData.badge && 
+                 'alt' in CTAData.badge;
 ---
-
 <Section>
   <Row>
     <Col span="1" />
@@ -46,7 +48,7 @@ const hasValidBadge = (badge: BadgeData | undefined): boolean => {
         mode="dark"
         bg={ctaImage}
       >
-        {hasValidBadge(CTAData.badge) && badge && (
+        {hasBadge && badge && (
           <ChipNotification radius="rounded-full" classes="mb-6 box">
             <Image
               src={badge.default}

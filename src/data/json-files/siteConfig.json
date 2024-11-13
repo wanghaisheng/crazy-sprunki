@@ -12,7 +12,8 @@
         "noindex": false,
         "mode": "auto",
         "scrollAnimations": true,
-        "copyright": "© CrazySprunki 2024."
+        "copyright": "© CrazySprunki 2024.",
+        "badge":"badge.svg"
     },
     "tracking": {
         "microsoftClarity": "hh1oixxx",
