@@ -19,7 +19,18 @@ interface RatingData {
   stars?: 0 | 1 | 2 | 3 | 4 | 5;
   text?: string;
 }
-
+interface CTALightData {
+  title: string;
+  text: string;
+  button: {
+    text: string;
+    link: string;
+  };
+  rating?: {
+    stars: 0 | 1 | 2 | 3 | 4 | 5;
+    text?: string;
+  };
+}
 // Check if rating exists and has valid stars
 const hasRating = CTALightData.rating &&
                   typeof CTALightData.rating === 'object' &&

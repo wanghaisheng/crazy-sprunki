@@ -17,7 +17,16 @@ import Highlight from '../../ui/Highlight.astro'
 import CTAData from '../../../data/json-files/ctaData.json'
 import ctaImage from '../../../assets/cta-dark-bg.webp'
 import siteconfig from '../../../data/json-files/siteConfig.json'
-
+interface CTAData {
+  title: string;
+  text: string;
+  buttonText: string;
+  badge?: {
+    text: string;
+    highlight?: string;
+    alt: string;
+  };
+}
 // Only import badge if CTAData has badge property
 let badge;
 if (CTAData.badge) {
