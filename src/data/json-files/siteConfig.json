@@ -1,7 +1,7 @@
 {
     "site": {
-        "title": "Foxi. Tailwind CSS Astro Starter Kit by Oxygenna",
-        "description": "Foxi is a design and development agency that specializes in creating beautiful and functional websites.",
+        "title": "Free sprunki incredibox games on CrazySprunki|Play Now",
+        "description": "Play free online sprunki incredibox games at CrazySprunki, the best place to play high-quality browser music creation games. We add new games every day. Have fun!.",
         "ogImage": "/og.jpg",
         "logo": {
             "src": "/logo.svg",
@@ -12,7 +12,7 @@
         "noindex": false,
         "mode": "auto",
         "scrollAnimations": true,
-        "copyright": "© Foxi 2024."
+        "copyright": "© CrazySprunki 2024."
     },
     "tracking": {
         "microsoftClarity": "hh1oixxx",
