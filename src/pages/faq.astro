@@ -9,12 +9,11 @@ import TextImage from '../components/blocks/basic/TextImage.astro'
 import CTA from '../components/blocks/CTA/BasicDark.astro'
 
 // Content
-import SEOData from '../data/json-files/seoData.json'
 import FAQData from '../data/json-files/faqData.json'
 import FAQContent from '../data/json-files/faqContent.json'
+import SEOData from '../data/json-files/seoData.json'
 
 // Add this import
-import { seoConfig } from '../config/seo'
 
 // Filter FAQ categories
 const faqPricing = FAQData.filter((faq) => faq.category === 'pricing')
