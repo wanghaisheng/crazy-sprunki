@@ -7,11 +7,12 @@ import TextImage from '../basic/TextImage.astro'
 import HighlightData from '../../../data/json-files/howtoData.json'
 import HighlightTitle from '../../../data/json-files/howtoTitle.json'
 import { join } from 'path';
-
+import t1 from "../../../assets/highlights/highlight-01.svg"
+console.log('?????',t1)
 const images = Object.fromEntries(
   HighlightData.map((highlight) => {
     const id = highlight.id;
-
+    
     // Dynamically import the desktop and mobile images
     const desktopImage = new URL(join('../assets/', highlight.image), import.meta.url).href;
     console.log('========',desktopImage)
