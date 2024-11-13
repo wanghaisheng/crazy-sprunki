@@ -1,35 +1,45 @@
 ---
-// Imports
+// Layout.astro
+
 // Components
 import NavigationBar from '../components/ui/NavigationBar.astro'
 import Main from '../components/ui/Main.astro'
 import Footer from '../components/ui/Footer.astro'
 import Modal from '../components/blocks/modal/SignUp.astro'
 import Header from '../components/blocks/head/Header.astro'
-import ScrollButton from '../components/ui/ScrollButton.astro'
+import ScrollButtons from '../components/ui/ScrollButton.astro'
+
 // Scripts
 import Scripts from '../components/scripts/LocalScripts.astro'
 import GoogleTagManagerBody from '../components/scripts/googleTagManagerBody.astro'
+
 // Styles
 import '../styles/global.css'
+
 // Fonts
 import '@fontsource-variable/inter'
 import '@fontsource-variable/outfit'
+
 // Data
 import { configData } from '../config/config'
+
 // Props
-type Props = {
-  title?: string
-  description?: string
-  ogImage?: string
-  noindex?: boolean
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  noindex?: boolean;
 }
+
 // Page Metadata
-const { title, description, ogImage, noindex } = Astro.props
+const { title, description, ogImage, noindex } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="en" class="scroll-animation mode-auto">
-  <Header title={title} description={description} ogImage={ogImage} noindex={noindex} />
+  <head>
+    <Header title={title} description={description} ogImage={ogImage} noindex={noindex} />
+  </head>
   <body
     class:list={[
       { ['mode-' + `${configData.mode}`]: configData.mode },
@@ -43,27 +53,43 @@ const { title, description, ogImage, noindex } = Astro.props
     </Main>
     <Footer />
     <Modal />
-    <ScrollButton />
+    <ScrollButtons />
     <Scripts />
+
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        const scrollTopBtn = document.getElementById('scrollTopBtn');
-        const scrollBottomBtn = document.getElementById('scrollBottomBtn');
+        const html = document.documentElement;
+        const toggleColorScheme = () => {
+          html.classList.toggle('dark');
+        };
 
-        function smoothScroll(to) {
-          window.scrollTo({
-            top: to,
-            behavior: 'smooth'
-          });
+        // Check for saved color scheme preference or use system preference
+        const savedColorScheme = localStorage.getItem('color-scheme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedColorScheme === 'dark' || (!savedColorScheme && systemPrefersDark)) {
+          toggleColorScheme();
         }
 
-        scrollTopBtn.addEventListener('click', function() {
-          smoothScroll(0);
+        // Listen for color scheme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+          if (!localStorage.getItem('color-scheme')) {
+            if (e.matches) {
+              html.classList.add('dark');
+            } else {
+              html.classList.remove('dark');
+            }
+          }
         });
 
-        scrollBottomBtn.addEventListener('click', function() {
-          smoothScroll(document.documentElement.scrollHeight);
-        });
+        // Optional: Add event listener for a theme toggle button
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+          themeToggle.addEventListener('click', () => {
+            toggleColorScheme();
+            localStorage.setItem('color-scheme', html.classList.contains('dark') ? 'dark' : 'light');
+          });
+        }
       });
     </script>
   </body>

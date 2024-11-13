@@ -1,15 +1,33 @@
 ---
-// ScrollButtons.astro
 ---
-
-<div class="scroll-button-container">
+<div class="scroll-button-container" id="scrollButtonContainer">
   <button id="scrollTopBtn" aria-label="Scroll to top" title="Scroll to top">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
       <polyline points="18 15 12 9 6 15"></polyline>
     </svg>
   </button>
   <button id="scrollBottomBtn" aria-label="Scroll to bottom" title="Scroll to bottom">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
       <polyline points="6 9 12 15 18 9"></polyline>
     </svg>
   </button>
@@ -26,73 +44,91 @@
 
     if (!scrollTopBtn || !scrollBottomBtn) return;
 
-    function smoothScroll(to: number): void {
+    const smoothScroll = (to: number): void => {
       window.scrollTo({
         top: to,
         behavior: 'smooth'
       });
-    }
+    };
 
-    function updateButtonVisibility(): void {
+    const updateButtonVisibility = (): void => {
       const scrollPosition = window.scrollY;
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      
-      // Show/hide top button
-      scrollTopBtn.style.display = scrollPosition > 100 ? 'flex' : 'none';
-      
-      // Show/hide bottom button
-      scrollBottomBtn.style.display = maxScroll - scrollPosition > 100 ? 'flex' : 'none';
-    }
 
-    // Initial visibility check
-    updateButtonVisibility();
+      scrollTopBtn.style.opacity = scrollPosition > 100 ? '0.7' : '0';
+      scrollTopBtn.style.pointerEvents = scrollPosition > 100 ? 'auto' : 'none';
 
-    // Add event listeners
+      scrollBottomBtn.style.opacity = maxScroll - scrollPosition > 100 ? '0.7' : '0';
+      scrollBottomBtn.style.pointerEvents = maxScroll - scrollPosition > 100 ? 'auto' : 'none';
+    };
+
+    // Event listeners
     scrollTopBtn.addEventListener('click', () => smoothScroll(0));
     scrollBottomBtn.addEventListener('click', () => {
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       smoothScroll(maxScroll);
     });
 
-    // Update button visibility on scroll
-    window.addEventListener('scroll', updateButtonVisibility, { passive: true });
+    // Throttle scroll event for better performance
+    let ticking = false;
+    const scrollHandler = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateButtonVisibility();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // Add scroll and resize listeners
+    window.addEventListener('scroll', scrollHandler, { passive: true });
     window.addEventListener('resize', updateButtonVisibility, { passive: true });
+
+    // Initial visibility check
+    updateButtonVisibility();
   }
 
-  // Initialize when DOM is ready
-  document.addEventListener('DOMContentLoaded', initScrollButtons);
+  // Initialize immediately
+  initScrollButtons();
+
+  // Re-initialize on view transitions
+  document.addEventListener('astro:page-load', initScrollButtons);
 </script>
 
 <style>
   .scroll-button-container {
     position: fixed;
     right: 20px;
-    top: 80%;
-    transform: translateY(-50%);
+    bottom: 20px;
     z-index: 99;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    pointer-events: none;
+    /* Ensure the container persists during view transitions */
+    view-transition-name: scroll-buttons;
   }
 
   .scroll-button-container button {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
+    background-color: var(--scroll-btn-bg, rgba(0, 0, 0, 0.5));
+    color: var(--scroll-btn-color, white);
     border: none;
     border-radius: 50%;
     width: 40px;
     height: 40px;
     cursor: pointer;
-    display: none; /* Initially hidden */
+    display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s, opacity 0.3s;
-    opacity: 0.7;
+    transition: all 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
   }
 
   .scroll-button-container button:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-    opacity: 1;
+    background-color: var(--scroll-btn-hover-bg, rgba(0, 0, 0, 0.8));
+    opacity: 1 !important;
   }
 
   .scroll-button-container button svg {
@@ -104,7 +140,7 @@
   @media (max-width: 768px) {
     .scroll-button-container {
       right: 10px;
-      top: 85%;
+      bottom: 15px;
     }
 
     .scroll-button-container button {
@@ -116,5 +152,12 @@
       width: 18px;
       height: 18px;
     }
+  }
+
+  /* Ensure buttons are visible during view transitions */
+  ::view-transition-old(scroll-buttons),
+  ::view-transition-new(scroll-buttons) {
+    animation: none;
+    mix-blend-mode: normal;
   }
 </style>
