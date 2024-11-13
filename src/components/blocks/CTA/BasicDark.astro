@@ -1,8 +1,7 @@
 ---
 // Basic Dark Call To Action section
 // ------------
-// Description: A centered call to action section with title, text, background image, notification and button.
-
+// Description: A centered call to action section with title, text, background image, optional notification and button.
 // Components
 // - Layout
 import Section from '../../ui/Section.astro'
@@ -14,37 +13,58 @@ import Button from '../../ui/Button.astro'
 import ChipNotification from '../../ui/ChipNotification.astro'
 import { Image } from 'astro:assets'
 import Highlight from '../../ui/Highlight.astro'
-
 // Content
 import CTAData from '../../../data/json-files/ctaData.json'
-import badge from '../../../assets/badge.svg'
 import ctaImage from '../../../assets/cta-dark-bg.webp'
+
+// Only import badge if it's needed
+let badge;
+if (CTAData.badge) {
+  badge = await import('../../../assets/badge.svg');
+}
+
+// Type for the badge data
+interface BadgeData {
+  text: string;
+  highlight?: string;
+  alt: string;
+}
+
+// Check if badge is valid
+const hasValidBadge = (badge: BadgeData | undefined): boolean => {
+  return !!badge && !!badge.text && !!badge.alt;
+}
 ---
 
 <Section>
-	<Row>
-		<Col span="1" />
-		<Col span="10">
-			<CTA
-				title={CTAData.title}
-				text={CTAData.text}
-				mode="dark"
-				bg={ctaImage}
-			>
-				<ChipNotification radius="rounded-full" classes="mb-6 box">
-					<Image 
-						src={badge} 
-						alt={CTAData.badge.alt} 
-						class="h-12 w-12" 
-						slot="button" 
-					/>
-					{CTAData.badge.text} <Highlight classes="ml-2">{CTAData.badge.highlight}</Highlight>
-				</ChipNotification>
-				<Button size="lg" style="primary">
-					{CTAData.buttonText}
-				</Button>
-			</CTA>
-		</Col>
-		<Col span="1" />
-	</Row>
+  <Row>
+    <Col span="1" />
+    <Col span="10">
+      <CTA
+        title={CTAData.title}
+        text={CTAData.text}
+        mode="dark"
+        bg={ctaImage}
+      >
+        {hasValidBadge(CTAData.badge) && badge && (
+          <ChipNotification radius="rounded-full" classes="mb-6 box">
+            <Image
+              src={badge.default}
+              alt={CTAData.badge.alt}
+              class="h-12 w-12"
+              slot="button"
+            />
+            {CTAData.badge.text}
+            {CTAData.badge.highlight && (
+              <Highlight classes="ml-2">{CTAData.badge.highlight}</Highlight>
+            )}
+          </ChipNotification>
+        )}
+        <Button size="lg" style="primary">
+          {CTAData.buttonText}
+        </Button>
+      </CTA>
+    </Col>
+    <Col span="1" />
+  </Row>
 </Section>

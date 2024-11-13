@@ -1,0 +1,13 @@
+---
+import FeatureGrid from '../features/FeatureGrid.astro';
+import homeModsData from '../../../data/json-files/homemodsData.json';
+import homeModsTitle from '../../../data/json-files/homemodstitle.json';
+---
+
+<FeatureGrid 
+  features={homeModsData}
+  title={homeModsTitle}
+  sectionId="home-features"
+  defaultImage="/assets/default-feature-image.svg"
+  imageBasePath = '../../../assets'
+/>

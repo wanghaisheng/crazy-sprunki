@@ -1,8 +1,7 @@
 ---
 // Basic Light Call To Action section
 // ------------
-// Description: A centered call to action section that contains: a title, text, a rating and a button.
-
+// Description: A centered call to action section that contains: a title, text, an optional rating and a button.
 // Components
 // - Layout
 import Section from '../../ui/Section.astro'
@@ -12,34 +11,46 @@ import Col from '../../ui/Col.astro'
 import CTA from '../../ui/CTA.astro'
 import Button from '../../ui/Button.astro'
 import Ratings from '../../ui/Rating.astro'
-
 // Content
 import CTALightData from '../../../data/json-files/ctaLightData.json'
+
+// Type for the rating data
+interface RatingData {
+  stars?: 0 | 1 | 2 | 3 | 4 | 5;
+  text?: string;
+}
+
+// Check if rating is valid
+const hasValidRating = (rating: RatingData | undefined): boolean => {
+  return !!rating && typeof rating.stars !== 'undefined' && rating.stars >= 0 && rating.stars <= 5;
+}
 ---
 
 <Section>
-	<Row>
-		<Col span="1" />
-		<Col span="10">
-			<CTA
-				title={CTALightData.title}
-				text={CTALightData.text}
-				classes="!shadow-none"
-			>
-				<Ratings 
-					rating={CTALightData.rating.stars as 0 | 1 | 2 | 3 | 4 | 5} 
-					text={CTALightData.rating.text} 
-					classes="mb-4" 
-				/>
-				<Button 
-					size="lg" 
-					style="primary" 
-					link={CTALightData.button.link}
-				> 
-					{CTALightData.button.text} 
-				</Button>
-			</CTA>
-		</Col>
-		<Col span="1" />
-	</Row>
+  <Row>
+    <Col span="1" />
+    <Col span="10">
+      <CTA
+        title={CTALightData.title}
+        text={CTALightData.text}
+        classes="!shadow-none"
+      >
+        {hasValidRating(CTALightData.rating) && (
+          <Ratings
+            rating={CTALightData.rating.stars}
+            text={CTALightData.rating.text}
+            classes="mb-4"
+          />
+        )}
+        <Button
+          size="lg"
+          style="primary"
+          link={CTALightData.button.link}
+        >
+          {CTALightData.button.text}
+        </Button>
+      </CTA>
+    </Col>
+    <Col span="1" />
+  </Row>
 </Section>

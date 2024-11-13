@@ -1,0 +1,13 @@
+---
+import FeatureGrid from '../features/FeatureGrid.astro';
+import HomeCharacterData from '../../../data/json-files/homecharactersData.json'
+import HomeCharactertitle from '../../../data/json-files/homecharacterstitle.json'
+---
+
+<FeatureGrid 
+  features={HomeCharacterData}
+  title={HomeCharactertitle}
+  sectionId="home-features"
+  defaultImage="/assets/default-feature-image.svg"
+  imageBasePath = '../../../assets'
+/>

@@ -1,0 +1,117 @@
+---
+//FeatureGrid.astro
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+import Card from '../../ui/cards/FeatureCard.astro'
+import { getImage } from 'astro:assets';
+export interface Feature {
+  title: string;
+  subtitle: string;
+  image: string;
+  link?: string;
+  col: string;
+  row: string;
+}
+
+export interface FeatureTitle {
+  title: string;
+  subtitle: string;
+}
+interface Props {
+  sectionId?: string;
+  features: Feature[];
+  title?: FeatureTitle;
+  defaultImage?: string;
+  imageBasePath?: string;
+}
+
+const { 
+  sectionId = 'features',
+  features = [],
+  title,
+  defaultImage = '/assets/default-image.svg',
+  imageBasePath = '../../../assets'
+} = Astro.props;
+
+// Dynamically load images and map them to features
+const featuresWithImages = await Promise.all(
+  features.map(async (feature: Feature) => {
+    let imageSrc;
+    try {
+      const { default: img } = await import(`${imageBasePath}/${feature.image}`);
+      const optimizedImage = await getImage({src: img});
+      imageSrc = optimizedImage.src;
+    } catch (error) {
+      console.error(`Error loading image for ${feature.title}:`, error);
+      imageSrc = defaultImage;
+    }
+    return {
+      ...feature,
+      image: imageSrc
+    };
+  })
+);
+
+// First, group features by row
+const featuresByRow = featuresWithImages.reduce((acc, feature) => {
+  const row = feature.row;
+  if (!acc[row]) {
+    acc[row] = [];
+  }
+  acc[row].push(feature);
+  return acc;
+}, {} as Record<string, typeof featuresWithImages>);
+
+// Then, for each row, group features by column
+const rowsAndColumns = Object.entries(featuresByRow).map(([rowNum, rowFeatures]) => {
+  const columnsByRow = rowFeatures.reduce((acc, feature) => {
+    const col = feature.col;
+    if (!acc[col]) {
+      acc[col] = [];
+    }
+    acc[col].push(feature);
+    return acc;
+  }, {} as Record<string, typeof featuresWithImages>);
+
+  // Ensure we have exactly 3 columns for this row
+  return {
+    rowNum,
+    columns: ['1', '2', '3'].map(col => columnsByRow[col] || [])
+  };
+});
+
+// Sort rows by row number
+const sortedRows = rowsAndColumns.sort((a, b) => Number(a.rowNum) - Number(b.rowNum));
+---
+
+<Section id={sectionId}>
+  {title && (
+    <Row>
+      <Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
+        <h2 class="text-pretty" set:html={title.title} />
+        <p class="pb-0 text-lg">{title.subtitle}</p>
+      </Col>
+    </Row>
+  )}
+  
+  {sortedRows.map(({ columns }) => (
+    <Row classes="mb-6">
+      {columns.map((colFeatures, index) => (
+        <Col
+          span={index === 0 ? "4" : "4"}
+          classes={colFeatures.length > 1 ? "flex flex-col gap-6" : ""}
+        >
+          {colFeatures.map((feature) => (
+            <Card
+              title={feature.title}
+              subtitle={feature.subtitle}
+              image={feature.image}
+              link={feature.link || '/'}
+            />
+          ))}
+        </Col>
+      ))}
+    </Row>
+  ))}
+</Section>

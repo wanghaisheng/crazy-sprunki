@@ -1,0 +1,36 @@
+{
+    "title": "Game Title",
+    "description": "Short game description",
+    "main": {
+      "content": "Main content text",
+      "imgMain": "/path/to/main/image.jpg",
+      "imgAlt": "Main image alt text"
+    },
+    "tabs": [
+      { "title": "Description", "id": "tab1", "dataTab": "#tabs-with-card-1" },
+      { "title": "Specifications", "id": "tab2", "dataTab": "#tabs-with-card-2" },
+      { "title": "Blueprints", "id": "tab3", "dataTab": "#tabs-with-card-3" }
+    ],
+    "longDescription": {
+      "title": "Long description title",
+      "subTitle": "Long description subtitle",
+      "btnTitle": "CTA Button Text",
+      "btnURL": "/cta-link"
+    },
+    "descriptionList": [
+      { "title": "Feature 1", "subTitle": "Feature 1 description" },
+      { "title": "Feature 2", "subTitle": "Feature 2 description" }
+    ],
+    "specificationsLeft": [
+      { "title": "Spec 1", "subTitle": "Spec 1 details" },
+      { "title": "Spec 2", "subTitle": "Spec 2 details" }
+    ],
+    "specificationsRight": [
+      { "title": "Spec 3", "subTitle": "Spec 3 details" },
+      { "title": "Spec 4", "subTitle": "Spec 4 details" }
+    ],
+    "blueprints": {
+      "first": "/path/to/first/blueprint.jpg",
+      "second": "/path/to/second/blueprint.jpg"
+    }
+  }

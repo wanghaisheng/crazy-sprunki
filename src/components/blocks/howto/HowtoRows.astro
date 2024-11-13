@@ -7,38 +7,30 @@ import TextImage from '../basic/TextImage.astro'
 import HighlightData from '../../../data/json-files/howtoData.json'
 import HighlightTitle from '../../../data/json-files/howtoTitle.json'
 
-// Astro.resolve() is used to resolve paths to static assets correctly during the build process
-import { join } from 'path';
-
-// You can remove this manual import if everything is working fine with dynamic resolution
-import t1 from "../../../assets/highlights/highlight-01.svg"; 
-console.log('t1:', t1); // Logs the image import to inspect it
-
-// Dynamically resolve image paths using Astro.resolve() and map them to IDs
+// Create an asynchronous function to resolve images dynamically
 const images = Object.fromEntries(
-  HighlightData.map((highlight) => {
-    const id = highlight.id;
-    
-    // Dynamically resolve the desktop image URL using Astro.resolve()
-    const desktopImage = new URL(Astro.resolve(highlight.image), import.meta.url).href;
-    console.log('Desktop Image:', desktopImage);
+  await Promise.all(
+    HighlightData.map(async (highlight) => {
+      const id = highlight.id;
 
-    // Dynamically resolve the mobile image URL (if provided) using Astro.resolve()
-    const mobileImage = highlight.mobileImage
-      ? new URL(Astro.resolve(highlight.mobileImage), import.meta.url).href
-      : null;
-    console.log('Mobile Image:', mobileImage);
-
-    return [
-      id,
-      {
-        image: desktopImage,
-        mobileImage: mobileImage,
-      },
-    ];
-  })
+      // Dynamically import the desktop image
+      const desktopImage = await import(`../../../assets/${highlight.image}`);
+      const mobileImage = highlight.mobileImage
+        ? await import(`../../../assets/${highlight.mobileImage}`)
+        : null;
+      // console.log('--',desktopImage)
+      return [
+        id,
+        {
+          image: desktopImage.default, // The URL of the image
+          mobileImage: mobileImage ? mobileImage.default : null,
+        },
+      ];
+    })
+  )
 );
 ---
+
 <Section id="highlights">
   <Row>
     <Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
@@ -49,7 +41,6 @@ const images = Object.fromEntries(
     </Col>
   </Row>
 
-  {/* Loop through the HighlightData to display each item */}
   {HighlightData.map((highlight, key) => {
     const { image, mobileImage } = images[highlight.id] || {};
 
@@ -59,8 +50,8 @@ const images = Object.fromEntries(
         title={highlight.title}
         alttext={highlight.alttext}
         text={highlight.text}
-        image={image} // Pass the desktop image path
-        mobileImage={mobileImage} // Pass the mobile image path (if available)
+        image={image} 
+        mobileImage={mobileImage} 
         imageWidth={highlight.imageWidth}
         imageHeight={highlight.imageHeight}
         imagePosition={highlight.imagePosition as "right" | "left"}

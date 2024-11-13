@@ -1,32 +1,32 @@
 [
 	{
 		"title": "All your data in one place",
-		"image": "/assets/cards/feature-01.svg",
+		"image": "cards/feature-01.svg",
 		"link":"/",
 		"subtitle":"Stay on top of your tasks and deadlines with our intuitive project management tool. Visualize progress, assign tasks, and collaborate seamlessly.",
 		"col": "1"
 	},
 	{
 		"title":"Organize & manage your projects ",
-		"image": "/assets/cards/feature-02.svg",
+		"image": "cards/feature-02.svg",
 		"subtitle":"Stay on top of your tasks and deadlines with our intuitive project management tool. ",
 		"col": "2"
 	},
 	{
 		"title":"Keep your team connected",
-		"image": "/assets/cards/feature-03.svg",
+		"image": "cards/feature-03.svg",
 		"subtitle":"With our integrated chat platform share updates, files, and messages in a secure and user-friendly environment.",
 		"col": "2"
 	},
 	{
 		"title":"Manage your customers",
-		"image": "/assets/cards/feature-04.svg",
+		"image": "cards/feature-04.svg",
 		"subtitle":"Build and nurture customer relationships with our powerful CRM system. ",
 		"col": "3"
 	},
 	{
 		"title":"Simplify your financial operations",
-		"image": "/assets/cards/feature-05.svg",
+		"image": "cards/feature-05.svg",
 		"subtitle":"Streamline your billing process with our easy-to-use invoicing tool. Create, send, and track invoices effortlessly.",
 		"col": "3"
 	}

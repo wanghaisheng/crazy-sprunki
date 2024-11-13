@@ -7,7 +7,9 @@
         },
         "items": [
             { "name": "Home", "link": "/" },
-            { "name": "Pricing", "link": "/pricing" },
+            { "name": "Tutorials", "link": "/tutorials" },
+
+            { "name": "FAQ", "link": "/faq" },
             { "name": "Forum", "link": "/forum" },
             {
                 "name": "Resources",
@@ -15,8 +17,7 @@
                 "submenu": [
                     { "name": "Blog", "link": "/blog" },
                     { "name": "Changelog", "link": "/changelog" },
-                    { "name": "FAQ", "link": "/faq" },
-                    { "name": "Tutorials", "link": "/tutorials" }
+                    { "name": "Glossary", "link": "/glossary" }
                 ]
             },
             { "name": "Contact", "link": "/contact" }
