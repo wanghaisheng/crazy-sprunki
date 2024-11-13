@@ -1,24 +1,21 @@
 ---
 // Basic Dark Call To Action section
-// ------------
-// Description: A centered call to action section with title, text, background image, optional notification and button.
-// Components
-// - Layout
 import Section from '../../ui/Section.astro'
 import Row from '../../ui/Row.astro'
 import Col from '../../ui/Col.astro'
-// - UI
 import CTA from '../../ui/CTA.astro'
 import Button from '../../ui/Button.astro'
 import ChipNotification from '../../ui/ChipNotification.astro'
 import { Image } from 'astro:assets'
 import Highlight from '../../ui/Highlight.astro'
+import type { ImageMetadata } from 'astro';
+
 // Content
 import CtaData from '../../../data/json-files/ctaData.json'
 import ctaImage from '../../../assets/cta-dark-bg.webp'
 import siteconfig from '../../../data/json-files/siteConfig.json'
 
-// Define the structure of CtaData
+// Define interfaces
 interface CTAData {
   title: string;
   text: string;
@@ -30,21 +27,43 @@ interface CTAData {
   };
 }
 
-// Type assertion to ensure CtaData matches the interface
+interface ImageModule {
+  default: ImageMetadata;
+}
+
+// Import all badge images using glob
+const badgeImages = import.meta.glob<ImageModule>('/src/assets/**/*.{svg,png,jpg,jpeg,webp}', {
+  eager: true
+});
+
+// Function to get badge image
+function getBadgeImage(filename: string): ImageMetadata | null {
+  const fullPath = `/src/assets/${filename}`;
+  const image = badgeImages[fullPath];
+  
+  if (!image) {
+    console.warn(`Badge image not found: ${filename}`);
+    return null;
+  }
+  
+  return image.default;
+}
+
+// Type assertion for CTA data
 const typedCtaData = CtaData as CTAData;
 
-// Only import badge if CtaData has badge property
-let badge;
-if (typedCtaData.badge) {
-  const badgefilename = siteconfig.site.badge;
-  badge = await import(`../../../assets/${badgefilename}`);
+// Get badge image if it exists in config
+let badgeImage: ImageMetadata | null = null;
+if (typedCtaData.badge && siteconfig.site.badge) {
+  badgeImage = getBadgeImage(siteconfig.site.badge);
 }
 
 // Check if badge exists and has required properties
 const hasBadge = typedCtaData.badge &&
-                 typeof typedCtaData.badge === 'object' &&
-                 'text' in typedCtaData.badge &&
-                 'alt' in typedCtaData.badge;
+  typeof typedCtaData.badge === 'object' &&
+  'text' in typedCtaData.badge &&
+  'alt' in typedCtaData.badge &&
+  badgeImage !== null;
 ---
 
 <Section>
@@ -57,10 +76,10 @@ const hasBadge = typedCtaData.badge &&
         mode="dark"
         bg={ctaImage}
       >
-        {hasBadge && badge && (
+        {hasBadge && badgeImage && (
           <ChipNotification radius="rounded-full" classes="mb-6 box">
             <Image
-              src={badge.default}
+              src={badgeImage}
               alt={typedCtaData.badge!.alt}
               class="h-12 w-12"
               slot="button"
