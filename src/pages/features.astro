@@ -8,6 +8,8 @@ import Hero from '../components/blocks/hero/PageHeader.astro'
 import CTA from '../components/blocks/CTA/BasicDark.astro'
 
 // Data
+import SEOData from '/src/data/json-files/seoData.json'
+
 import featuresData from '../data/json-files/featuresData.json'
 // - Feature Categories
 const featuresAnalytics = featuresData.filter((feature) => feature.category === 'Analytics')
@@ -30,7 +32,7 @@ const header = {
 }
 ---
 
-<Layout title={SEO.title} description={SEO.description}>
+<Layout title={SEOData.features.title} description={SEOData.features.description}>
 	<Hero title={header.title} text={header.text} />
 	<Feature
 		title="Insightful Analytics"

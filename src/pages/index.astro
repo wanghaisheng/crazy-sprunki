@@ -27,12 +27,11 @@ import HorizontalAd from '../components/blocks/ads/HorizontalAd.astro'
 
 // Content
 import testimonialBackground from '../assets/testimonial-bg-01.webp'
-import SEO from '../data/json-files/seoData.json'
-import FeatureSticky from '../components/blocks/features/FeatureSticky.astro'
+import SEOData from '/src/data/json-files/seoData.json'
 
 ---
 
-<Layout title={SEO.home.title} description={SEO.home.description}>
+<Layout title={SEOData.home.title} description={SEOData.home.description}>
     <Hero />
     
     <!-- Game section with side ads -->
