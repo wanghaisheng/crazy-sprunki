@@ -11,16 +11,6 @@ import SEOData from '../data/json-files/seoData.json'
 import PrivacyContent from '../data/json-files/privacyContent.json'
 import CompanyInfo from '../data/json-files/companyInfo.json'
 
-// Get SEO data
-const { global, pages } = SEOData
-const pageSEO = {
-    title: `${global.siteName}${global.separator}${pages.privacy.title}`,
-    description: pages.privacy.description,
-    image: pages.privacy.image || global.defaultImage,
-    type: global.defaultType,
-    keywords: pages.privacy.keywords
-}
-
 // Process content with company info
 const processText = (text: string) => {
     return text.replace(/\${companyName}/g, CompanyInfo.name)
