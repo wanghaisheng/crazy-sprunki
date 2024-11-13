@@ -48,12 +48,12 @@
             },
             {
 
-                "category": "About",
+                "category": "About us",
                 "subCategories": [
-                    { "subCategory": "Story", "subCategoryLink": "/pricing" },
+                    { "subCategory": "Story", "subCategoryLink": "/about" },
 
-                    { "subCategory": "privacy", "subCategoryLink": "/features" },
-                    { "subCategory": "terms", "subCategoryLink": "/features" }
+                    { "subCategory": "Privacy", "subCategoryLink": "/privacy" },
+                    { "subCategory": "Terms", "subCategoryLink": "/terms" }
                 ]
 
             },
