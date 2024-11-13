@@ -2,7 +2,6 @@
 // Feature Cards grid Section
 // ------------
 // Description: A grid of cards with feature information in a 4 column layout.
-
 // Components
 // - Layout
 import Section from '../../ui/Section.astro'
@@ -10,7 +9,7 @@ import Row from '../../ui/Row.astro'
 import Col from '../../ui/Col.astro'
 // - UI
 import Card from '../../ui/cards/FeatureCard.astro'
-
+import { getImage } from 'astro:assets';
 // Content
 // - Cards
 import HomeFeatureData from '../../../data/json-files/homefeaturesData.json'
@@ -18,43 +17,67 @@ import HomeFeaturetitle from '../../../data/json-files/homefeaturetitle.json'
 
 // Define the Feature interface
 interface Feature {
-    title: string;
-    subtitle: string;
-    image: string;
-    link?: string;
-    col: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  link?: string;
+  col: string;
 }
 
 // Dynamic column determination
 const maxCol = Math.max(...HomeFeatureData.map((feature: Feature) => parseInt(feature.col)))
+
+// Function to load and optimize images
+async function loadImage(imagePath: string) {
+  const defaultImage = '/assets/default-image.svg';
+  const imageBasePath = '../../../assets';
+  
+  try {
+    const { default: img } = await import(`${imageBasePath}/${imagePath}`);
+    const optimizedImage = await getImage({src: img});
+    return optimizedImage.src;
+  } catch (error) {
+    console.error(`Error loading image for ${imagePath}:`, error);
+    return defaultImage;
+  }
+}
+
+// Load images and map them to features
+const featuresWithImages = await Promise.all(
+  HomeFeatureData.map(async (feature: Feature) => ({
+    ...feature,
+    image: await loadImage(feature.image)
+  }))
+);
+
+// Group features by column
 const features = Array.from({ length: maxCol }, (_, i) => {
-    const colNum = (i + 1).toString()
-    return HomeFeatureData.filter((feature: Feature) => feature.col === colNum)
+  const colNum = (i + 1).toString()
+  return featuresWithImages.filter((feature: Feature) => feature.col === colNum)
 })
 ---
 
 <Section id="features">
-    <Row>
-        <Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
-            <h2 class="text-pretty"           set:html={HomeFeaturetitle.title}			/>
-            <p class="pb-0 text-lg">
-                {HomeFeaturetitle.subtitle}
-            </p>
-        </Col>
-    </Row>
-    <Row>
-        {features.map((colFeatures) => (
-            <Col span="4" classes={colFeatures.length > 1 ? "flex flex-col gap-6" : ""}>
-                {colFeatures.map((feature: Feature) => (
-                    <Card
-                        title={feature.title}
-                        subtitle={feature.subtitle}
-                        image={feature.image}
-                        link={feature.link}
-                    />
-                ))}
-            </Col>
+  <Row>
+    <Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
+      <h2 class="text-pretty" set:html={HomeFeaturetitle.title} />
+      <p class="pb-0 text-lg">
+        {HomeFeaturetitle.subtitle}
+      </p>
+    </Col>
+  </Row>
+  <Row>
+    {features.map((colFeatures) => (
+      <Col span="4" classes={colFeatures.length > 1 ? "flex flex-col gap-6" : ""}>
+        {colFeatures.map((feature: Feature) => (
+          <Card
+            title={feature.title}
+            subtitle={feature.subtitle}
+            image={feature.image}
+            link={feature.link}
+          />
         ))}
-    </Row>
+      </Col>
+    ))}
+  </Row>
 </Section>
-

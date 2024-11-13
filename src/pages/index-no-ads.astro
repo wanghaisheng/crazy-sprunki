@@ -1,29 +1,15 @@
 ---
-// Components
-// - Layout
-import Layout from '../layouts/Layout.astro'
-// - UI
-import Hero from '../components/blocks/hero/HomeCTA.astro'
-import Gameframe from '../components/blocks/gameframe/BasicGame.astro'
+// At the top of your file, import the images
+import feature01 from '../assets/cards/feature-01.svg'
+import feature02 from '../assets/cards/feature-02.svg'
+// Import other feature images as needed
 
-import Features from '../components/blocks/features/FeatureCards.astro'
-import Testimonial from '../components/blocks/testimonials/BasicDark.astro'
-import HighlightBlocks from '../components/blocks/highlights/HighlightRows.astro'
-import CTA from '../components/blocks/CTA/BasicDark.astro'
-
-// Content
-// - Testimonial background
-import testimonialBackground from '../assets/testimonial-bg-01.webp'
-// - SEO
-import SEO from '../data/json-files/seoData.json'
-
+// Your other imports and code...
 ---
 
-<Layout title={SEO.home.title} description={SEO.home.description}>
-	<Hero />
-	<Gameframe/>
-	<Features />
-	<Testimonial bg={testimonialBackground} bgPosition="right" />
-	<HighlightBlocks />
-	<CTA />
-</Layout>
+<!-- In your template, use the imported images -->
+<Image
+  src={feature01}
+  alt="Feature 1"
+  // other props...
+/>
