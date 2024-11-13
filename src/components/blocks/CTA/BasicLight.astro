@@ -12,14 +12,10 @@ import CTA from '../../ui/CTA.astro'
 import Button from '../../ui/Button.astro'
 import Ratings from '../../ui/Rating.astro'
 // Content
-import CTALightData from '../../../data/json-files/ctaLightData.json'
+import CtaLightData from '../../../data/json-files/ctaLightData.json'
 
-// Type for the rating data
-interface RatingData {
-  stars?: 0 | 1 | 2 | 3 | 4 | 5;
-  text?: string;
-}
-interface CTALightData {
+// Interface for the CTA Light data structure
+interface CtaLightDataType {
   title: string;
   text: string;
   button: {
@@ -31,36 +27,41 @@ interface CTALightData {
     text?: string;
   };
 }
+
+// Type assertion for the imported data
+const typedCtaLightData = CtaLightData as CtaLightDataType;
+
 // Check if rating exists and has valid stars
-const hasRating = CTALightData.rating &&
-                  typeof CTALightData.rating === 'object' &&
-                  'stars' in CTALightData.rating &&
-                  typeof CTALightData.rating.stars === 'number' &&
-                  CTALightData.rating.stars >= 0 &&
-                  CTALightData.rating.stars <= 5;
+const hasRating = typedCtaLightData.rating &&
+                 typeof typedCtaLightData.rating === 'object' &&
+                 'stars' in typedCtaLightData.rating &&
+                 typeof typedCtaLightData.rating.stars === 'number' &&
+                 typedCtaLightData.rating.stars >= 0 &&
+                 typedCtaLightData.rating.stars <= 5;
 ---
+
 <Section>
   <Row>
     <Col span="1" />
     <Col span="10">
       <CTA
-        title={CTALightData.title}
-        text={CTALightData.text}
+        title={typedCtaLightData.title}
+        text={typedCtaLightData.text}
         classes="!shadow-none"
       >
         {hasRating && (
           <Ratings
-            rating={CTALightData.rating.stars}
-            text={CTALightData.rating.text}
+            rating={typedCtaLightData.rating!.stars}
+            text={typedCtaLightData.rating!.text}
             classes="mb-4"
           />
         )}
         <Button
           size="lg"
           style="primary"
-          link={CTALightData.button.link}
+          link={typedCtaLightData.button.link}
         >
-          {CTALightData.button.text}
+          {typedCtaLightData.button.text}
         </Button>
       </CTA>
     </Col>

@@ -14,9 +14,11 @@ import ChipNotification from '../../ui/ChipNotification.astro'
 import { Image } from 'astro:assets'
 import Highlight from '../../ui/Highlight.astro'
 // Content
-import CTAData from '../../../data/json-files/ctaData.json'
+import CtaData from '../../../data/json-files/ctaData.json'
 import ctaImage from '../../../assets/cta-dark-bg.webp'
 import siteconfig from '../../../data/json-files/siteConfig.json'
+
+// Define the structure of CtaData
 interface CTAData {
   title: string;
   text: string;
@@ -27,33 +29,31 @@ interface CTAData {
     alt: string;
   };
 }
-// Only import badge if CTAData has badge property
+
+// Type assertion to ensure CtaData matches the interface
+const typedCtaData = CtaData as CTAData;
+
+// Only import badge if CtaData has badge property
 let badge;
-if (CTAData.badge) {
-  const badgefilename=siteconfig.site.badge
+if (typedCtaData.badge) {
+  const badgefilename = siteconfig.site.badge;
   badge = await import(`../../../assets/${badgefilename}`);
 }
 
-// Type for the badge data
-interface BadgeData {
-  text: string;
-  highlight?: string;
-  alt: string;
-}
-
 // Check if badge exists and has required properties
-const hasBadge = CTAData.badge && 
-                 typeof CTAData.badge === 'object' && 
-                 'text' in CTAData.badge && 
-                 'alt' in CTAData.badge;
+const hasBadge = typedCtaData.badge &&
+                 typeof typedCtaData.badge === 'object' &&
+                 'text' in typedCtaData.badge &&
+                 'alt' in typedCtaData.badge;
 ---
+
 <Section>
   <Row>
     <Col span="1" />
     <Col span="10">
       <CTA
-        title={CTAData.title}
-        text={CTAData.text}
+        title={typedCtaData.title}
+        text={typedCtaData.text}
         mode="dark"
         bg={ctaImage}
       >
@@ -61,18 +61,18 @@ const hasBadge = CTAData.badge &&
           <ChipNotification radius="rounded-full" classes="mb-6 box">
             <Image
               src={badge.default}
-              alt={CTAData.badge.alt}
+              alt={typedCtaData.badge!.alt}
               class="h-12 w-12"
               slot="button"
             />
-            {CTAData.badge.text}
-            {CTAData.badge.highlight && (
-              <Highlight classes="ml-2">{CTAData.badge.highlight}</Highlight>
+            {typedCtaData.badge!.text}
+            {typedCtaData.badge!.highlight && (
+              <Highlight classes="ml-2">{typedCtaData.badge!.highlight}</Highlight>
             )}
           </ChipNotification>
         )}
         <Button size="lg" style="primary">
-          {CTAData.buttonText}
+          {typedCtaData.buttonText}
         </Button>
       </CTA>
     </Col>
