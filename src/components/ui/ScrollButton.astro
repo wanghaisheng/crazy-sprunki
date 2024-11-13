@@ -1,5 +1,7 @@
 ---
+// ScrollButtons.astro
 ---
+
 <div class="scroll-button-container">
   <button id="scrollTopBtn" aria-label="Scroll to top" title="Scroll to top">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -12,6 +14,54 @@
     </svg>
   </button>
 </div>
+
+<script>
+  interface ScrollButton extends HTMLButtonElement {
+    style: CSSStyleDeclaration;
+  }
+
+  function initScrollButtons(): void {
+    const scrollTopBtn = document.getElementById('scrollTopBtn') as ScrollButton;
+    const scrollBottomBtn = document.getElementById('scrollBottomBtn') as ScrollButton;
+
+    if (!scrollTopBtn || !scrollBottomBtn) return;
+
+    function smoothScroll(to: number): void {
+      window.scrollTo({
+        top: to,
+        behavior: 'smooth'
+      });
+    }
+
+    function updateButtonVisibility(): void {
+      const scrollPosition = window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      
+      // Show/hide top button
+      scrollTopBtn.style.display = scrollPosition > 100 ? 'flex' : 'none';
+      
+      // Show/hide bottom button
+      scrollBottomBtn.style.display = maxScroll - scrollPosition > 100 ? 'flex' : 'none';
+    }
+
+    // Initial visibility check
+    updateButtonVisibility();
+
+    // Add event listeners
+    scrollTopBtn.addEventListener('click', () => smoothScroll(0));
+    scrollBottomBtn.addEventListener('click', () => {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      smoothScroll(maxScroll);
+    });
+
+    // Update button visibility on scroll
+    window.addEventListener('scroll', updateButtonVisibility, { passive: true });
+    window.addEventListener('resize', updateButtonVisibility, { passive: true });
+  }
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', initScrollButtons);
+</script>
 
 <style>
   .scroll-button-container {
@@ -33,7 +83,7 @@
     width: 40px;
     height: 40px;
     cursor: pointer;
-    display: flex;
+    display: none; /* Initially hidden */
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s, opacity 0.3s;
@@ -48,5 +98,23 @@
   .scroll-button-container button svg {
     width: 20px;
     height: 20px;
+  }
+
+  /* Media query for mobile devices */
+  @media (max-width: 768px) {
+    .scroll-button-container {
+      right: 10px;
+      top: 85%;
+    }
+
+    .scroll-button-container button {
+      width: 36px;
+      height: 36px;
+    }
+
+    .scroll-button-container button svg {
+      width: 18px;
+      height: 18px;
+    }
   }
 </style>
