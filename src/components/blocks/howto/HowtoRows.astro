@@ -13,10 +13,10 @@ const images = Object.fromEntries(
     const id = highlight.id;
 
     // Dynamically import the desktop and mobile images
-    const desktopImage = new URL(join('../../assets/', highlight.image), import.meta.url).href;
+    const desktopImage = new URL(join('../assets/', highlight.image), import.meta.url).href;
     console.log('========',desktopImage)
     const mobileImage = highlight.mobileImage
-    ? new URL(join('../../assets', highlight.mobileImage), import.meta.url).href
+    ? new URL(join('../assets', highlight.mobileImage), import.meta.url).href
     : null;
     console.log('========',mobileImage)
 
