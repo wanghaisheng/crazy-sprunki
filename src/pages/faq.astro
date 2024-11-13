@@ -29,6 +29,7 @@ function getImageFromPath(path: string): ImageMetadata | null {
     return image.default;
 }
 const mainImage = getImageFromPath(FAQContent.valueSection.image);
+console.log('=',mainImage.src)
 const mobileImage = getImageFromPath(FAQContent.valueSection.mobileImage);
 if (!mainImage) {
     console.error(`Failed to load main image`);
