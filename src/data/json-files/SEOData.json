@@ -22,6 +22,13 @@
 		"headertext": "Stay informed about all the new updates and improvements in Foxi."
 
 	},
+	"tutorials":{
+		"title": "Foxi | Get inspirations from game videos",
+		"description":"xxxx",
+		"headertitle":"Interactive gameplay and Tutorials videos",
+
+		"headertext":"  - Gameplay walkthroughs.   - Music creation showcases."
+	},
 	"contact": {
 		"title": "Foxi | Get in Touch with Our Team",
 		"description": "Need help? Contact our support team for assistance. We're here to help you make the most of Foxi's powerful features.",

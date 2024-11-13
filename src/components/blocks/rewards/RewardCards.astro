@@ -1,0 +1,47 @@
+---
+// Contact Cards Section
+// ------------
+// Description: A grid of cards with contact information in a 4 column layout.
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - UI
+import Card from '../../ui/cards/BasicCard.astro'
+
+// Content
+import ContactData from '../../../data/json-files/rewardData.json'
+
+interface ContactCard {
+    title: string
+    subtitle: string
+    icon: string
+    link: string
+}
+---
+
+<Section id="requests">
+    <Row>
+        <Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
+            <h2 class="text-balance" set:html={ContactData.title} />
+            <p class="pb-0 text-lg">
+                {ContactData.subtitle}
+            </p>
+        </Col>
+    </Row>
+    <Row>
+        {ContactData.cards.map((card: ContactCard) => (
+            <Col span="3">
+                <Card
+                    title={card.title}
+                    subtitle={card.subtitle}
+                    icon={card.icon}
+                    classes="text-center dark:!bg-neutral-800/50"
+                    link={card.link}
+                />
+            </Col>
+        ))}
+    </Row>
+</Section>

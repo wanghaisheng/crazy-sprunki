@@ -39,10 +39,10 @@ const avatars = [
 				<AvatarGroup avatars={avatars} radius="rounded-full" slot="button" />
 			</ChipNotification>
 			<h1 set:html=
-				{HeroData.h1content}/>
+				{HeroData.herocontent}/>
 
 			<p class="pb-0 text-lg">
-				{HeroData.h1subtitle}
+				{HeroData.herosubtitle}
 
 			</p>
 			<Button size="lg" link={HeroData.ctalink}>
@@ -54,12 +54,11 @@ const avatars = [
 		<Col span="8">
 			<Image
 				src={heroImage}
-				alt="Foxi. The tailwind astro theme"
+				alt=				{HeroData.imagealt}
 				class="translate-y-8 shadow-2xl shadow-neutral-200 dark:shadow-neutral-950"
 				format="webp"
 			/>
-			</Col
-		>
+			</Col>
 		<Col span="2" />
 	</Row>
 </Section>

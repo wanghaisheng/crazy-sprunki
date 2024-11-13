@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@astrojs/partytown": "^2.1.1",
-    "@tailwindcss/typography": "^0.5.13"
+    "@tailwindcss/typography": "^0.5.13",
+    "vite-plugin-manifest": "^0.0.1"
   }
 }

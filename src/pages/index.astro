@@ -6,11 +6,18 @@ import Layout from '../layouts/Layout.astro'
 import Hero from '../components/blocks/hero/HomeCTA.astro'
 import Gameframe from '../components/blocks/gameframe/BasicGame.astro'
 import Features from '../components/blocks/features/FeatureCards.astro'
+import Mods from '../components/blocks/mods/FeatureCards.astro'
+import Characters from '../components/blocks/characters/FeatureCards.astro'
+
+
 import Featureslist from '../components/blocks/features/FeatureList.astro'
 // import FeatureSticky from '../components/blocks/features/FeatureSticky.astro'
 import ContactCards from '../components/blocks/contact/ContactCards.astro'
+import RewardCards from '../components/blocks/rewards/RewardCards.astro'
 
 import Testimonial from '../components/blocks/testimonials/BasicDark.astro'
+import HowtoBlocks from '../components/blocks/howto/HowtoRows.astro'
+
 import HighlightBlocks from '../components/blocks/highlights/HighlightRows.astro'
 import CTA from '../components/blocks/CTA/BasicDark.astro'
 
@@ -51,15 +58,18 @@ import FeatureSticky from '../components/blocks/features/FeatureSticky.astro'
         </div>
     </div>
     
-    <Features />
+    <!-- <Features /> -->
+    <Mods />
+    <Characters />
     <Featureslist/>
-	<ContactCards classes="dark:bg-neutral-950/80" />
+	<RewardCards classes="dark:bg-neutral-950/80" />
+    
 
     <!-- Ad between sections -->
     <HorizontalAd classes="max-w-screen-xl mx-auto bg-white dark:bg-neutral-900 shadow-sm rounded-lg" />
     
     <Testimonial bg={testimonialBackground} bgPosition="right" />
-    <HighlightBlocks />
+    <HowtoBlocks />
     
     <!-- Ad before CTA -->
     <HorizontalAd classes="max-w-screen-xl mx-auto bg-neutral-50 dark:bg-neutral-900/40 rounded-lg" />

@@ -1,9 +1,11 @@
 {
     "customercount":"30K+",
-    "customertext":"satisfied customers",
-    "h1content":"Enhance team <strong>performance</strong> with seamless integration",
-    "h1subtitle":"Work smarter, not harder, with our innovative platform",
-    "ctatext":"Get started for free",
-    "ctalink":"/"
+    "customertext":" satisfied players",
+    "herocontent":"Enjoy music <strong>creation</strong> with seamless integration",
+    "herosubtitle":"Work smarter, not harder, with our innovative platform",
+    "ctatext":"Play Now",
+    "ctalink":"/",
+    "imagealt":"screenshot of game sprunki incredibox"
+
     
 }
