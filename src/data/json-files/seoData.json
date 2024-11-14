@@ -7,9 +7,16 @@
 	},
 	"leaderboard":{
 
-		"title":"",
-		"desciption":"",
-		"h1":"排行榜"
+		"title":"排行榜",
+		"desciption":"查看您的贡献度",
+		"h1":"排行榜",
+		"col1":"排名",
+		"col2":"用户名称",
+		"col3":"灵石",
+		"col4":"消费贡献",
+		"col5":"数据贡献",
+		"col6":"加入时间",
+		"col7":"最后活跃"
 	},
 	"glossary": {
 		"title": "Foxi | Powerful Features for Modern Teams",
@@ -53,9 +60,18 @@
 		"description":"Dive into the Foxi FAQ Funhouse to get answers to all your questions about pricing, integrations, features, and more. Discover how Foxi can make your work life more productive and enjoyable.",
 		"headertitle": "Get Answers to Your <strong>Foxi</strong> Questions.",
 		"headertext": "Find answers to common questions about Foxi "
-
-
-
+	},
+	"support":{
+		"title":"捐赠支持",
+		"description":"您的支持让我们走得更远",
+		"h1":"捐赠支持",
+		"channel":"支持方式",
+		"record":"捐赠记录",
+		"recordCol1":"支持者",
+		"recordCol2":"金额",
+		"recordCol3":"留言",
+		"recordCol4":"平台",
+		"recordCol5":"时间"
 	},
 	"about": {
 		"title": "Foxi | Our Story and Mission",

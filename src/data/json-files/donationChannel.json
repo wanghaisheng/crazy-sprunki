@@ -1,0 +1,13 @@
+[
+    {
+      "id": 1,
+      "name": "支付宝",
+      "qrCode": "support/alipay-qr.png"
+    },
+    {
+      "id": 2,
+      "name": "微信支付",
+      "qrCode": "support/wechat-qr.png"
+    }
+  ]
+  

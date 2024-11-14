@@ -1,8 +1,5 @@
 ---
-// Components
-// - Layout
 import Layout from '../layouts/Layout.astro'
-// - UI
 import Hero from '../components/blocks/hero/PageHeader.astro'
 import FAQ from '../components/blocks/FAQ/FaqSticky.astro'
 import TextImage from '../components/blocks/basic/TextImage.astro'
@@ -11,41 +8,45 @@ import type { ImageMetadata } from 'astro';
 
 // Content
 import FAQData from '../data/json-files/faqData.json'
-import FAQContent from '../data/json-files/faqContent.json'
 import SEOData from '../data/json-files/seoData.json'
 import { formatNumber, formatDate, getImage } from '../utils/helpers';
 
-// Add this impor
+// Get categories and valueSection data
+const { categories, valueSection } = FAQData;
 
-// Filter FAQ categories
-const faqPricing = FAQData.filter((faq) => faq.category === 'pricing')
-const faqIntegrations = FAQData.filter((faq) => faq.category === 'integrations')
+// Track if we've shown the value section
+let hasShownValueSection = false;
 ---
 
 <Layout title={SEOData.faq.title} description={SEOData.faq.description}>
-    <Hero 
-        title={SEOData.faq.headertitle} 
-        text={SEOData.faq.headertext} 
-    />
-    <FAQ
-        title={FAQContent.pricing.title}
-        text={FAQContent.pricing.text}
-        data={faqPricing}
-    />
-    <TextImage
-        title={FAQContent.valueSection.title}
-        alttext={FAQContent.valueSection.alttext}
-        text={FAQContent.valueSection.text}
-        image={getImage(FAQContent.valueSection.image)}
-        mobileImage={getImage(FAQContent.valueSection.mobileImage)}
+  <Hero
+    title={SEOData.faq.headertitle}
+    text={SEOData.faq.headertext}
+  />
+
+  {/* Render valueSection before FAQ and only once */}
+  {valueSection && !hasShownValueSection && (
+      <TextImage
+        title={valueSection.title}
+        alttext={valueSection.alttext}
+        text={valueSection.text}
+        image={getImage(valueSection.image)}
+        mobileImage={getImage(valueSection.mobileImage)}
         imagePosition="left"
         offsetImage
         classes="bg-neutral-50 dark:bg-neutral-900 lg:!py-64"
-    />
+      />
+  )}
+
+  {/* Render FAQs */}
+  {Object.entries(categories).map(([categoryKey, category]) => (
     <FAQ
-        title={FAQContent.integrations.title}
-        text={FAQContent.integrations.text}
-        data={faqIntegrations}
+      title={category.title}
+      text={category.text}
+      data={category.questions}
     />
-    <CTA />
+  ))}
+
+  {/* CTA Section */}
+  <CTA />
 </Layout>

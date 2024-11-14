@@ -1,0 +1,40 @@
+[
+    {
+      "username": "Alice123",
+      "id":1,
+      "amount": 1000,
+      "avatar": "avatars/avatar-01.png",
+      "message": "Keep up the great work!",
+      "platform": "Patreon",
+      "date": "2024-10-15T10:30:00Z"
+    },
+    {
+      "username": "Bob456",
+      "id":2,
+      "amount": 500,
+      "avatar": "avatars/avatar-02.png",
+      "message": "Enjoying your content, here's a small token of appreciation.",
+      "platform": "Ko-fi",
+      "date": "2024-10-16T12:00:00Z"
+    },
+    {
+      "username": "Charlie789",
+      "id":3,
+      "amount": 1500,
+      "avatar": "avatars/avatar-03.png",
+      "message": "Thank you for the amazing videos!",
+      "platform": "PayPal",
+      "date": "2024-10-17T08:45:00Z"
+    },
+    {
+      "username": "Dana321",
+      "amount": 2000,
+      "id":4,
+
+      "avatar": "avatars/avatar-04.png",
+      "message": "A bigger donation for all the hard work you put in. Keep it up!",
+      "platform": "Stripe",
+      "date": "2024-10-18T15:30:00Z"
+    }
+  ]
+  

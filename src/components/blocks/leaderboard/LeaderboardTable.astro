@@ -2,6 +2,8 @@
 import { Image } from 'astro:assets'
 import type { LeaderboardEntry } from '../../../types/leaderboard';
 import { formatNumber, formatDate, getImage } from '../../../utils/helpers';
+import Section from '../../ui/Section.astro'
+import SEOData from '../../../data/json-files/seoData.json'
 
 interface Props {
   data: LeaderboardEntry[];
@@ -10,17 +12,25 @@ interface Props {
 const { data } = Astro.props;
 ---
 
-<div class="overflow-x-auto">
+<Section>
   <table class="w-full border-collapse">
     <thead>
-      <tr class="bg-gray-800 text-white">
-        <th class="px-6 py-4 text-left">排名</th>
-        <th class="px-6 py-4 text-left">用户名称</th>
-        <th class="px-6 py-4 text-right">灵石</th>
-        <th class="px-6 py-4 text-right hidden md:table-cell">消费贡献</th>
-        <th class="px-6 py-4 text-right hidden md:table-cell">数据贡献</th>
-        <th class="px-6 py-4 text-right hidden lg:table-cell">加入时间</th>
-        <th class="px-6 py-4 text-right hidden lg:table-cell">最后活跃</th>
+      <tr>
+        <th class="px-6 py-4 text-left">
+          {SEOData.leaderboard.col1}
+          </th>
+        <th class="px-6 py-4 text-left">          {SEOData.leaderboard.col2}
+        </th>
+        <th class="px-6 py-4 text-right">          {SEOData.leaderboard.col3}
+        </th>
+        <th class="px-6 py-4 text-right hidden md:table-cell">          {SEOData.leaderboard.col4}
+        </th>
+        <th class="px-6 py-4 text-right hidden md:table-cell">          {SEOData.leaderboard.col5}
+        </th>
+        <th class="px-6 py-4 text-right hidden lg:table-cell">          {SEOData.leaderboard.col6}
+        </th>
+        <th class="px-6 py-4 text-right hidden lg:table-cell">          {SEOData.leaderboard.col7}
+        </th>
 
       </tr>
     </thead>
@@ -68,4 +78,4 @@ const { data } = Astro.props;
       ))}
     </tbody>
   </table>
-</div>
+</Section>

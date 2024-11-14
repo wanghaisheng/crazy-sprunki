@@ -1,7 +1,9 @@
----
+--- 
 import { Image } from 'astro:assets'
 import type { DonationRecordEntry } from '../../../types/donationRecord';
 import { formatNumber, formatDate, getImage } from '../../../utils/helpers';
+import Section from '../../ui/Section.astro'
+import SEOData from '../../../data/json-files/seoData.json'
 
 interface Props {
   data: DonationRecordEntry[];
@@ -9,15 +11,27 @@ interface Props {
 
 const { data } = Astro.props;
 ---
-<div class="overflow-x-auto">
+
+<Section>
+
   <table class="w-full border-collapse">
     <thead>
-      <tr class="bg-gray-700 text-white">
-        <th class="px-6 py-4 text-left">支持者</th>
-        <th class="px-6 py-4 text-right">金额</th>
-        <th class="px-6 py-4 text-left hidden md:table-cell">留言</th>
-        <th class="px-6 py-4 text-center hidden md:table-cell">平台</th>
-        <th class="px-6 py-4 text-right hidden lg:table-cell">时间</th>
+      <tr>
+        <th class="px-6 py-4 text-left">
+          {SEOData.support.recordCol1} <!-- Username -->
+        </th>
+        <th class="px-6 py-4 text-right">
+          {SEOData.support.recordCol2} <!-- Amount -->
+        </th>
+        <th class="px-6 py-4 text-left hidden md:table-cell">
+          {SEOData.support.recordCol3} <!-- Message -->
+        </th>
+        <th class="px-6 py-4 text-center hidden md:table-cell">
+          {SEOData.support.recordCol4} <!-- Platform -->
+        </th>
+        <th class="px-6 py-4 text-right hidden lg:table-cell">
+          {SEOData.support.recordCol5} <!-- Date -->
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -26,7 +40,7 @@ const { data } = Astro.props;
           <td class="px-6 py-4">
             <div class="flex items-center gap-3">
               <Image
-                src={getImage(entry.avatar)}
+                src={getImage(entry.avatar)} 
                 alt={entry.username}
                 width={40}
                 height={40}
@@ -36,19 +50,20 @@ const { data } = Astro.props;
             </div>
           </td>
           <td class="px-6 py-4 text-right font-mono">
-            ¥{formatNumber(entry.amount)}
+            ¥{formatNumber(entry.amount)} <!-- Display donation amount -->
           </td>
           <td class="px-6 py-4 text-left hidden md:table-cell">
-            {entry.message}
+            {entry.message} <!-- Display message from the donor -->
           </td>
           <td class="px-6 py-4 text-center hidden md:table-cell">
-            {entry.platform}
+            {entry.platform} <!-- Display platform (e.g., Patreon, Ko-fi) -->
           </td>
           <td class="px-6 py-4 text-right hidden lg:table-cell text-gray-400 group-hover:text-white">
-            {formatDate(entry.date)}
+            {formatDate(entry.date)} <!-- Display formatted date -->
           </td>
         </tr>
       ))}
     </tbody>
   </table>
-</div>
+
+</Section>
