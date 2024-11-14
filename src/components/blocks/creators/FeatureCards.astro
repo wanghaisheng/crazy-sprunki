@@ -10,6 +10,7 @@ import Row from '../../ui/Row.astro'
 import Col from '../../ui/Col.astro'
 // - UI
 import Card from '../../ui/cards/FeatureCard.astro'
+import {  getImage } from '../../../utils/helpers';
 
 // Content
 // - Cards
@@ -49,7 +50,7 @@ const features = Array.from({ length: maxCol }, (_, i) => {
                     <Card
                         title={feature.title}
                         subtitle={feature.subtitle}
-                        image={feature.image}
+                        image={getImage(feature.image)}
                         link={feature.link}
                     />
                 ))}

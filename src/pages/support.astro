@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import DonationTable from '../components/blocks/donations/DonationTable.astro';
+import type { DonationRecordEntry } from '../types/donationRecord';
+import type { DonationChannelEntry } from '../types/donationChannel';
+
+
+// You can fetch real data here
+const donationData: DonationRecordEntry[] = [
+  {
+    id: 1,
+    username: "Example User",
+    avatar: "avatars/default.png",
+    amount: 100,
+    message: "Keep up the great work!",
+    platform: "支付宝",
+    date: new Date().toISOString(),
+  },
+  // Add more donation entries...
+];
+---
+
+<Layout title="捐赠支持 - Your Site Name">
+  <main class="container mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-3xl font-bold mb-8">捐赠支持</h1>
+      
+      <!-- Donation Methods Section -->
+      <div class="bg-gray-800 rounded-lg p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-4">支持方式</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Alipay -->
+          <div class="bg-gray-700 p-4 rounded-lg">
+            <h3 class="text-lg font-medium mb-3">支付宝</h3>
+            <div class="aspect-square max-w-[200px] mx-auto">
+              <!-- Replace with your actual QR code -->
+              <img 
+                src="/path-to-alipay-qr.png" 
+                alt="支付宝二维码"
+                class="w-full h-full object-contain"
+              />
+            </div>
+          </div>
+          
+          <!-- WeChat Pay -->
+          <div class="bg-gray-700 p-4 rounded-lg">
+            <h3 class="text-lg font-medium mb-3">微信支付</h3>
+            <div class="aspect-square max-w-[200px] mx-auto">
+              <!-- Replace with your actual QR code -->
+              <img 
+                src="/path-to-wechat-qr.png" 
+                alt="微信支付二维码"
+                class="w-full h-full object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Donation List -->
+      <div class="bg-gray-800 rounded-lg p-6">
+        <h2 class="text-xl font-semibold mb-4">捐赠记录</h2>
+        <DonationTable data={donationData} />
+      </div>
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,21 @@
+---
+// sound Tags Page
+// ------------
+// Description: The sound tags page.
+
+// Components
+// - Layout
+import Layout from '../../../layouts/Layout.astro'
+// - UI
+import Hero from '../../../components/blocks/hero/PageHeader.astro'
+import SoundPosts from '../../../components/blocks/sound/SoundPosts.astro'
+
+// Data
+import { getCollection } from 'astro:content'
+const allPosts = await getCollection('sound')
+---
+
+<Layout>
+	<Hero title="Tags" />
+	<SoundPosts data={allPosts} />
+</Layout>

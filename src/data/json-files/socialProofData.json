@@ -2,27 +2,27 @@
     "title": "Trusted by <strong>50,000+</strong> businesses worldwide",
     "logos": [
         {
-            "image": "/assets/logos/airtable-logo.svg",
+            "image": "logos/airtable-logo.svg",
             "alt": "Airtable logo"
         },
         {
-            "image": "/assets/logos/asana-logo.svg",
+            "image": "logos/asana-logo.svg",
             "alt": "Asana logo"
         },
         {
-            "image": "/assets/logos/basecamp-logo.svg",
+            "image": "logos/basecamp-logo.svg",
             "alt": "Basecamp logo"
         },
         {
-            "image": "/assets/logos/evernote-logo.svg",
+            "image": "logos/evernote-logo.svg",
             "alt": "Evernote logo"
         },
         {
-            "image": "/assets/logos/notion-logo.svg",
+            "image": "logos/notion-logo.svg",
             "alt": "Notion logo"
         },
         {
-            "image": "/assets/logos/slack-logo.svg",
+            "image": "logos/slack-logo.svg",
             "alt": "Slack logo"
         }
     ]

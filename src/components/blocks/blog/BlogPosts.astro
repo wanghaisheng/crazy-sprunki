@@ -13,6 +13,7 @@ import Col from '../../../components/ui/Col.astro'
 // - UI
 import Post from '../../../components/ui/cards/BlogCard.astro'
 import TagNavigation from '../../../components/ui/blog/TagNavigation.astro'
+import {  getImage } from '../../../utils/helpers';
 
 // Props
 type Props = {
@@ -38,7 +39,7 @@ const sortedPosts = allPosts.sort((a: any, b: any) => {
 						link={`/blog/${post.slug}`}
 						title={post.data.title}
 						subtitle={`By ${post.data.author} on ${new Date(post.data.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`}
-						image={post.data.image}
+						image={getImage(post.data.image)}
 						tags={post.data.tags}
 					>
 						{post.data.description}

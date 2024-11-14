@@ -1,0 +1,48 @@
+---
+// video Tag Page
+// ------------
+// Description: The video tag page.
+
+// Components
+// - Layout
+import Layout from '../../../layouts/Layout.astro'
+// - UI
+import Hero from '../../../components/blocks/hero/PageHeader.astro'
+import VideoPosts from '../../../components/blocks/video/VideoPosts.astro'
+
+// Data
+import { getCollection } from 'astro:content'
+export async function getStaticPaths() {
+	const allPosts = await getCollection('video')
+	const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())]
+
+	return uniqueTags.map((tag) => {
+		const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag))
+		return {
+			params: { tag },
+			props: { videos: filteredPosts }
+		}
+	})
+}
+const { tag } = Astro.params
+const { videos } = Astro.props
+
+// Content
+// - SEO
+const SEO = {
+	title: `Foxi | videos tagges as ` + tag,
+	description:
+		"Explore Foxi's latest news designed to enhance productivity, ensure top-notch security, and integrate seamlessly with your favorite tools. Join thousands of satisfied users and transform your workflow with Foxi today!"
+}
+
+// - Page Header
+const header = {
+	title: `Foxi videos about <br><strong>` + tag + `</strong>`,
+	text: `Stay informed, stay productive with all the latest fromFoxi.`
+}
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<Hero title={header.title} text={header.text} />
+	<VideoPosts data={videos} />
+</Layout>

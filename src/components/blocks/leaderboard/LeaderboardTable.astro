@@ -1,0 +1,71 @@
+---
+import { Image } from 'astro:assets'
+import type { LeaderboardEntry } from '../../../types/leaderboard';
+import { formatNumber, formatDate, getImage } from '../../../utils/helpers';
+
+interface Props {
+  data: LeaderboardEntry[];
+}
+
+const { data } = Astro.props;
+---
+
+<div class="overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr class="bg-gray-800 text-white">
+        <th class="px-6 py-4 text-left">排名</th>
+        <th class="px-6 py-4 text-left">用户名称</th>
+        <th class="px-6 py-4 text-right">灵石</th>
+        <th class="px-6 py-4 text-right hidden md:table-cell">消费贡献</th>
+        <th class="px-6 py-4 text-right hidden md:table-cell">数据贡献</th>
+        <th class="px-6 py-4 text-right hidden lg:table-cell">加入时间</th>
+        <th class="px-6 py-4 text-right hidden lg:table-cell">最后活跃</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {data.map((entry) => (
+        <tr class="border-b border-gray-700 hover:bg-gray-700/50 transition-colors">
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-2">
+              {entry.rank === 1 && <span class="text-2xl">🏆</span>}
+              {entry.rank === 2 && <span class="text-2xl">🥈</span>}
+              {entry.rank === 3 && <span class="text-2xl">🥉</span>}
+              <span class={entry.rank <= 3 ? "font-bold" : ""}>{entry.rank}</span>
+            </div>
+          </td>
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <Image
+                src={getImage(entry.avatar)}
+                alt={entry.username}
+                width={40}
+                height={40}
+                class="rounded-full"
+              />
+              <div>
+                <div class="font-semibold">{entry.username}</div>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-right font-mono">
+            {formatNumber(entry.coin)}
+          </td>
+          <td class="px-6 py-4 text-right hidden md:table-cell">
+            {entry.spending}
+          </td>
+          <td class="px-6 py-4 text-right hidden md:table-cell">
+            {entry.record}
+          </td>
+          <td class="px-6 py-4 text-right hidden lg:table-cell">
+            {formatDate(entry.joindate)}
+          </td>
+          <td class="px-6 py-4 text-right hidden lg:table-cell">
+            {formatDate(entry.lastActive)}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

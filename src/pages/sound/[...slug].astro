@@ -1,0 +1,25 @@
+---
+// sound Post Page
+// ------------
+// Description: The sound post page.
+
+// Components
+// - Layout
+import Layout from '../../layouts/PostLayout.astro'
+
+// Data
+import { getCollection } from 'astro:content'
+export async function getStaticPaths() {
+	const soundEntries = await getCollection('sound')
+	return soundEntries.map((entry) => ({
+		params: { slug: entry.slug },
+		props: { entry }
+	}))
+}
+const { entry } = Astro.props
+const { Content } = await entry.render()
+---
+
+<Layout frontmatter={entry.data}>
+	<Content />
+</Layout>

@@ -1,7 +1,7 @@
 ---
-// Blog Post Page
+// game Post Page
 // ------------
-// Description: The blog post page.
+// Description: The game post page.
 
 // Components
 // - Layout
@@ -10,8 +10,8 @@ import Layout from '../../layouts/PostLayout.astro'
 // Data
 import { getCollection } from 'astro:content'
 export async function getStaticPaths() {
-	const blogEntries = await getCollection('blog')
-	return blogEntries.map((entry) => ({
+	const gameEntries = await getCollection('game')
+	return gameEntries.map((entry) => ({
 		params: { slug: entry.slug },
 		props: { entry }
 	}))

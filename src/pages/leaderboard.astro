@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/ui/Section.astro';
+import Row from '../components/ui/Row.astro';
+import Col from '../components/ui/Col.astro';
+import LeaderboardTable from '../components/blocks/leaderboard/LeaderboardTable.astro';
+import LeaderboardFilters from '../components/blocks/leaderboard/LeaderboardFilters.astro';
+import Hero from '../components/blocks/hero/RankCTA.astro'
+
+import Pagination from '../components/blocks/leaderboard/Pagination.astro';
+import type { LeaderboardEntry } from '../types/leaderboard';
+import SEOData from '../data/json-files/seoData.json'
+
+// Mock data (replace with your actual data fetching logic)
+const leaderboardData: LeaderboardEntry[] = [
+  {
+    rank: 1,
+    username: "ProGamer123",
+    avatar: "avatars/default.png",
+    coin: 15000,
+    spending: 500,
+    record: 128,
+    joindate:"2024-11-02",
+    lastActive: "2024-11-20"
+  },
+  // Add more entries...
+];
+
+const ITEMS_PER_PAGE = 10;
+const totalPages = Math.ceil(leaderboardData.length / ITEMS_PER_PAGE);
+const currentPage = 1; // Replace with actual current page logic
+---
+
+<Layout title={SEOData.leaderboard.title}>
+  <Hero />
+
+  <Section>
+    <Row>
+      <Col span="12">
+        <!-- <h1 class="text-4xl font-bold text-center mb-8">{SEOData.leaderboard.h1}</h1> -->
+      </Col>
+    </Row>
+
+    <Row>
+      <Col span="12" classes="mb-6">
+
+        <LeaderboardFilters />
+        
+      </Col>
+    </Row>
+
+    <Row>
+      <Col span="12">
+        <LeaderboardTable data={leaderboardData} />
+      </Col>
+    </Row>
+
+    <Row>
+      <Col span="12" classes="mt-6">
+        <Pagination currentPage={currentPage} totalPages={totalPages} />
+      </Col>
+    </Row>
+  </Section>
+
+  <script>
+    // Client-side filtering and sorting logic
+    const timeFilter = document.getElementById('timeFilter');
+    const typeFilter = document.getElementById('typeFilter');
+
+    
+    const searchInput = document.querySelector('input[type="text"]');
+
+    timeFilter?.addEventListener('change', (e) => {
+      const value = (e.target as HTMLSelectElement).value;
+      // Implement your filtering logic here
+      console.log('Filter by:', value);
+    });
+
+    searchInput?.addEventListener('input', (e) => {
+      const value = (e.target as HTMLInputElement).value;
+      // Implement your search logic here
+      console.log('Search:', value);
+    });
+  </script>
+</Layout>

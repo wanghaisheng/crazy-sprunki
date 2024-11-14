@@ -10,6 +10,7 @@ import Row from '../../ui/Row.astro'
 import Col from '../../ui/Col.astro'
 // - UI
 import Testimonial from '../../ui/Testimonial.astro'
+import { formatNumber, formatDate, getImage } from '../../../utils/helpers'
 
 // Props
 type Props = {
@@ -26,12 +27,16 @@ const {
 	bg,
 	bgPosition = 'center'
 } = Astro.props
+
+
 ---
+
+
 
 <Section
 	id="testimonial"
 	mode="dark"
-	bg={bg}
+	bg={getImage(bg)}
 	bgPosition={bgPosition}
 	classes="dark:border-t border-y border-neutral-800"
 >

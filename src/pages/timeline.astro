@@ -1,0 +1,25 @@
+---
+// Components
+// - Layout
+import Layout from '../layouts/Layout.astro'
+// - UI
+import Hero from '../components/blocks/hero/PageHeader.astro'
+import SimpleFeed from '../components/blocks/feeds/BasicFeed.astro'
+import CTA from '../components/blocks/CTA/BasicLight.astro'
+
+// Data
+import feedData from '../data/json-files/changelogData.json'
+
+// Content
+// - SEO
+
+import SEOData from '../data/json-files/seoData.json'
+
+// - Page Header
+---
+
+<Layout title={SEOData.changelog.title} description={SEOData.changelog.description}>
+	<Hero title={SEOData.changelog.headertitle} text={SEOData.changelog.headertext} />
+	<SimpleFeed data={feedData} />
+	<CTA />
+</Layout>

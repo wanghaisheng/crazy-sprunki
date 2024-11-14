@@ -1,5 +1,5 @@
 ---
-// Feed
+// VideoFeed
 // ------------
 // Description: the feed component is a ui element that displays a stream of content (static or dynamic), such as comments, activity updates, posts, in a chronological order.
 // Properties:
@@ -20,9 +20,11 @@ type Props = {
 	classes?: string
 }
 const { data, classes } = Astro.props
+import {  getImage } from '../../utils/helpers';
+
 ---
 
-<ul aria-label="Changelog feed" role="feed" class:list={['feed', { [`${classes}`]: classes }]}>
+<ul aria-label="video feed" role="feed" class:list={['feed', { [`${classes}`]: classes }]}>
 	{
 		data.map((item) => (
 			<li role="article" class="feed__item">
@@ -35,7 +37,7 @@ const { data, classes } = Astro.props
 					{item.image && (
 						<div class="feed__item-image">
 <a href={item.videoUrl} target="_blank" rel="noopener noreferrer">
-  <img src={item.image} alt={item.title} width="1000" height="500" />
+  <img src={getImage(item.image).src} alt={item.title} width="1000" height="500" />
 </a>
 
 						</div>

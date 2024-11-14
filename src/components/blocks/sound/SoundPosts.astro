@@ -1,0 +1,104 @@
+---
+// Blog Posts grid Section
+import { type ImageMetadata } from 'astro'
+import Section from '../../../components/ui/Section.astro'
+import Row from '../../../components/ui/Row.astro'
+import Col from '../../../components/ui/Col.astro'
+import Post from '../../../components/ui/cards/SoundCard.astro'
+import TagNavigation from '../../../components/ui/sound/TagNavigation.astro'
+
+// Define interfaces for better type safety
+interface BlogPost {
+  slug: string;
+  data: {
+    title: string;
+    author: string;
+    pubDate: string;
+    description: string;
+    image: string;
+    tags: string[];
+  }
+}
+
+interface ProcessedBlogPost extends Omit<BlogPost, 'data'> {
+  data: Omit<BlogPost['data'], 'image'> & {
+    image: ImageMetadata;
+  }
+}
+
+type Props = {
+  data: BlogPost[]
+}
+
+const { data: allPosts } = Astro.props
+
+// Import all images using glob
+const imageModules = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{svg,png,jpg,jpeg}', {
+  eager: true
+});
+
+// Function to safely get image
+function getImageFromPath(path: string): ImageMetadata | null {
+  const fullPath = `/src/assets/${path}`;
+  const image = imageModules[fullPath];
+  if (!image) {
+    console.warn(`Image not found: ${path}`);
+    return null;
+  }
+  return image.default;
+}
+
+// Process posts and their images
+const processedPosts: ProcessedBlogPost[] = allPosts.map(post => {
+  const image = getImageFromPath(post.data.image);
+  
+  if (!image) {
+    throw new Error(`Missing image for post: ${post.slug}`);
+  }
+
+  return {
+    ...post,
+    data: {
+      ...post.data,
+      image
+    }
+  };
+});
+
+// Sort posts by date
+const sortedPosts = processedPosts.sort((a, b) => {
+  return new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+});
+
+// Format date function
+function formatDate(dateString: string): string {
+  return new Date(dateString).toLocaleDateString('en-US', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
+}
+---
+
+<Section>
+  <Row>
+    <Col span="12">
+      <TagNavigation />
+    </Col>
+    {
+      sortedPosts.map((post) => (
+        <Col span="4">
+          <Post
+            link={`/sound/${post.slug}`}
+            title={post.data.title}
+            subtitle={`By ${post.data.author} on ${formatDate(post.data.pubDate)}`}
+            image={post.data.image}
+            tags={post.data.tags}
+          >
+            {post.data.description}
+          </Post>
+        </Col>
+      ))
+    }
+  </Row>
+</Section>

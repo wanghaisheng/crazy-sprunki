@@ -3,11 +3,11 @@ title: 'Celebrating User Success Stories'
 pubDate: 2024-06-04T05:00:00Z
 description: 'These stories inspire us to keep innovating and improving Foxi. We are proud of what our users have achieved and are committed to helping more people reach their full potential.'
 author: 'Eleni K'
-image: '/blog/post-06-cover.png'
+image: 'blog/post-06-cover.png'
 tags: ['reviews', 'announcement']
 ---
 
-![Foxi is here.](/blog/post-06.png)
+![Foxi is here.](../../assets/blog/post-06.png)
 
 ### Success Stories
 

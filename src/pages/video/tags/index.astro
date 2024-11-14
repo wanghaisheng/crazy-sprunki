@@ -1,0 +1,21 @@
+---
+// video Tags Page
+// ------------
+// Description: The video tags page.
+
+// Components
+// - Layout
+import Layout from '../../../layouts/Layout.astro'
+// - UI
+import Hero from '../../../components/blocks/hero/PageHeader.astro'
+import VideoPosts from '../../../components/blocks/video/VideoPosts.astro'
+
+// Data
+import { getCollection } from 'astro:content'
+const allPosts = await getCollection('video')
+---
+
+<Layout>
+	<Hero title="Tags" />
+	<videoPosts data={allPosts} />
+</Layout>

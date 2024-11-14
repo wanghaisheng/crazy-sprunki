@@ -10,6 +10,7 @@ import Row from '../../ui/Row.astro'
 import Col from '../../ui/Col.astro'
 // - UI
 import { Image } from 'astro:assets'
+import { formatNumber, formatDate, getImage } from '../../../utils/helpers';
 
 // Content
 import SocialProofData from '../../../data/json-files/socialProofData.json'
@@ -31,7 +32,7 @@ interface LogoItem {
             SocialProofData.logos.map((item: LogoItem) => (
                 <Col classes="!w-auto">
                     <Image 
-                        src={item.image} 
+                        src={getImage(item.image)} 
                         alt={item.alt}
                         width={120}
                         height={40}

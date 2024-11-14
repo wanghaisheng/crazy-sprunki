@@ -4,13 +4,13 @@ pubDate: 2024-05-05T05:00:00Z
 description: "Your feedback is crucial to us. We are constantly striving to improve Foxi based on your suggestions. Here are some of the latest improvements.
 "
 author: 'Eleni K'
-image: '/blog/post-04-cover.png'
+image: 'blog/post-04-cover.png'
 tags: ['productivity', 'app']
 ---
 
 Your feedback is crucial to us. We are constantly striving to improve Foxi based on your suggestions. Here are some of the latest improvements we've made thanks to your valuable feedback.
 
-![Foxi is here.](/blog/post-01.png)
+![Foxi is here.](../../assets/blog/post-01.png)
 
 ### Improvements
 

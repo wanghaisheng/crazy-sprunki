@@ -7,20 +7,32 @@
         },
         "items": [
             { "name": "Home", "link": "/" },
-            { "name": "Tutorials", "link": "/tutorials" },
+            { "name": "Leaderboard", "link": "/leaderboard" },
+            { "name": "Pricing", "link": "/pricing" },
+            { "name": "Support", "link": "/support" },
 
-            { "name": "FAQ", "link": "/faq" },
             { "name": "Forum", "link": "/forum" },
             {
                 "name": "Resources",
                 "link": "#",
                 "submenu": [
                     { "name": "Blog", "link": "/blog" },
+                    { "name": "FAQ", "link": "/faq" },
+
+                    { "name": "Mod", "link": "/game" },
+                    { "name": "Sound", "link": "/sound" },
+                    { "name": "Video", "link": "/video" },
+                    { "name": "Character", "link": "/character" },
+                    { "name": "Tutorials", "link": "/tutorials" },
+                    
                     { "name": "Changelog", "link": "/changelog" },
-                    { "name": "Glossary", "link": "/glossary" }
+
+                    { "name": "Timeline", "link": "/timeline" },
+                    { "name": "Glossary", "link": "/glossary" },
+                    { "name": "Contact", "link": "/contact" }
+
                 ]
-            },
-            { "name": "Contact", "link": "/contact" }
+            }
         ],
         "actions": [
             { "name": "Try it now", "link": "/#game", "style": "primary", "size": "lg" }

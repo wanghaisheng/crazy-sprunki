@@ -3,11 +3,11 @@ title: 'Enhancing Team Collaboration'
 pubDate: 2024-06-04T05:00:00Z
 description: 'At Foxi, we believe that effective team collaboration is key to achieving great results. Our latest update introduces new features designed to enhance how your team works together.'
 author: 'Eleni K'
-image: '/blog/post-05-cover.png'
+image: 'blog/post-05-cover.png'
 tags: ['app', 'announcement']
 ---
 
-![Foxi is here.](/blog/post-05.png)
+![Foxi is here.](../../assets/blog/post-05.png)
 
 At Foxi, we believe that effective team collaboration is key to achieving great results. Our latest update introduces new features designed to enhance how your team works together.
 

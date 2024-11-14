@@ -5,6 +5,7 @@
 // Properties:
 // - Data: the data of the feed (consists of title, date, text, and image)
 // - classes: additional classes
+import {  getImage } from '../../utils/helpers';
 
 // Props
 type Props = {
@@ -31,7 +32,7 @@ const { data, classes } = Astro.props
 					</h4>
 					{item.image && (
 						<div class="feed__item-image">
-							<img src={item.image} alt={item.title} width="1000" height="500" />
+							<img src={getImage(item.image).src} alt={item.title} width="1000" height="500" />
 						</div>
 					)}
 					<div class="feed__item-text basic-text" set:html={item.text} />

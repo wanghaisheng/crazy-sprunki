@@ -3,13 +3,13 @@ title: 'Welcome to Foxi!'
 pubDate: 2024-04-04T05:00:00Z
 description: "We're excited to introduce you to the ultimate productivity app designed to help you manage your tasks effortlessly to help you stay organized and efficient."
 author: 'Eleni K'
-image: '/blog/post-01-cover.png'
+image: 'blog/post-01-cover.png'
 tags: ['productivity', 'announcement']
 ---
 
 Welcome to Foxi! We're excited to introduce you to the ultimate productivity app designed to help you manage your tasks effortlessly. Foxi combines powerful features with an intuitive interface to help you stay organized and efficient.
 
-![Foxi is here.](/blog/post-01.png)
+![Foxi is here.](../../assets/blog/post-01.png)
 
 We have rolled out new security updates to keep your data safe and secure. Learn more about our latest security enhancements and how they protect you.
 

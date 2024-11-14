@@ -3,13 +3,13 @@ title: 'Security Enhancements now here!'
 pubDate: 2024-05-05T05:00:00Z
 description: 'The Foxi mobile app is now available! Manage your tasks and projects on the go with our new mobile app. Stay connected and productive no matter where you are.'
 author: 'Christos P'
-image: '/blog/post-03-cover.png'
+image: 'blog/post-03-cover.png'
 tags: ['productivity', 'app']
 ---
 
 The Foxi mobile app is now available! Manage your tasks and projects on the go with our new mobile app. Stay connected and productive no matter where you are.
 
-![Foxi is here.](/blog/post-03.png)
+![Foxi is here.](../../assets/blog/post-03.png)
 
 We have rolled out new security updates to keep your data safe and secure. Learn more about our latest security enhancements and how they protect you.
 
