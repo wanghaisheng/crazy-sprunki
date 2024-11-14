@@ -13,10 +13,10 @@ import ChipNotification from '../../ui/ChipNotification.astro'
 import { Image } from 'astro:assets'
 import Button from '../../ui/Button.astro'
 import AvatarGroup from '../../ui/AvatarGroup.astro'
+import { formatNumber, formatDate, getImage } from '../../../utils/helpers';
 
 // Content
 // - Hero Image
-import heroImage from '../../../assets/hero-01.png'
 // - Avatars
 import user1 from '../../../assets/avatars/avatar-01.webp'
 import user2 from '../../../assets/avatars/avatar-02.webp'
@@ -53,7 +53,7 @@ const avatars = [
 		<Col span="2" />
 		<Col span="8">
 			<Image
-				src={heroImage}
+				src={getImage(HeroData.image)}
 				alt=				{HeroData.imagealt}
 				class="translate-y-8 shadow-2xl shadow-neutral-200 dark:shadow-neutral-950"
 				format="webp"
