@@ -1,0 +1,64 @@
+{
+  "pricing": {
+    "featureName": "Feature"
+  },
+  "plans": [
+    {
+      "name": "Plan A",
+      "price": 2999,
+      "features": [
+        { "name": "Data", "value": "100GB" },
+        { "name": "Calls", "value": "Unlimited" },
+        { "name": "SMS", "value": "500 texts" },
+        { "name": "Roaming", "value": "Yes" },
+        { "name": "Speed", "value": "Up to 1Gbps" }
+      ],
+      "image": "badge.svg"
+    },
+    {
+      "name": "Plan B",
+      "price": 1999,
+      "features": [
+        { "name": "Data", "value": "50GB" },
+        { "name": "Calls", "value": "Unlimited" },
+        { "name": "SMS", "value": "100 texts" },
+        { "name": "Roaming", "value": "No" },
+        { "name": "Speed", "value": "Up to 500Mbps" }
+      ],
+      "image": "badge.svg"
+    }
+  ],
+  "competitors": [
+    {
+      "name": "Competitor X",
+      "price": 3499,
+      "features": [
+        { "name": "Data", "value": "150GB" },
+        { "name": "Calls", "value": "Unlimited" },
+        { "name": "SMS", "value": "500 texts" },
+        { "name": "Roaming", "value": "Yes" },
+        { "name": "Speed", "value": "Up to 1.2Gbps" }
+      ],
+      "image": "badge.svg"
+    },
+    {
+      "name": "Competitor Y",
+      "price": 2499,
+      "features": [
+        { "name": "Data", "value": "80GB" },
+        { "name": "Calls", "value": "Unlimited" },
+        { "name": "SMS", "value": "200 texts" },
+        { "name": "Roaming", "value": "Yes" },
+        { "name": "Speed", "value": "Up to 800Mbps" }
+      ],
+      "image": "badge.svg"
+    }
+  ],
+  "features": [
+    "Data",
+    "Calls",
+    "SMS",
+    "Roaming",
+    "Speed"
+  ]
+}

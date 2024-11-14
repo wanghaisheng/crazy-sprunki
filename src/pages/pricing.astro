@@ -5,11 +5,18 @@ import Layout from '../layouts/Layout.astro'
 // - UI
 import Hero from '../components/blocks/hero/PageHeader.astro'
 import Price from '../components/blocks/pricing/PricingColumns.astro'
+import CompareTable from '../components/blocks/comparison/BasicTable.astro'
+import compareData from '../data/json-files/compare.json';
+
 import SocialProof from '../components/blocks/socialproof/Basic.astro'
 import FAQ from '../components/blocks/FAQ/Basic.astro'
 import Testimonial from '../components/blocks/testimonials/BasicDark.astro'
 import Feature from '../components/blocks/features/FeatureList.astro'
 import CTA from '../components/blocks/CTA/BasicDark.astro'
+import CompetitorComparisonTable from '../components/blocks/comparison/CompetitorTable.astro';
+import CompetitorTableData from '../data/json-files/competitor.json';
+
+
 
 // Content
 import SEOData from '../data/json-files/seoData.json'
@@ -24,6 +31,14 @@ import PricingContent from '../data/json-files/pricingContent.json'
 		text={SEOData.pricing.headertext} 
 	/>
 	<Price />
+
+	<CompareTable plans={compareData.plans} features={compareData.features} />
+	<CompetitorComparisonTable
+    plans={CompetitorTableData.plans}
+    competitors={CompetitorTableData.competitors}
+    features={CompetitorTableData.features}
+	/>
+
 	<SocialProof />
 	<Feature />
 	<Testimonial

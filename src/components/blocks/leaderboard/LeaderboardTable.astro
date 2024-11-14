@@ -13,69 +13,77 @@ const { data } = Astro.props;
 ---
 
 <Section>
-  <table class="w-full border-collapse">
-    <thead>
-      <tr>
-        <th class="px-6 py-4 text-left">
-          {SEOData.leaderboard.col1}
+  <!-- Container with horizontal scrolling -->
+  <div class="overflow-x-auto">
+    <table class="w-full border-collapse min-w-full">
+      <thead>
+        <tr>
+          <th class="px-6 py-4 text-left">
+            {SEOData.leaderboard.col1}
           </th>
-        <th class="px-6 py-4 text-left">          {SEOData.leaderboard.col2}
-        </th>
-        <th class="px-6 py-4 text-right">          {SEOData.leaderboard.col3}
-        </th>
-        <th class="px-6 py-4 text-right hidden md:table-cell">          {SEOData.leaderboard.col4}
-        </th>
-        <th class="px-6 py-4 text-right hidden md:table-cell">          {SEOData.leaderboard.col5}
-        </th>
-        <th class="px-6 py-4 text-right hidden lg:table-cell">          {SEOData.leaderboard.col6}
-        </th>
-        <th class="px-6 py-4 text-right hidden lg:table-cell">          {SEOData.leaderboard.col7}
-        </th>
-
-      </tr>
-    </thead>
-    <tbody>
-      {data.map((entry) => (
-        <tr class="border-b border-gray-700 hover:bg-gray-700/50 transition-colors">
-          <td class="px-6 py-4">
-            <div class="flex items-center gap-2">
-              {entry.rank === 1 && <span class="text-2xl">🏆</span>}
-              {entry.rank === 2 && <span class="text-2xl">🥈</span>}
-              {entry.rank === 3 && <span class="text-2xl">🥉</span>}
-              <span class={entry.rank <= 3 ? "font-bold" : ""}>{entry.rank}</span>
-            </div>
-          </td>
-          <td class="px-6 py-4">
-            <div class="flex items-center gap-3">
-              <Image
-                src={getImage(entry.avatar)}
-                alt={entry.username}
-                width={40}
-                height={40}
-                class="rounded-full"
-              />
-              <div>
-                <div class="font-semibold">{entry.username}</div>
-              </div>
-            </div>
-          </td>
-          <td class="px-6 py-4 text-right font-mono">
-            {formatNumber(entry.coin)}
-          </td>
-          <td class="px-6 py-4 text-right hidden md:table-cell">
-            {entry.spending}
-          </td>
-          <td class="px-6 py-4 text-right hidden md:table-cell">
-            {entry.record}
-          </td>
-          <td class="px-6 py-4 text-right hidden lg:table-cell">
-            {formatDate(entry.joindate)}
-          </td>
-          <td class="px-6 py-4 text-right hidden lg:table-cell">
-            {formatDate(entry.lastActive)}
-          </td>
+          <th class="px-6 py-4 text-left">          
+            {SEOData.leaderboard.col2}
+          </th>
+          <th class="px-6 py-4 text-right">          
+            {SEOData.leaderboard.col3}
+          </th>
+          <th class="px-6 py-4 text-right md:table-cell">          
+            {SEOData.leaderboard.col4}
+          </th>
+          <th class="px-6 py-4 text-right md:table-cell">          
+            {SEOData.leaderboard.col5}
+          </th>
+          <th class="px-6 py-4 text-right lg:table-cell">          
+            {SEOData.leaderboard.col6}
+          </th>
+          <th class="px-6 py-4 text-right lg:table-cell">          
+            {SEOData.leaderboard.col7}
+          </th>
         </tr>
-      ))}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {data.map((entry) => (
+          <tr class="border-b border-gray-700 hover:bg-gray-700/50 transition-colors">
+            <td class="px-6 py-4">
+              <div class="flex items-center gap-2">
+                {entry.rank === 1 && <span class="text-2xl">🏆</span>}
+                {entry.rank === 2 && <span class="text-2xl">🥈</span>}
+                {entry.rank === 3 && <span class="text-2xl">🥉</span>}
+                <span class={entry.rank <= 3 ? "font-bold" : ""}>{entry.rank}</span>
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <div class="flex items-center gap-3">
+                <Image
+                  src={getImage(entry.avatar)}
+                  alt={entry.username}
+                  width={40}
+                  height={40}
+                  class="rounded-full"
+                />
+                <div>
+                  <div class="font-semibold">{entry.username}</div>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4 text-right font-mono">
+              {formatNumber(entry.coin)}
+            </td>
+            <td class="px-6 py-4 text-right md:table-cell">
+              {entry.spending}
+            </td>
+            <td class="px-6 py-4 text-right md:table-cell">
+              {entry.record}
+            </td>
+            <td class="px-6 py-4 text-right lg:table-cell">
+              {formatDate(entry.joindate)}
+            </td>
+            <td class="px-6 py-4 text-right lg:table-cell">
+              {formatDate(entry.lastActive)}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
 </Section>

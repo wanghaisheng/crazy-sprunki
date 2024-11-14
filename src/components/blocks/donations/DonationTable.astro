@@ -1,4 +1,4 @@
---- 
+---
 import { Image } from 'astro:assets'
 import type { DonationRecordEntry } from '../../../types/donationRecord';
 import { formatNumber, formatDate, getImage } from '../../../utils/helpers';
@@ -14,56 +14,62 @@ const { data } = Astro.props;
 
 <Section>
 
-  <table class="w-full border-collapse">
-    <thead>
-      <tr>
-        <th class="px-6 py-4 text-left">
-          {SEOData.support.recordCol1} <!-- Username -->
-        </th>
-        <th class="px-6 py-4 text-right">
-          {SEOData.support.recordCol2} <!-- Amount -->
-        </th>
-        <th class="px-6 py-4 text-left hidden md:table-cell">
-          {SEOData.support.recordCol3} <!-- Message -->
-        </th>
-        <th class="px-6 py-4 text-center hidden md:table-cell">
-          {SEOData.support.recordCol4} <!-- Platform -->
-        </th>
-        <th class="px-6 py-4 text-right hidden lg:table-cell">
-          {SEOData.support.recordCol5} <!-- Date -->
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      {data.map((entry) => (
-        <tr class="border-b border-gray-700 hover:bg-gray-700/50 transition-colors group">
-          <td class="px-6 py-4">
-            <div class="flex items-center gap-3">
-              <Image
-                src={getImage(entry.avatar)} 
-                alt={entry.username}
-                width={40}
-                height={40}
-                class="rounded-full"
-              />
-              <div class="font-semibold">{entry.username}</div>
-            </div>
-          </td>
-          <td class="px-6 py-4 text-right font-mono">
-            ¥{formatNumber(entry.amount)} <!-- Display donation amount -->
-          </td>
-          <td class="px-6 py-4 text-left hidden md:table-cell">
-            {entry.message} <!-- Display message from the donor -->
-          </td>
-          <td class="px-6 py-4 text-center hidden md:table-cell">
-            {entry.platform} <!-- Display platform (e.g., Patreon, Ko-fi) -->
-          </td>
-          <td class="px-6 py-4 text-right hidden lg:table-cell text-gray-400 group-hover:text-white">
-            {formatDate(entry.date)} <!-- Display formatted date -->
-          </td>
+  <!-- Wrapper for horizontal scrolling on small screens -->
+  <div class="overflow-x-auto">
+    <table class="w-full min-w-max border-collapse">
+      <thead>
+        <tr>
+          <th class="px-6 py-4 text-left">
+            {SEOData.support.recordCol1} <!-- Username -->
+          </th>
+          <th class="px-6 py-4 text-right">
+            {SEOData.support.recordCol2} <!-- Amount -->
+          </th>
+          <!-- Always visible columns -->
+          <th class="px-6 py-4 text-left md:table-cell">
+            {SEOData.support.recordCol3} <!-- Message -->
+          </th>
+          <th class="px-6 py-4 text-center md:table-cell">
+            {SEOData.support.recordCol4} <!-- Platform -->
+          </th>
+          <th class="px-6 py-4 text-right lg:table-cell">
+            {SEOData.support.recordCol5} <!-- Date -->
+          </th>
         </tr>
-      ))}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {data.map((entry) => (
+          <tr class="border-b border-gray-700 hover:bg-gray-700/50 transition-colors group">
+            <td class="px-6 py-4">
+              <div class="flex items-center gap-3">
+                <Image
+                  src={getImage(entry.avatar)} 
+                  alt={entry.username}
+                  width={40}
+                  height={40}
+                  class="rounded-full"
+                />
+                <div class="font-semibold">{entry.username}</div>
+              </div>
+            </td>
+            <td class="px-6 py-4 text-right font-mono">
+              ¥{formatNumber(entry.amount)} <!-- Display donation amount -->
+            </td>
+            <!-- Columns visible on medium screens and above -->
+            <td class="px-6 py-4 text-left md:table-cell">
+              {entry.message} <!-- Display message from the donor -->
+            </td>
+            <td class="px-6 py-4 text-center md:table-cell">
+              {entry.platform} <!-- Display platform (e.g., Patreon, Ko-fi) -->
+            </td>
+            <!-- Column visible only on large screens and above -->
+            <td class="px-6 py-4 text-right lg:table-cell text-gray-400 group-hover:text-white">
+              {formatDate(entry.date)} <!-- Display formatted date -->
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
 
 </Section>

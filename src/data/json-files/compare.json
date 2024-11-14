@@ -1,0 +1,94 @@
+{
+    "pricing": {
+      "planName": "Plan Name",
+      "planPrice": "Price",
+      "planDetails": "Details"
+    },
+    "plans": [
+      {
+        "name": "Basic Plan",
+        "price": 1000,
+        "features": [
+          {
+            "name": "Cloud Storage",
+            "value": "50 GB"
+          },
+          {
+            "name": "Support",
+            "value": "Email support"
+          },
+          {
+            "name": "Security",
+            "value": "Basic encryption"
+          },
+          {
+            "name": "Premium Support",
+            "value": "No"
+          }
+        ],
+        "description": "The basic plan for individual users.",
+        "image": "badge.svg",
+        "details": "A simple solution for users with basic needs. Includes limited storage and email support.",
+        "isRecommended": false
+      },
+      {
+        "name": "Pro Plan",
+        "price": 2500,
+        "features": [
+          {
+            "name": "Cloud Storage",
+            "value": "200 GB"
+          },
+          {
+            "name": "Support",
+            "value": "Priority support"
+          },
+          {
+            "name": "Security",
+            "value": "Advanced encryption"
+          },
+          {
+            "name": "Premium Support",
+            "value": "Yes"
+          }
+        ],
+        "description": "For power users who need more storage and faster support.",
+        "image": "badge.svg",
+        "details": "Includes priority customer support and better security features for professional use.",
+        "isRecommended": true
+      },
+      {
+        "name": "Premium Plan",
+        "price": 5000,
+        "features": [
+          {
+            "name": "Cloud Storage",
+            "value": "1 TB"
+          },
+          {
+            "name": "Support",
+            "value": "24/7 Support"
+          },
+          {
+            "name": "Security",
+            "value": "End-to-end encryption"
+          },
+          {
+            "name": "Premium Support",
+            "value": "Yes"
+          }
+        ],
+        "description": "The ultimate plan for businesses and enterprise use.",
+        "image": "badge.svg",
+        "details": "The highest level of storage, security, and support, perfect for large teams or enterprises.",
+        "isRecommended": true
+      }
+    ],
+    "features": [
+      "Cloud Storage",
+      "Support",
+      "Security",
+      "Premium Support"
+    ]
+  }
+  

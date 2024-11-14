@@ -1,0 +1,80 @@
+---
+import { Image } from 'astro:assets'
+import { formatNumber } from '../../../utils/helpers';
+import Section from '../../ui/Section.astro'
+import compareData from '../../../data/json-files/compare.json'
+import { formatNumber, formatDate, getImage } from '../../../utils/helpers';
+import Col from '../../ui/Col.astro'
+
+interface Props {
+  plans: {
+    name: string;
+    price: number;
+    features: { name: string; value: string }[]; // Updated to match the object structure
+    image?: string;  // Optional for displaying an icon or image
+  }[];
+  features: string[];  // List of feature names to compare
+}
+
+const { plans, features } = Astro.props;
+---
+
+<Section>
+  <!-- Wrapper for horizontal scrolling on small screens -->
+  <div class="overflow-x-auto">
+    <!-- Check if plans and features are available -->
+     
+    <Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
+      <h2>plan comparison</h2>
+    </Col>
+    {plans && features ? (
+      <table class="w-full min-w-[800px] sm:min-w-max border-collapse">
+        <thead>
+          <tr>
+            <th class="px-6 py-4 text-left">{compareData.pricing.planName}</th>
+            <th class="px-6 py-4 text-right">{compareData.pricing.planPrice}</th>
+            {features.map((feature, idx) => (
+              <th key={idx} class="px-6 py-4 text-center">{feature}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {plans.map((plan) => (
+            <tr key={plan.name} class="border-b border-gray-700 hover:bg-gray-700/50 transition-colors group">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  {plan.image && (
+                    <Image
+                      src={getImage(plan.image)}
+                      alt={plan.name}
+                      width={40}
+                      height={40}
+                      class="rounded-full"
+                    />
+                  )}
+                  <div class="font-semibold">{plan.name}</div>
+                </div>
+              </td>
+              <td class="px-6 py-4 text-right font-mono">
+                ¥{formatNumber(plan.price)} <!-- Display plan price -->
+              </td>
+              {plan.features.map((feature, idx) => (
+                <td key={idx} class="px-6 py-4 text-center">
+                  {feature.value === "Yes" ? (
+                    <span class="text-green-500">✔</span>
+                  ) : feature.value === "No" ? (
+                    <span class="text-red-500">✘</span>
+                  ) : (
+                    feature.value // Display the actual value of the feature
+                  )}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    ) : (
+      <p class="text-center text-red-500">Data is missing or undefined!</p>
+    )}
+  </div>
+</Section>
