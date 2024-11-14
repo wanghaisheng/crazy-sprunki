@@ -33,13 +33,13 @@ const { plans, features } = Astro.props;
             <th class="px-6 py-4 text-left">{compareData.pricing.planName}</th>
             <th class="px-6 py-4 text-right">{compareData.pricing.planPrice}</th>
             {features.map((feature, idx) => (
-              <th key={idx} class="px-6 py-4 text-center">{feature}</th>
+              <th  class="px-6 py-4 text-center">{feature}</th>
             ))}
           </tr>
         </thead>
         <tbody>
           {plans.map((plan) => (
-            <tr key={plan.name} class="border-b border-gray-700 hover:bg-gray-700/50 transition-colors group">
+            <tr  class="border-b border-gray-700 hover:bg-gray-700/50 transition-colors group">
               <td class="px-6 py-4">
                 <div class="flex items-center gap-3">
                   {plan.image && (
@@ -58,7 +58,7 @@ const { plans, features } = Astro.props;
                 ¥{formatNumber(plan.price)} <!-- Display plan price -->
               </td>
               {plan.features.map((feature, idx) => (
-                <td key={idx} class="px-6 py-4 text-center">
+                <td  class="px-6 py-4 text-center">
                   {feature.value === "Yes" ? (
                     <span class="text-green-500">✔</span>
                   ) : feature.value === "No" ? (

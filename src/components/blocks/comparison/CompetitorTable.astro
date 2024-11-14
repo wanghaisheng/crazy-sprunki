@@ -39,7 +39,7 @@ const { plans, competitors, features } = Astro.props;
             <th class="px-6 py-4 text-left">{compareData.pricing.featureName}</th>
             {/* Render competitors and plans in columns */}
             {plans.concat(competitors).map((competitor, idx) => (
-              <th key={idx} class="px-6 py-4 text-center">
+              <th  class="px-6 py-4 text-center">
                 <div class="flex items-center gap-3 justify-center">
                   {competitor.image && (
                     <Image
@@ -59,13 +59,13 @@ const { plans, competitors, features } = Astro.props;
         </thead>
         <tbody>
           {features.map((featureName, featureIndex) => (
-            <tr key={featureIndex} class="border-b border-gray-700 hover:bg-gray-700/50 transition-colors group">
+            <tr class="border-b border-gray-700 hover:bg-gray-700/50 transition-colors group">
               <td class="px-6 py-4">{featureName}</td>
               {plans.concat(competitors).map((competitor, idx) => {
                 const feature = competitor.features.find((f) => f.name === featureName);
                 
                 return (
-                  <td key={idx} class="px-6 py-4 text-center">
+                  <td class="px-6 py-4 text-center">
                     {feature ? (
                       feature.value === "Yes" ? (
                         <span class="text-green-500">✔</span>
