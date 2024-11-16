@@ -1,0 +1,82 @@
+---
+// GridWithImages.astro
+
+import Col from '../../ui/Col.astro'
+import Row from '../../ui/Row.astro'
+import {  getImage } from '../../../utils/helpers';
+import Section from '../../ui/Section.astro'
+
+type Feature = {
+  title: string;
+  subtitle: string;
+  image: string;
+  link?: string;
+  row: string;
+};
+
+interface Props {
+  sectionTitle?: string;
+  sectionSubtitle?: string;
+  gridDatas: Feature[];
+  imageBasePath?: string;
+}
+
+const { sectionTitle, sectionSubtitle, gridDatas, imageBasePath = '../../assets' } = Astro.props;
+
+// Get optimized images
+const featuresWithImages = await Promise.all(
+  gridDatas.map(async (feature) => {
+    // console.log('====',feature.image)
+    // console.log('----',imageBasePath)
+    const { default: img } = await import(`${imageBasePath}/${feature.image}`);
+    // console.log('=',img.src)
+    return { ...feature, image: img };
+  })
+);
+
+// Group features by rows
+const featuresByRow = featuresWithImages.reduce((acc, feature) => {
+  const row = feature.row;
+  if (!acc[row]) acc[row] = [];
+  acc[row].push(feature);
+  return acc;
+}, {} as Record<string, Feature[]>);
+
+const sortedRows = Object.entries(featuresByRow).map(([rowNum, rowFeatures]) => ({
+  rowNum,
+  features: rowFeatures
+})).sort((a, b) => Number(a.rowNum) - Number(b.rowNum));
+---
+
+<Section>
+  {sectionTitle && (
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold">{sectionTitle}</h2>
+      {sectionSubtitle && <p class="text-lg text-gray-500">{sectionSubtitle}</p>}
+    </div>
+  )}
+
+  {sortedRows.map(({ features }) => (
+    <Row
+    //  class="mb-8"
+    >
+      {features.map((feature) => (
+        <Col span="3" 
+        // spanMobile="12"
+
+         align="center">
+          <div class="text-center">
+            <h3 class="mt-4 text-xl font-semibold">{feature.title}</h3>
+
+            <img
+              src={feature.image.src}
+              alt={feature.title}
+              class="w-full h-auto rounded-lg"
+            />
+            {/* <p class="text-gray-500">{feature.subtitle}</p> */}
+          </div>
+        </Col>
+      ))}
+    </Row>
+  ))}
+</Section>

@@ -18,8 +18,10 @@
                 "submenu": [
                     { "name": "Blog", "link": "/blog" },
                     { "name": "FAQ", "link": "/faq" },
+                    { "name": "Podcast", "link": "/podcast" },
+                    { "name": "chatroom", "link": "/chatroom" },
 
-                    { "name": "Mod", "link": "/game" },
+                    { "name": "Game", "link": "/game" },
                     { "name": "Sound", "link": "/sound" },
                     { "name": "Video", "link": "/video" },
                     { "name": "Character", "link": "/character" },

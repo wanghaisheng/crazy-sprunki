@@ -18,8 +18,10 @@ export async function getStaticPaths() {
 
 	return uniqueTags.map((tag) => {
 		const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag))
+		const formattedTag = tag.replace(/\s+/g, '-');  // This replaces all spaces with hyphens
+
 		return {
-			params: { tag },
+			params: { formattedTag },
 			props: { posts: filteredPosts }
 		}
 	})

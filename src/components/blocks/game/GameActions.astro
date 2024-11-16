@@ -1,0 +1,175 @@
+---
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  voteCountsText?: string
+}
+
+const { voteCountsText } = Astro.props
+---
+
+<div class="game-actions">
+  <!-- Voting Group -->
+  <div class="action-group voting-group">
+    <div class="tooltip-wrapper">
+      <button class="action-button js-vote-true" data-voted="false">
+        <Icon name="thumbs-up" class="action-icon" />
+        <span class="tooltip">Like it</span>
+      </button>
+    </div>
+
+    {voteCountsText && <span class="vote-count">{voteCountsText}</span>}
+
+    <div class="tooltip-wrapper">
+      <button class="action-button js-vote-false" data-voted="false">
+        <Icon name="thumbs-down" class="action-icon" />
+        <span class="tooltip">Meh</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="separator" />
+
+  <!-- Utility Group -->
+  <div class="action-group utility-group">
+    <div class="tooltip-wrapper">
+      <button class="action-button js-favorite">
+        <Icon name="heart" class="action-icon" />
+        <span class="tooltip">Add to favorites</span>
+      </button>
+    </div>
+
+    <div class="tooltip-wrapper">
+      <button class="action-button js-embed" data-modal="embed">
+        <Icon name="code" class="action-icon" />
+        <span class="tooltip">Embed game</span>
+      </button>
+    </div>
+
+    <div class="tooltip-wrapper">
+      <button class="action-button js-download">
+        <Icon name="download" class="action-icon" />
+        <span class="tooltip">Add to Desktop</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .game-actions {
+    @apply bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm
+           flex flex-wrap items-center gap-4;
+  }
+
+  .action-group {
+    @apply flex items-center gap-2;
+  }
+
+  .separator {
+    @apply w-px h-6 bg-gray-200 dark:bg-gray-700;
+  }
+
+  .tooltip-wrapper {
+    @apply relative;
+  }
+
+  .action-button {
+    @apply p-2 rounded-full 
+           hover:bg-gray-100 dark:hover:bg-gray-700
+           focus:outline-none focus:ring-2 focus:ring-blue-500
+           transition-all duration-200;
+  }
+
+  .action-button[data-voted="true"] {
+    @apply bg-blue-100 dark:bg-blue-900
+           text-blue-600 dark:text-blue-300;
+  }
+
+  .action-icon {
+    @apply w-5 h-5 text-gray-600 dark:text-gray-400;
+  }
+
+  .tooltip {
+    @apply absolute bottom-full left-1/2 -translate-x-1/2 mb-2
+           px-2 py-1 text-xs text-white bg-gray-900 rounded shadow-lg
+           opacity-0 invisible transition-all duration-200
+           whitespace-nowrap z-10;
+  }
+
+  .tooltip::after {
+    content: '';
+    @apply absolute top-full left-1/2 -translate-x-1/2
+           border-4 border-transparent border-t-gray-900;
+  }
+
+  .tooltip-wrapper:hover .tooltip {
+    @apply opacity-100 visible mb-1;
+  }
+
+  .vote-count {
+    @apply text-sm font-medium text-gray-600 dark:text-gray-400
+           min-w-[4rem] text-center;
+  }
+</style>
+
+<script>
+  class GameActions {
+    constructor() {
+      this.initializeVoting();
+      this.initializeModals();
+    }
+
+    initializeVoting() {
+      const voteButtons = document.querySelectorAll('.js-vote-true, .js-vote-false');
+      
+      voteButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const isVoted = button.getAttribute('data-voted') === 'true';
+          
+          // Reset all vote buttons
+          voteButtons.forEach(btn => btn.setAttribute('data-voted', 'false'));
+          
+          // Set current button state
+          if (!isVoted) {
+            button.setAttribute('data-voted', 'true');
+          }
+          
+          // Update tooltip text
+          const tooltip = button.querySelector('.tooltip');
+          if (tooltip) {
+            tooltip.textContent = isVoted ? 
+              (button.classList.contains('js-vote-true') ? 'Like it' : 'Meh') : 
+              (button.classList.contains('js-vote-true') ? 'You liked it' : 'You didn\'t like it');
+          }
+        });
+      });
+    }
+
+    initializeModals() {
+      const modalTriggers = document.querySelectorAll('[data-modal]');
+      
+      modalTriggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+          const modalType = trigger.getAttribute('data-modal');
+          // Handle different modal types
+          switch(modalType) {
+            case 'embed':
+              this.showEmbedModal();
+              break;
+            // Add other modal types as needed
+          }
+        });
+      });
+    }
+
+    showEmbedModal() {
+      // Implement embed modal logic
+      console.log('Show embed modal');
+    }
+  }
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    new GameActions();
+  });
+</script>

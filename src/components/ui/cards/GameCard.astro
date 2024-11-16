@@ -51,6 +51,7 @@ const {
 	{
 		tags && (
 			<div class="post-tags">
+				
 				{tags.map((tag: string) => (
 					<Badge name={tag} link={`/game/tags/` + tag} classes="capitalize" />
 				))}

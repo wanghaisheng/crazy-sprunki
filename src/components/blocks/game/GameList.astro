@@ -1,0 +1,41 @@
+---
+// Feature List Section with Grid Layout
+// Description: A list of features with icons and descriptions in a grid format.
+
+// Components
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// import Feature from '../../ui/Feature.astro' // If you want to use the `Feature` component, you can re-enable this.
+import { getImage } from '../../../utils/helpers';
+
+---
+
+<Section id="features-list">
+
+	{sectionTitle && (
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold">{sectionTitle}</h2>
+      {sectionSubtitle && <p class="text-lg text-gray-500">{sectionSubtitle}</p>}
+    </div>
+  )}
+
+
+  <Row>
+    {
+      gamedata.slice(0, 8).map((feature) => (
+        <Col span="3" align="center" classes="mb-12">
+          <div class="text-center">
+            <img 
+              src={getImage(feature.icon)} 
+              alt={feature.title} 
+              class="w-full h-auto rounded-lg" 
+            />
+            <h3 class="mt-4 text-xl font-semibold">{feature.title}</h3>
+            <p class="text-gray-500">{feature.description}</p>
+          </div>
+        </Col>
+      ))
+    }
+  </Row>
+</Section>

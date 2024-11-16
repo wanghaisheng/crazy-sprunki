@@ -20,14 +20,13 @@ const {
   classes
 } = Astro.props
 ---
+
 <div
-  class:list={[
-    'gameframe',
-    { [`${classes}`]: classes }
-  ]}
+  class:list={[ 'gameframe', { [`${classes}`]: classes } ]}
 >
   <div class="gameframe__container">
     <iframe
+      id="gameframe-iframe"
       src={link}
       width={width}
       height={height}
@@ -36,23 +35,73 @@ const {
       loading="lazy"
       allowfullscreen
     ></iframe>
+    <button 
+    class="fullscreen-btn"
+    on:click="toggleFullscreen"
+    >
+    Toggle Fullscreen
+  </button>
+
   </div>
+
+  <!-- Fullscreen Button -->
 </div>
+
+<script>
+  // JavaScript to toggle fullscreen mode
+  function toggleFullscreen() {
+    const iframe = document.getElementById('gameframe-iframe');
+    
+    if (iframe.requestFullscreen) {
+      // Standard Fullscreen API
+      iframe.requestFullscreen();
+    } else if (iframe.mozRequestFullScreen) {
+      // Firefox
+      iframe.mozRequestFullScreen();
+    } else if (iframe.webkitRequestFullscreen) {
+      // Chrome, Safari, Opera
+      iframe.webkitRequestFullscreen();
+    } else if (iframe.msRequestFullscreen) {
+      // IE/Edge
+      iframe.msRequestFullscreen();
+    }
+  }
+</script>
 
 <style>
   .gameframe {
     @apply w-full;
   }
+  
   .gameframe__container {
     @apply relative w-full;
     /* 16:9 Aspect Ratio Container */
     padding-top: 56.25%;
   }
+  
   .gameframe__container iframe {
     @apply absolute top-0 left-0 w-full h-full;
     border: 0;
   }
+
   .no-scroll {
     overflow: hidden;
+  }
+
+  .fullscreen-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 8px 16px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .fullscreen-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
   }
 </style>

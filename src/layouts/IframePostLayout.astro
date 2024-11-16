@@ -1,0 +1,177 @@
+---
+// Imports
+const { frontmatter } = Astro.props
+
+// Layout Components
+import Layout from './Layout.astro'
+import Gameframe from '../components/blocks/iframe/BasicGame.astro'
+import VerticalAd from '../components/blocks/ads/VerticalAd.astro'
+import HorizontalAd from '../components/blocks/ads/HorizontalAd.astro'
+import SidebarAd from '../components/blocks/ads/SidebarAd.astro'  // Assuming you have SidebarAd component
+import GoogleAd from '../components/ui/GoogleAd.astro'  // New GoogleAd import
+
+// Section Components
+import GamePostHero from '../components/blocks/game/GamePostHero.astro'
+import GameReplayGrid from '../components/blocks/game/GameGrid.astro'
+import GameRecommendGrid from '../components/blocks/game/GameGrid.astro'
+
+import siteconfig from '../data/json-files/siteConfig.json'
+// import { SocialShare } from "astro-social-share";
+import Ratings from '../components/ui/Rating.astro'
+
+// Content
+// - SEO
+const SEO = {
+	title: `${frontmatter.title} | ${siteconfig.site.brand}`,
+	description: `${frontmatter.description}`,
+	enabled: `${siteconfig.ads.enabled}`  // Ad enabled flag from siteConfig
+}
+
+interface CtaLightDataType {
+    rating?: {
+        stars: 0 | 1 | 2 | 3 | 4 | 5;
+        text?: string;
+    };
+}
+
+// Assuming gameReplayVideosJson contains the path to your JSON file
+const gameReplayVideosJsonPath = frontmatter.gameReplayVideos; // The path to the JSON file
+const relateGamesJsonPath = frontmatter.relatedGames; // The path to the JSON file
+
+// Function to load the JSON data
+async function loadGameReplayVideos() {
+  try {
+    // Dynamically import the JSON file using import()
+    const { default: data } = await import(`${gameReplayVideosJsonPath}`);
+    return data; // Return the processed object
+  } catch (error) {
+    console.error("Error loading game replay videos:", error);
+    return null; // Return null if there's an error loading the file
+  }
+}
+
+async function loadGameRecommend() {
+  try {
+    // Dynamically import the JSON file using import()
+    const { default: data } = await import(`${relateGamesJsonPath}`);
+    return data; // Return the processed object
+  } catch (error) {
+    console.error("Error loading related games:", error);
+    return null; // Return null if there's an error loading the file
+  }
+}
+
+// Load data conditionally
+const gameReplayVideos = await loadGameReplayVideos();
+const gameRecommend = await loadGameRecommend();
+
+// Determine if the sections should be shown
+const shouldShowGameReplayGrid = gameReplayVideos !== null;
+const shouldShowGameRecommendGrid = gameRecommend !== null;
+console.log('000000000000',frontmatter.iframe)
+
+---
+
+<Layout title={SEO.title} description={SEO.description}>
+	<!-- Conditional Horizontal Ad placed at the top of the content -->
+	{SEO.enabled === 'true' && <HorizontalAd classes="bg-neutral-50 dark:bg-neutral-900/40 rounded-lg mb-8" />}
+
+	<!-- Game Frame (optional) -->
+	<Gameframe link={frontmatter.iframe} />
+	
+	<GamePostHero
+		tags={frontmatter.tags}
+		title={frontmatter.title}
+		author={frontmatter.author}
+		playCounts={frontmatter.playCounts}
+		ratingStars={frontmatter.ratingStars}
+		developer={frontmatter.developer}
+		ratingText={frontmatter.ratingText}
+		creator={frontmatter.creator}
+		releaseDate={frontmatter.releaseDate}
+		lastUpdateDate={frontmatter.lastUpdateDate}
+		technology={frontmatter.technology}
+		voteCountsText={frontmatter.vodeCountsText}
+		publishDate={frontmatter.pubDate.toLocaleDateString('en-US', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric'
+		})}
+	/>
+
+	<div class="post-body basic-text basic-text--lg">
+		<slot />
+
+		<!-- Conditional Sidebar Ads (left and right) -->
+		{SEO.enabled === 'true' && (
+			<div class="ads-wrapper">
+				<div class="left-ad">
+					<SidebarAd classes="sticky top-4" />
+				</div>
+				<div class="right-ad">
+					<SidebarAd classes="sticky top-4" />
+				</div>
+			</div>
+		)}
+
+		<!-- Only show the "Game Recommend Grid" if the data was successfully loaded -->
+		{shouldShowGameRecommendGrid && (
+			<GameRecommendGrid 
+				gridDatas={gameRecommend}
+				sectionTitle='Similar Games'
+				sectionSubtitle='Have fun with more games'
+				sectionId="game-similar"
+				defaultImage="/assets/default-feature-image.svg"
+				imageBasePath="../../../../src/assets"
+			/>
+		)}
+
+		<!-- Only show the "Game Replay Grid" if the data was successfully loaded -->
+		{shouldShowGameReplayGrid && (
+			<GameReplayGrid 
+				gridDatas={gameReplayVideos}
+				sectionTitle='Game Replays Collection'
+				sectionSubtitle='Watch game video tutorials and showcase'
+				sectionId="game-replays"
+				defaultImage="/assets/default-feature-image.svg"
+				imageBasePath="../../../../src/assets"
+			/>
+		)}
+
+		<!-- Conditional Bottom Horizontal Ad -->
+		{SEO.enabled === 'true' && <HorizontalAd classes="mt-8 bg-neutral-50 dark:bg-neutral-900/40 rounded-lg" />}
+	</div>
+</Layout>
+
+<style>
+	.post-body {
+		@apply mx-auto max-w-3xl px-6 py-12 lg:py-24;
+	}
+
+	.ads-wrapper {
+		@apply flex justify-between;
+	}
+
+	.left-ad, .right-ad {
+		@apply w-1/4; /* Adjust width to fit ads */
+	}
+
+	/* Ensure ads don't interfere with content, adjust layout */
+	.ad-block--horizontal {
+		@apply py-8 px-4;
+	}
+
+	.ad-block--sidebar {
+		@apply py-4;
+	}
+
+	/* Add responsiveness for smaller screens */
+	@media (max-width: 1024px) {
+		.ads-wrapper {
+			@apply block; /* Stack the ads vertically on smaller screens */
+		}
+		.left-ad, .right-ad {
+			@apply w-full mb-4; /* Full width for mobile */
+		}
+	}
+</style>

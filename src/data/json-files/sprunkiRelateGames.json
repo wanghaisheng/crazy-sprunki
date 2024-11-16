@@ -1,0 +1,55 @@
+[
+	{
+		"title": "game2-1",
+		"image": "game/1.webp",
+		"link":"/",
+		"subtitle":"Stay on top of your tasks and deadlines with our intuitive project management tool. Visualize progress, assign tasks, and collaborate seamlessly.",
+		"row":"2",
+		"col": "1"
+	},
+
+	{
+		"title": "game2-2",
+		"image": "game/2.webp",
+		"link":"/",
+		"subtitle":"Stay on top of your tasks and deadlines with our intuitive project management tool. ",
+		"row":"2",
+
+		"col": "2"
+	},
+	{
+		"title": "game2-3",
+		"image": "game/3.webp",
+		"link":"/",
+		"subtitle":"With our integrated chat platform share updates, files, and messages in a secure and user-friendly environment.",
+		"row":"2",
+
+		"col": "3"
+	},
+	{
+		"title": "game1-1",
+		"image": "game/4.webp",
+		"link":"/",
+		"subtitle":"Build and nurture customer relationships with our powerful CRM system. ",
+		"row":"2",
+
+		"col": "4"
+	},
+	{
+		"title": "game1-2",
+		"image": "game/5.webp",
+		"link":"/",
+		"subtitle":"Streamline your billing process with our easy-to-use invoicing tool. Create, send, and track invoices effortlessly.",
+		"row":"1",
+
+		"col": "2"
+	},
+	{
+		"title": "row3-3",
+		"image": "game/1.webp",
+		"link":"/",
+		"subtitle":"Stay on top of your tasks and deadlines with our intuitive project management tool. Visualize progress, assign tasks, and collaborate seamlessly.",
+		"row":"3",
+		"col": "3"
+	}
+]

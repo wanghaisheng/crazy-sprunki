@@ -19,8 +19,10 @@ const currentTag = pathSegments[pathSegments.length - 1] || ''
 	{
 		tags.map((tag) => (
 			<>
+
+
 				<Badge
-					link={`/game/tags/${tag}`}
+					link={`/game/tags/${tag.replace(/\s+/g,'-')}`}
 					name={tag}
 					type={`${currentTag === tag ? 'primary' : 'neutral'}`}
 				/>
