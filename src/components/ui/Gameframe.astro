@@ -37,7 +37,7 @@ const {
     ></iframe>
     <button 
     class="fullscreen-btn"
-    on:click="toggleFullscreen"
+    onclick="toggleFullscreen"
     >
     Toggle Fullscreen
   </button>
@@ -51,19 +51,23 @@ const {
   // JavaScript to toggle fullscreen mode
   function toggleFullscreen() {
     const iframe = document.getElementById('gameframe-iframe');
-    
+    if (!iframe) {
+      console.error('No source URL found for iframe');
+      return;
+    }
+
     if (iframe.requestFullscreen) {
       // Standard Fullscreen API
       iframe.requestFullscreen();
-    } else if (iframe.mozRequestFullScreen) {
+    // } else if (iframe.mozRequestFullScreen) {
       // Firefox
-      iframe.mozRequestFullScreen();
-    } else if (iframe.webkitRequestFullscreen) {
+      // iframe.mozRequestFullScreen();
+    // } else if (iframe.webkitRequestFullscreen) {
       // Chrome, Safari, Opera
-      iframe.webkitRequestFullscreen();
-    } else if (iframe.msRequestFullscreen) {
+      // iframe.webkitRequestFullscreen();
+    // } else if (iframe.msRequestFullscreen) {
       // IE/Edge
-      iframe.msRequestFullscreen();
+      // iframe.msRequestFullscreen();
     }
   }
 </script>

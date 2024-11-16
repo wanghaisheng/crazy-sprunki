@@ -15,10 +15,12 @@ type Feature = {
 };
 
 interface Props {
+  sectionId:string
   sectionTitle?: string;
   sectionSubtitle?: string;
   gridDatas: Feature[];
   imageBasePath?: string;
+  defaultImage: string;
 }
 
 const { sectionTitle, sectionSubtitle, gridDatas, imageBasePath = '../../assets' } = Astro.props;
@@ -30,7 +32,7 @@ const featuresWithImages = await Promise.all(
     // console.log('----',imageBasePath)
     const { default: img } = await import(`${imageBasePath}/${feature.image}`);
     // console.log('=',img.src)
-    return { ...feature, image: img };
+    return { ...feature, image: img.src };
   })
 );
 
@@ -57,9 +59,7 @@ const sortedRows = Object.entries(featuresByRow).map(([rowNum, rowFeatures]) => 
   )}
 
   {sortedRows.map(({ features }) => (
-    <Row
-    //  class="mb-8"
-    >
+    <Row>
       {features.map((feature) => (
         <Col span="3" 
         // spanMobile="12"
@@ -69,7 +69,7 @@ const sortedRows = Object.entries(featuresByRow).map(([rowNum, rowFeatures]) => 
             <h3 class="mt-4 text-xl font-semibold">{feature.title}</h3>
 
             <img
-              src={feature.image.src}
+              src={feature.image}
               alt={feature.title}
               class="w-full h-auto rounded-lg"
             />

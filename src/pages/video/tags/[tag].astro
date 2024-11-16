@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 		const formattedTag = tag.replace(/\s+/g, '-');  // This replaces all spaces with hyphens
 
 		return {
-			params: { formattedTag },
+			params: { tag: formattedTag },  // Use formatted tag in the params
 			props: { videos: filteredPosts }
 		}
 	})

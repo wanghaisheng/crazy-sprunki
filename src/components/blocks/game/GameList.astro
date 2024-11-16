@@ -8,6 +8,17 @@ import Row from '../../ui/Row.astro'
 import Col from '../../ui/Col.astro'
 // import Feature from '../../ui/Feature.astro' // If you want to use the `Feature` component, you can re-enable this.
 import { getImage } from '../../../utils/helpers';
+const { sectionTitle, sectionSubtitle, gamedata, imageBasePath = '../../assets' } = Astro.props;
+type Feature = {
+  title: string;
+  subtitle: string;
+  image: string;
+  link?: string;
+  row: string;
+  icon:string;
+  description:string;
+
+};
 
 ---
 
@@ -23,11 +34,11 @@ import { getImage } from '../../../utils/helpers';
 
   <Row>
     {
-      gamedata.slice(0, 8).map((feature) => (
+      gamedata.slice(0, 8).map((feature:Feature) => (
         <Col span="3" align="center" classes="mb-12">
           <div class="text-center">
             <img 
-              src={getImage(feature.icon)} 
+              src={feature.icon} 
               alt={feature.title} 
               class="w-full h-auto rounded-lg" 
             />
