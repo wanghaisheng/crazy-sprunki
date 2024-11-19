@@ -8,6 +8,11 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: "https://astro-theme-one.vercel.app/",
+  trailingSlash: 'never',
+  build: {
+    format: 'directory'
+  },
+
   integrations: [
     tailwind(),
     icon(),

@@ -9,7 +9,9 @@ import GoogleSearchConsole from '../../scripts/googleSearchConsole.astro'
 // Partials
 import Seo from './partials/Seo.astro'
 // Data
-import { configData } from '../../../config/config'
+import type { Logo } from '../../../config/siteConfig'
+
+
 import { microsoftClarityMeasurementID } from '../../../config/clarity'
 
 import { googleAnalyticsMeasurementID } from '../../../config/analytics'
@@ -22,14 +24,16 @@ type Props = {
 	ogImage?: string
 	canonical?: boolean
 	noindex?: boolean
+	logo:Logo
 }
 // Page Metadata
 const {
-	title = configData.siteTitle,
-	description = configData.siteDescription,
-	ogImage = configData.ogImage,
-	canonical = configData.canonical,
-	noindex = configData.noindex
+	title,
+	description,
+	ogImage ,
+	canonical ,
+	logo,
+	noindex
 } = Astro.props
 ---
 
@@ -48,7 +52,7 @@ const {
 		canonical={canonical}
 		noindex={noindex}
 	/>
-	<link rel="icon" href={configData.logo.src} type="image/svg+xml" />
+	<link rel="icon" href={logo.src} type="image/svg+xml" />
 	<link rel="sitemap" href="/sitemap-index.xml" />
 	<meta name="generator" content={Astro.generator} />
 	<meta name="theme-color" content="#134e4a" />

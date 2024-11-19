@@ -11,21 +11,24 @@
 // Reference: https://wind-ui.com/components/avatars/
 
 // Props
+import { formatNumber, formatDate, getImage } from '../../utils/helpers';
+
 type Props = {
 	size?: 'lg' | 'base' | 'sm' | 'xs'
 	link?: string
 	radius?: string
-	image: { src: string; alt: string }
+	imagesrc: string
+	imagealt:string
 	classes?: string
 }
-const { size = 'base', link = '#', radius, image, classes } = Astro.props
+const { size = 'base', link = '#', radius, imagesrc,imagealt, classes } = Astro.props
 ---
 
 <a
 	href={link}
 	class:list={['avatar', { ['avatar--' + `${size}`]: size }, , { [`${classes}`]: classes }]}
 >
-	<img src={image.src} alt={image.alt} title={image.alt} class={radius} />
+	<img src={imagesrc} alt={imagealt} title={imagealt} class={radius} />
 </a>
 
 <style>

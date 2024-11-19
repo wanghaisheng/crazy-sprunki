@@ -1,0 +1,118 @@
+---
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+import TextImage from '../basic/TextImage.astro'
+import type { ImageMetadata } from 'astro';
+import {  getImage } from '../../../utils/helpers';
+
+// Define interfaces
+interface HowtoDataItem {
+  id: number;  // Changed from string to number
+  title: string;
+  alttext: string;
+  text: string;
+  image: string;
+  mobileImage: string;  // Changed from optional to required
+  imageWidth: number;
+  imageHeight: number;
+  imagePosition: string;  // Changed from union type to string
+}
+
+interface ProcessedHowtoItem extends Omit<HowtoDataItem, 'image' | 'mobileImage'> {
+  image: ImageMetadata;
+  mobileImage: ImageMetadata;
+}
+
+interface ImageSet {
+  image: ImageMetadata;
+  mobileImage: ImageMetadata;
+}
+interface HowtoHeaderItem{
+    subtitle?:string
+    title?:string;
+}
+interface Props {
+    header?: HowtoHeaderItem;
+    data: HowtoDataItem[];
+}
+const{
+    header,
+    data=[]
+} = Astro.props;
+
+
+// Type assertion for imported data
+const typedHowtoData = data as HowtoDataItem[];
+const typedHowtoHeaderData = header as HowtoHeaderItem;
+
+// Process images
+const images = Object.fromEntries(
+  typedHowtoData.map((item) => {
+    const mainImage = getImage(item.image);
+    const mobileImage = getImage(item.mobileImage);
+
+    if (!mainImage) {
+      console.error(`Failed to load main image for item ${item.id}`);
+    }
+    if (!mobileImage) {
+      console.error(`Failed to load mobile image for item ${item.id}`);
+    }
+
+    return [
+      item.id,
+      {
+        image: mainImage,
+        mobileImage: mobileImage
+      } as ImageSet
+    ];
+  })
+);
+
+// Validate that all required images are loaded
+const validItems = typedHowtoData.every(item => 
+  images[item.id]?.image !== null && images[item.id]?.mobileImage !== null
+);
+
+if (!validItems) {
+  console.error('Some required images failed to load');
+}
+
+// Process items
+const processedItems: ProcessedHowtoItem[] = typedHowtoData.map(item => {
+  const imageSet = images[item.id];
+  if (!imageSet?.image || !imageSet?.mobileImage) {
+    throw new Error(`Missing images for item ${item.id}`);
+  }
+  return {
+    ...item,
+    image: imageSet.image,
+    mobileImage: imageSet.mobileImage
+  };
+});
+---
+
+<Section id="text-next-to-image">
+  <Row>
+    <Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
+      <h2 class="text-pretty" set:html={typedHowtoHeaderData.title} />
+      <p class="pb-0 text-lg">
+        {typedHowtoHeaderData.subtitle}
+      </p>
+    </Col>
+  </Row>
+  {processedItems.map((item, key) => (
+    <TextImage
+      id={`howto-${item.id}`}
+      title={item.title}
+      alttext={item.alttext}
+      text={item.text}
+      image={item.image}
+      mobileImage={item.mobileImage}
+      imageWidth={item.imageWidth}
+      imageHeight={item.imageHeight}
+      imagePosition={item.imagePosition as "right" | "left"}
+      classes={key === 0 ? '!pb-0' : key === processedItems.length - 1 ? '!pt-0' : '!py-0'}
+    />
+  ))}
+</Section>

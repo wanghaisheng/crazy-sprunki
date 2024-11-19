@@ -1,0 +1,117 @@
+---
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+import Card from '../../ui/cards/ImageTextCard.astro'
+import type { ImageMetadata } from 'astro';
+import { getImage } from '../../../utils/helpers';
+
+// Define type for image module
+interface ImageModule {
+  default: ImageMetadata;
+}
+
+// Import all images using glob with type
+const images = import.meta.glob<ImageModule>('/src/assets/**/*.{jpeg,jpg,png,gif,svg}', {
+  eager: true
+});
+
+export interface Feature {
+  title: string;
+  subtitle: string;
+  image: string;
+  link?: string;
+  col: string;
+  row: string;
+}
+
+interface HeaderData {
+  title?: string;
+  subtitle?: string;
+}
+
+interface Props {
+  sectionId?: string;
+  defaultImage?: string;
+  header?: HeaderData;
+  data: Feature[];
+}
+
+const {
+  sectionId = 'text-image-grid-cards',
+  header,
+  defaultImage = '/assets/default-image.svg',
+  data = [],
+} = Astro.props;
+
+// Process features with images
+const featuresWithImages = await Promise.all(
+  data.map(async (feature: Feature) => ({
+    ...feature,
+    image: await getImage(feature.image)
+  }))
+);
+
+// Organize features into a structured layout
+const organizeFeatures = (features: typeof featuresWithImages) => {
+  // First, sort features by row and column
+  const sortedFeatures = features.sort((a, b) => {
+    const rowCompare = parseInt(a.row) - parseInt(b.row);
+    if (rowCompare === 0) {
+      return parseInt(a.col) - parseInt(b.col);
+    }
+    return rowCompare;
+  });
+
+  // Group features by row
+  const rows = sortedFeatures.reduce((acc, feature) => {
+    const rowIndex = parseInt(feature.row) - 1;
+    if (!acc[rowIndex]) {
+      acc[rowIndex] = [];
+    }
+    acc[rowIndex].push(feature);
+    return acc;
+  }, [] as typeof featuresWithImages[]);
+
+  return rows;
+};
+
+const organizedFeatures = organizeFeatures(featuresWithImages);
+---
+
+<Section id={sectionId}>
+  {header && (
+    <Row>
+      <Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
+        <h2 class="text-pretty" set:html={header.title} />
+        <p class="pb-0 text-lg">{header.subtitle}</p>
+      </Col>
+    </Row>
+  )}
+  
+  {organizedFeatures.map((rowFeatures, rowIndex) => (
+    <Row classes="mb-6">
+      {[1, 2, 3].map((colNum) => {
+        const colFeatures = rowFeatures.filter(
+          feature => parseInt(feature.col) === colNum
+        );
+        
+        return (
+          <Col
+            span="4"
+            classes={colFeatures.length > 1 ? "flex flex-col gap-6" : ""}
+          >
+            {colFeatures.map((feature) => (
+              <Card
+                title={feature.title}
+                subtitle={feature.subtitle}
+                image={feature.image}
+                link={feature.link || '/'}
+              />
+            ))}
+          </Col>
+        );
+      })}
+    </Row>
+  ))}
+</Section>

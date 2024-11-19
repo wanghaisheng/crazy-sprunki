@@ -4,6 +4,7 @@
 import Col from '../../ui/Col.astro'
 import Row from '../../ui/Row.astro'
 import Section from '../../ui/Section.astro'
+import { getImage, formatNumber } from '../../../utils/helpers';
 
 type Feature = {
   title: string;
@@ -65,15 +66,13 @@ const sortedRows = Object.entries(featuresByRow).map(([rowNum, rowFeatures]) => 
 
          align="center">
           <div class="text-center">
-            {/* <h3 class="mt-4 text-xl font-semibold">{feature.title}</h3> */}
+            <h3 class="mt-4 text-xl font-semibold">{feature.title}</h3>
 
             <img
               src={feature.image}
               alt={feature.title}
               class="w-full h-auto rounded-lg"
             />
-            <p class="text-gray-500">{feature.title}</p>
-
             {/* <p class="text-gray-500">{feature.subtitle}</p> */}
           </div>
         </Col>

@@ -29,6 +29,9 @@ importers:
       '@fontsource-variable/outfit':
         specifier: ^5.0.13
         version: 5.1.0
+      '@preline/dropdown':
+        specifier: ^2.5.0
+        version: 2.5.0
       '@vercel/analytics':
         specifier: ^1.3.1
         version: 1.4.0
@@ -607,6 +610,9 @@ packages:
     peerDependencies:
       preact: ^10.4.0
       vite: '>=2.0.0'
+
+  '@preline/dropdown@2.5.0':
+    resolution: {integrity: sha512-ydKGBx02eLWzmCn8gkaaTe/gXXqvkZKZCgCYCWETRdy31qhaam43hvJMcpsGOROWSjlPNBgVyGrwYdAgJUO68g==}
 
   '@rollup/pluginutils@4.2.1':
     resolution: {integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==}
@@ -3390,6 +3396,8 @@ snapshots:
       vite: 5.4.11(@types/node@22.9.0)
     transitivePeerDependencies:
       - supports-color
+
+  '@preline/dropdown@2.5.0': {}
 
   '@rollup/pluginutils@4.2.1':
     dependencies:

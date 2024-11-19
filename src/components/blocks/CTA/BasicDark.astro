@@ -1,71 +1,70 @@
 ---
-// Basic Dark Call To Action section
-import Section from '../../ui/Section.astro'
-import Row from '../../ui/Row.astro'
-import Col from '../../ui/Col.astro'
-import CTA from '../../ui/CTA.astro'
-import Button from '../../ui/Button.astro'
-import ChipNotification from '../../ui/ChipNotification.astro'
-import { Image } from 'astro:assets'
-import Highlight from '../../ui/Highlight.astro'
+import Section from '../../ui/Section.astro';
+import Row from '../../ui/Row.astro';
+import Col from '../../ui/Col.astro';
+import CTA from '../../ui/CTA.astro';
+import Button from '../../ui/Button.astro';
+import ChipNotification from '../../ui/ChipNotification.astro';
+import { Image } from 'astro:assets';
+import Highlight from '../../ui/Highlight.astro';
 import type { ImageMetadata } from 'astro';
-
-// Content
-import CtaData from '../../../data/json-files/ctaData.json'
-import ctaImage from '../../../assets/cta-dark-bg.webp'
-import siteconfig from '../../../data/json-files/siteConfig.json'
+import { getImage } from '../../../utils/helpers';
 
 // Define interfaces
+interface ButtonData {
+  text: string;
+  link?: string;
+}
+
+interface BadgeData {
+  path: string;
+  text: string;
+  highlight?: string;
+  alt?: string;
+}
+
 interface CTAData {
   title: string;
   text: string;
-  buttonText: string;
-  link?: string; // Add this line if it's missing
-
-  badge?: {
-    text: string;
-    highlight?: string;
-    alt: string;
-  };
+  bg: string;
+  mode?: 'dark' | 'light';
+  button: ButtonData;
+  badge?: BadgeData;
 }
 
-interface ImageModule {
-  default: ImageMetadata;
-}
+// Get props with type checking
+const props = Astro.props as CTAData;
 
-// Import all badge images using glob
-const badgeImages = import.meta.glob<ImageModule>('/src/assets/**/*.{svg,png,jpg,jpeg,webp}', {
-  eager: true
-});
+// Destructure fields with defaults
+const {
+  title = 'Default Title',
+  text = 'Default text for CTA section.',
+  bg,
+  mode = 'dark',
+  button,
+  badge,
+} = props;
 
-// Function to get badge image
-function getBadgeImage(filename: string): ImageMetadata | null {
-  const fullPath = `/src/assets/${filename}`;
-  const image = badgeImages[fullPath];
-  
-  if (!image) {
-    console.warn(`Badge image not found: ${filename}`);
-    return null;
-  }
-  
-  return image.default;
-}
+// Get button data with defaults
+const {
+  text: buttonText = 'Click Here',
+  link: buttonLink = '#'
+} = button || {};
 
-// Type assertion for CTA data
-const typedCtaData = CtaData as CTAData;
+// Get badge data with defaults if badge exists
+const {
+  path: badgePath = '',
+  text: badgeText = '',
+  highlight: badgeHighlight = '',
+  alt: badgeAlt = 'Badge image'
+} = badge || {};
 
-// Get badge image if it exists in config
-let badgeImage: ImageMetadata | null = null;
-if (typedCtaData.badge && siteconfig.site.badge) {
-  badgeImage = getBadgeImage(siteconfig.site.badge);
-}
+// Get images
+const bgImage = getImage(bg);
+const badgeImage = badgePath ? getImage(badgePath) : null;
 
-// Check if badge exists and has required properties
-const hasBadge = typedCtaData.badge &&
-  typeof typedCtaData.badge === 'object' &&
-  'text' in typedCtaData.badge &&
-  'alt' in typedCtaData.badge &&
-  badgeImage !== null;
+// Check if badge data is complete
+const hasBadge = badge && badgeText && badgeAlt && badgeImage;
 ---
 
 <Section>
@@ -73,27 +72,34 @@ const hasBadge = typedCtaData.badge &&
     <Col span="1" />
     <Col span="10">
       <CTA
-        title={typedCtaData.title}
-        text={typedCtaData.text}
-        mode="dark"
-        bg={ctaImage}
+        title={title}
+        text={text}
+        mode={mode}
+        bg={bgImage}
       >
-        {hasBadge && badgeImage && (
+        {hasBadge && (
           <ChipNotification radius="rounded-full" classes="mb-6 box">
             <Image
-              src={badgeImage}
-              alt={typedCtaData.badge!.alt}
+              src={badgeImage.src}
+              alt={badgeAlt}
+              width={48}
+              height={48}
               class="h-12 w-12"
               slot="button"
             />
-            {typedCtaData.badge!.text}
-            {typedCtaData.badge!.highlight && (
-              <Highlight classes="ml-2">{typedCtaData.badge!.highlight}</Highlight>
+            {badgeText}
+            {badgeHighlight && (
+              <Highlight classes="ml-2">{badgeHighlight}</Highlight>
             )}
           </ChipNotification>
         )}
-        <Button size="lg" style="primary" link={typedCtaData.link}>
-          {typedCtaData.buttonText}
+        
+        <Button
+          size="lg"
+          style="primary"
+          link={buttonLink}
+        >
+          {buttonText}
         </Button>
       </CTA>
     </Col>

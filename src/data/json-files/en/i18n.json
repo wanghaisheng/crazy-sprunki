@@ -1,0 +1,750 @@
+{
+	"home": {
+		"title": "Free sprunki incredibox games on CrazySprunki|Play Now",
+		"description": "Play free online sprunki incredibox games at CrazySprunki, the best place to play high-quality browser music creation games. We add new games every day. Have fun!.",
+		"sections": {
+
+			"hero": {
+                "header":{
+                        "title": "Enjoy music <strong>creation</strong> with all in one box",
+                        "subtitle": "Play hard,Have fun"
+                    },                
+                "proof":{
+
+                "avatars":[
+                    {"image":                    "avatars/avatar-01.webp","link":"/",                    "alt":""            },
+                    {"image":                    "avatars/avatar-02.webp","link":"/",                    "alt":""            },
+                    {"image":                    "avatars/avatar-03.webp","link":"/",                    "alt":""            }
+                ],
+				"customercount": "30K+",
+				"customertext": " satisfied players"},
+                "cta":{
+				"text": "Play Now",
+				"link": "/#game"},
+
+                "imageinhero":{
+				"alt": "screenshot of game sprunki incredibox",
+				"image": "hero-01.png"}
+			},
+			"gameframe": {
+				"link": "https://s.sprunkiincredibox.com/game/sprunki/index.html"
+			},
+
+			"features": {
+
+				"header": {
+					"title": "image card <strong>grid</strong> fans love",
+					"subtitle": "Explore the suite of tools designed to streamline your workflow, enhance productivity, and drive growth. Each product is crafted with precision to meet your needs and exceed your expectations."
+				},
+				"data": [{
+						"title": "features 1 row 2",
+						"image": "mods/mod-01.svg",
+						"link": "/",
+						"subtitle": "Stay on top of your tasks and deadlines with our intuitive project management tool. Visualize progress, assign tasks, and collaborate seamlessly.",
+						"row": "2",
+						"col": "1"
+					},
+
+					{
+						"title": "Organize & manage your projects ",
+						"image": "mods/mod-02.svg",
+						"link": "/",
+						"subtitle": "Stay on top of your tasks and deadlines with our intuitive project management tool. ",
+						"row": "2",
+
+						"col": "2"
+					},
+					{
+						"title": "Keep your team connected",
+						"image": "mods/feature-03.svg",
+						"link": "/",
+						"subtitle": "With our integrated chat platform share updates, files, and messages in a secure and user-friendly environment.",
+						"row": "2",
+
+						"col": "2"
+					},
+					{
+						"title": "Manage your customers",
+						"image": "mods/feature-04.svg",
+						"link": "/",
+						"subtitle": "Build and nurture customer relationships with our powerful CRM system. ",
+						"row": "2",
+
+						"col": "3"
+					},
+					{
+						"title": "Simplify your financial operations",
+						"image": "mods/feature-05.svg",
+						"link": "/",
+						"subtitle": "Streamline your billing process with our easy-to-use invoicing tool. Create, send, and track invoices effortlessly.",
+						"row": "2",
+
+						"col": "3"
+					},
+					{
+						"title": "mod 1",
+						"image": "mods/mod-01.svg",
+						"link": "/",
+						"subtitle": "Stay on top of your tasks and deadlines with our intuitive project management tool. Visualize progress, assign tasks, and collaborate seamlessly.",
+						"row": "1",
+						"col": "1"
+					},
+
+					{
+						"title": "Organize & manage your projects ",
+						"image": "mods/mod-02.svg",
+						"link": "/",
+						"subtitle": "Stay on top of your tasks and deadlines with our intuitive project management tool. ",
+						"row": "1",
+
+						"col": "2"
+					},
+					{
+						"title": "Keep your team connected",
+						"image": "mods/feature-03.svg",
+						"link": "/",
+						"subtitle": "With our integrated chat platform share updates, files, and messages in a secure and user-friendly environment.",
+						"row": "1",
+
+						"col": "2"
+					},
+					{
+						"title": "Manage your customers",
+						"image": "mods/feature-04.svg",
+						"link": "/",
+						"subtitle": "Build and nurture customer relationships with our powerful CRM system. ",
+						"row": "1",
+
+						"col": "3"
+					},
+					{
+						"title": "Simplify your financial operations",
+						"image": "mods/feature-05.svg",
+						"link": "/",
+						"subtitle": "Streamline your billing process with our easy-to-use invoicing tool. Create, send, and track invoices effortlessly.",
+						"row": "1",
+
+						"col": "3"
+					}
+				]
+
+			},
+			"mods": {
+
+				"header": {
+					"title": "Creative <strong>modifications (mods)</strong> from community.",
+					"subtitle": "Creative modifications (mods) that enhance or change gameplay dynamics."
+
+				},
+				"data": [{
+						"title": "mod 1 row 2",
+						"image": "mods/mod-01.svg",
+						"link": "/",
+						"subtitle": "Stay on top of your tasks and deadlines with our intuitive project management tool. Visualize progress, assign tasks, and collaborate seamlessly.",
+						"row": "2",
+						"col": "1"
+					},
+
+					{
+						"title": "Organize & manage your projects ",
+						"image": "mods/mod-02.svg",
+						"link": "/",
+						"subtitle": "Stay on top of your tasks and deadlines with our intuitive project management tool. ",
+						"row": "2",
+
+						"col": "2"
+					},
+					{
+						"title": "Keep your team connected",
+						"image": "mods/feature-03.svg",
+						"link": "/",
+						"subtitle": "With our integrated chat platform share updates, files, and messages in a secure and user-friendly environment.",
+						"row": "2",
+
+						"col": "3"
+					},
+					{
+						"title": "Manage your customers",
+						"image": "mods/feature-04.svg",
+						"link": "/",
+						"subtitle": "Build and nurture customer relationships with our powerful CRM system. ",
+						"row": "3",
+
+						"col": "1"
+					},
+					{
+						"title": "Simplify your financial operations",
+						"image": "mods/feature-05.svg",
+						"link": "/",
+						"subtitle": "Streamline your billing process with our easy-to-use invoicing tool. Create, send, and track invoices effortlessly.",
+						"row": "3",
+
+						"col": "2"
+					},
+					{
+						"title": "mod 1",
+						"image": "mods/mod-01.svg",
+						"link": "/",
+						"subtitle": "Stay on top of your tasks and deadlines with our intuitive project management tool. Visualize progress, assign tasks, and collaborate seamlessly.",
+						"row": "1",
+						"col": "1"
+					},
+
+					{
+						"title": "Organize & manage your projects ",
+						"image": "mods/mod-02.svg",
+						"link": "/",
+						"subtitle": "Stay on top of your tasks and deadlines with our intuitive project management tool. ",
+						"row": "1",
+
+						"col": "2"
+					},
+					{
+						"title": "Keep your team connected",
+						"image": "mods/feature-03.svg",
+						"link": "/",
+						"subtitle": "With our integrated chat platform share updates, files, and messages in a secure and user-friendly environment.",
+						"row": "1",
+
+						"col": "3"
+					},
+					{
+						"title": "Manage your customers",
+						"image": "mods/feature-04.svg",
+						"link": "/",
+						"subtitle": "Build and nurture customer relationships with our powerful CRM system. ",
+						"row": "1",
+
+						"col": "4"
+					},
+					{
+						"title": "Simplify your financial operations",
+						"image": "mods/feature-05.svg",
+						"link": "/",
+						"subtitle": "Streamline your billing process with our easy-to-use invoicing tool. Create, send, and track invoices effortlessly.",
+						"row": "1",
+
+						"col": "5"
+					}
+				]
+			},
+			"characters": {
+				"header": {
+					"title": "Popular <strong>characters</strong> fans love",
+					"subtitle": "Explore the suite of tools designed to streamline your workflow, enhance productivity, and drive growth. Each product is crafted with precision to meet your needs and exceed your expectations."
+				},
+				"data": [{
+						"title": "row 1 col 1",
+						"image": "characters/character-01.svg",
+						"link": "/",
+						"subtitle": "Stay on top of your tasks and deadlines with our intuitive project management tool. Visualize progress, assign tasks, and collaborate seamlessly.",
+						"row": "1",
+						"col": "1"
+					},
+
+					{
+						"title": "row1 col 2 ",
+						"image": "characters/character-02.svg",
+						"link": "/",
+						"subtitle": "Stay on top of your tasks and deadlines with our intuitive project management tool. ",
+						"row": "1",
+
+						"col": "2"
+					},
+					{
+						"title": "row2 col1",
+						"image": "characters/feature-03.svg",
+						"link": "/",
+						"subtitle": "With our integrated chat platform share updates, files, and messages in a secure and user-friendly environment.",
+						"row": "2",
+
+						"col": "1"
+					},
+					{
+						"title": "row 2 col 2",
+						"image": "characters/feature-04.svg",
+						"link": "/",
+						"subtitle": "Build and nurture customer relationships with our powerful CRM system. ",
+						"row": "2",
+
+						"col": "2"
+					},
+					{
+						"title": "row 2 col 3",
+						"image": "characters/feature-05.svg",
+						"link": "/",
+						"subtitle": "Streamline your billing process with our easy-to-use invoicing tool. Create, send, and track invoices effortlessly.",
+						"row": "2",
+
+						"col": "3"
+					},
+					{
+						"title": "row 2 col 4",
+						"image": "characters/character-01.svg",
+						"link": "/",
+						"subtitle": "Stay on top of your tasks and deadlines with our intuitive project management tool. Visualize progress, assign tasks, and collaborate seamlessly.",
+						"row": "2",
+						"col": "4"
+					}
+				]
+			},
+			"icontextlist": {
+				"header": {
+					"title": "Why you and your team will <strong>love</strong> foxi.",
+					"text": "Streamline your tasks, protect your data, and enjoy working with our tools!"
+
+				},
+				"data": [{
+						"title": "Real-Time Analytics",
+						"icon": "chart-pie",
+						"description": "Gain valuable insights instantly with Foxi's real-time analytics. Track performance metrics, user behavior, and campaign effectiveness effortlessly.",
+						"category": "Analytics"
+					},
+					{
+						"title": "Customizable Dashboards",
+						"icon": "squares-plus",
+						"description": "Tailor your workspace with personalized dashboards that suit your workflow. Stay organized and focused on what matters most to your business.",
+						"category": "Analytics"
+					},
+					{
+						"title": "Task Management",
+						"icon": "cliboard-document-check",
+						"description": "Efficiently manage tasks and projects with Foxi's intuitive task management tools. Assign, track progress, and collaborate seamlessly.",
+						"category": "Productivity"
+					},
+					{
+						"title": "Third-Party Apps",
+						"icon": "rocket",
+						"description": "Connect Foxi with your favorite tools and apps effortlessly. Streamline workflows and enhance productivity with seamless integrations.",
+						"category": "Productivity"
+					},
+					{
+						"title": "Mobile Accessibility",
+						"icon": "device-phone-mobile",
+						"description": "Stay productive on the go with Foxi's mobile app. Access key features, collaborate with your team, and manage tasks anytime, anywhere.",
+						"category": "Support"
+					},
+					{
+						"title": "Dedicated Customer Support",
+						"icon": "trophy",
+						"description": "Receive exceptional customer support whenever you need it. Our dedicated team is here 24/7 to assist you with any questions or issues.",
+						"category": "Support"
+					},
+					{
+						"title": "Robust Data Security",
+						"icon": "shield-check",
+						"description": "Rest assured knowing your data is safe with Foxi's robust security measures. We employ industry-standard protocols to protect your information.",
+						"category": "Security"
+					},
+					{
+						"title": "Scalability",
+						"icon": "arrow-treding-up",
+						"description": "Grow your business with confidence using Foxi's scalable platform. Whether you're a startup or a large enterprise, our solution adapts to your needs.",
+						"category": "Security"
+					},
+					{
+						"title": "Real-Time Notifications",
+						"icon": "bell-alert",
+						"description": "Stay updated with real-time notifications for important events and updates. Never miss out on critical information with instant alerts.",
+						"category": "Security"
+					},
+					{
+						"title": "Advanced Reporting",
+						"icon": "clipboard-document-list",
+						"description": "Generate detailed reports with advanced analytics features. Customize reports to track key performance indicators and gain deeper insights.",
+						"category": "Analytics"
+					},
+					{
+						"title": "Team Collaboration Tools",
+						"icon": "user-group",
+						"description": "Enhance team collaboration with tools designed for effective communication and project management. Share updates, files, and feedback seamlessly.",
+						"category": "Productivity"
+					},
+					{
+						"title": "In-App Messaging",
+						"icon": "chat-bubble-left-right",
+						"description": "Communicate directly within the app using in-app messaging. Keep conversations organized and accessible without switching between tools.",
+						"category": "Integrations"
+					},
+					{
+						"title": "Multi-Device Sync",
+						"icon": "computer-desktop",
+						"description": "Ensure seamless access to your data across all devices. Sync your information in real-time, so you can work from anywhere with consistency.",
+						"category": "Support"
+					},
+					{
+						"title": "Customizable Alerts",
+						"icon": "bell",
+						"description": "Set up customizable alerts to notify you of important events and changes. Tailor notifications to your needs for better management and response.",
+						"category": "Support"
+					},
+					{
+						"title": "API Integrations",
+						"icon": "arrow-path-rounded-square",
+						"description": "Integrate with other systems and services using our flexible API. Expand functionality and connect with external tools effortlessly.",
+						"category": "Integrations"
+					},
+					{
+						"title": "User Role Management",
+						"icon": "user",
+						"description": "Manage user roles and permissions with ease. Control access levels and ensure the right people have the right permissions for your project.",
+						"category": "Security"
+					},
+					{
+						"title": "Custom Themes",
+						"icon": "paint-brush",
+						"description": "Customize the look and feel of your workspace with custom themes. Choose from various design options to match your brand's style.",
+						"category": "Analytics"
+					},
+					{
+						"title": "Data Backup",
+						"icon": "circle-stack",
+						"description": "Protect your data with regular backups. Ensure that your information is safe and recoverable in case of unexpected issues or data loss.",
+						"category": "Security"
+					},
+					{
+						"title": "Performance Tracking",
+						"icon": "arrow-trending-up",
+						"description": "Monitor and track performance metrics to ensure optimal efficiency. Use performance data to make informed decisions and improvements.",
+						"category": "Analytics"
+					},
+					{
+						"title": "Interactive Tutorials",
+						"icon": "document-chart-bar",
+						"description": "Access interactive tutorials to get the most out of our features. Learn new skills and improve your proficiency with guided, hands-on experiences.",
+						"category": "Support"
+					},
+					{
+						"title": "Custom Widgets",
+						"icon": "squares-plus",
+						"description": "Enhance your dashboard with custom widgets. Add and configure widgets to display the most relevant information for your needs.",
+						"category": "Analytics"
+					},
+					{
+						"title": "Data Visualization",
+						"icon": "eye",
+						"description": "Visualize your data with advanced charting and graphing tools. Create insightful visual representations to better understand your metrics.",
+						"category": "Analytics"
+					},
+					{
+						"title": "Integration Marketplace",
+						"icon": "shopping-cart",
+						"description": "Explore our marketplace for additional integrations and plugins. Extend the functionality of your platform with third-party solutions.",
+						"category": "Integrations"
+					},
+					{
+						"title": "Onboarding Assistance",
+						"icon": "user",
+						"description": "Get personalized onboarding assistance to help you set up and start using our platform effectively. Benefit from expert guidance to ensure a smooth start.",
+						"category": "Support"
+					},
+					{
+						"title": "Knowledge Base",
+						"icon": "document-text",
+						"description": "Access a comprehensive knowledge base with articles, guides, and FAQs. Find answers to common questions and learn how to make the most of our features.",
+						"category": "Support"
+					},
+					{
+						"title": "Live Chat Support",
+						"icon": "chat-bubble-left-ellipsis",
+						"description": "Connect with our support team via live chat for immediate assistance. Get answers to your questions and resolve issues in real time.",
+						"category": "Support"
+					},
+					{
+						"title": "Customizable Workspaces",
+						"icon": "cursor-arrow-ripple",
+						"description": "Personalize your workspace layout to fit your needs. Adjust and configure your workspace for maximum efficiency and comfort.",
+						"category": "Productivity"
+					},
+					{
+						"title": "Task Automation",
+						"icon": "rectangle-stack",
+						"description": "Automate routine tasks to improve efficiency and reduce manual work. Set up automated processes to streamline your workflow.",
+						"category": "Productivity"
+					},
+					{
+						"title": "Accessibility Features",
+						"icon": "eye-slash",
+						"description": "Explore features designed to enhance accessibility. Ensure your tools and workspace are usable for all team members, including those with disabilities.",
+						"category": "Security"
+					},
+					{
+						"title": "Enhanced Mobile Access",
+						"icon": "mobile",
+						"description": "Benefit from enhanced mobile access features. Use our app to stay connected and productive with improved functionality on mobile devices.",
+						"category": "Security"
+					},
+					{
+						"title": "Advanced Bug Tracking",
+						"icon": "bug-ant",
+						"description": "Track tasks and projects with advanced tracking features. Monitor progress, set milestones, and manage your projects more effectively.",
+						"category": "Productivity"
+					},
+					{
+						"title": "Comprehensive Balancer",
+						"icon": "scale",
+						"description": "Access comprehensive support resources to assist users at all levels. From troubleshooting to advanced tips, get the help you need.",
+						"category": "Support"
+					},
+					{
+						"title": "Voice Recordings",
+						"icon": "microphone",
+						"description": "Receive real-time updates on accessibility features and improvements. Stay informed about changes that impact your mobile and web access.",
+						"category": "Support"
+					},
+					{
+						"title": "User Identity Verification",
+						"icon": "identification",
+						"description": "Analyze productivity metrics to optimize performance. Gain insights into team and individual productivity to drive improvements.",
+						"category": "Productivity"
+					},
+					{
+						"title": "Payment Integrations",
+						"icon": "credit-card",
+						"description": "Communicate directly within the app using in-app messaging. Keep conversations organized and accessible without switching between tools.",
+						"category": "Integrations"
+					},
+					{
+						"title": "Transparent API ",
+						"icon": "cube-transparent",
+						"description": "Seamlessly integrate with third-party APIs to extend the functionality of your app. Enjoy smooth data exchange and enhanced performance.",
+						"category": "Integrations"
+					},
+					{
+						"title": "Clever CRM Integration",
+						"icon": "light-bulb",
+						"description": "Connect your app with popular CRM systems to streamline customer management. Synchronize data and improve customer relationship processes.",
+						"category": "Integrations"
+					},
+					{
+						"title": "API key Integration",
+						"icon": "key",
+						"description": "Integrate multiple payment gateways to offer diverse payment options. Ensure secure transactions and smooth payment processing for users.",
+						"category": "Integrations"
+					}
+				]
+
+			},
+			"iconcardslist": {
+				"header": {
+					"title": "Hidden <strong>Rewards!</strong> to get",
+					"subtitle": "Choose from one of the options below to get the specific help you need. Whether it's customer support, sales inquiries, feature requests, or general feedback, we're here to provide you with the best assistance possible."
+
+				},
+				"data": [{
+						"title": "unique soundscapes",
+						"subtitle": "Need help with Foxi? Our support team is available 24/7 to assist you with any issues or questions you might have.",
+						"icon": "rocket",
+						"link": "/contact"
+					},
+					{
+						"title": "visual   effects ",
+						"subtitle": "Interested in our plans or want a custom solution? Get in touch with our sales team to find the perfect fit.",
+						"icon": "document-text",
+						"link": "/contact"
+					},
+					{
+						"title": "Feature Bonuses ",
+						"subtitle": "Have an idea to make Foxi even better? We'd love to hear from you! Share your feature requests and help us improve.",
+						"icon": "bolt",
+						"link": "/contact"
+					},
+					{
+						"title": "General Feedback",
+						"subtitle": "Your feedback is invaluable to us. Let us know how we're doing and how we can improve.",
+						"icon": "chat-bubble-left-ellipsis",
+						"link": "/contact"
+					}
+				]
+			},
+			"textoverlayimage": {
+				"header": {
+                    "bg": "testimonial-bg-01.webp"
+
+                },
+				"data": [
+                    {
+					"bg": "testimonial-bg-01.webp",
+					"figcaption": "Sheryl Sandberg",
+					"blockquote": "Foxi is like a rocket boost for our productivity! Its sleek design and out-of-this-world features make managing projects and team communication a breeze.",
+					"cite": "CEO, Facebook",
+					"bgPosition": "left"
+				},{
+                    "bg": "testimonial-bg-01.webp",
+					"figcaption": "Sheryl xxxxxxxx",
+					"blockquote": "Foxi is like a rocket boost for our productivity! Its sleek design and out-of-this-world features make managing projects and team communication a breeze.",
+					"cite": "CEO, google",
+					"bgPosition": "left"
+
+                }
+
+            ]
+			},
+			"howto": {
+				"header": {
+					"title": "how to <strong>play</strong>",
+					"subtitle": "Discover the key tips that make our platform the perfect choice for your business"
+				},
+				"data": [{
+						"title": "Complete Project <strong>Visibility</strong>",
+						"id": 1,
+						"alttext": "Complete Project Visibility",
+						"text": "Gain complete visibility into your projects and tasks with our comprehensive dashboard. Easily track progress, deadlines, and team performance at a glance. Our dashboard offers real-time project tracking",
+						"image": "howtos/howto-01.svg",
+						"mobileImage": "howtos/howto-01-mobile.svg",
+						"imageWidth": 480,
+						"imageHeight": 600,
+						"imagePosition": "right"
+					},
+					{
+						"title": "Advanced <strong>Automation</strong> Tools",
+						"alttext": "Advanced Automation Tools",
+						"id": 2,
+
+						"text": "Automate repetitive tasks and streamline your workflow with our advanced automation tools. Save time and reduce errors by leveraging automated task assignments, workflow templates, and seamless integration with popular apps and services.",
+						"image": "howtos/howto-02.svg",
+						"mobileImage": "howtos/howto-02-mobile.svg",
+						"imageWidth": 480,
+						"imageHeight": 600,
+						"imagePosition": "left"
+					},
+					{
+						"title": "<strong>Effective</strong> Team Collaboration",
+						"alttext": "<strong>Effective</strong> Team Collaboration",
+						"id": 3,
+						"text": "Enhance team communication and collaboration with our seamless tools. Keep everyone on the same page and ensure efficient project execution through real-time messaging, shared document editing, and task comments.",
+						"image": "howtos/howto-03.svg",
+						"mobileImage": "howtos/howto-03-mobile.svg",
+						"imageWidth": 480,
+						"imageHeight": 600,
+						"imagePosition": "right"
+					},
+					{
+						"title": "Robust Data <strong>Security</strong>",
+						"alttext": "Robust Data <strong>Security</strong>",
+						"id": 4,
+
+						"text": "Protect your data with our robust security features. We prioritize your privacy and security to ensure that your information is always safe. With end-to-end encryption, role-based access control, and regular security audits.",
+						"image": "howtos/howto-04.svg",
+						"mobileImage": "howtos/howto-04-mobile.svg",
+						"imageWidth": 480,
+						"imageHeight": 600,
+						"imagePosition": "left"
+					}
+				]
+			},
+			"cta": {
+				"header": {
+
+                    "title":"",
+                    "subtitle":""
+                },
+
+				"data": {
+					"button": {
+						"text": "Get started now",
+						"link": "/#game"
+					},
+					"title": "Join Over 30,000 Satisfied Users!",
+					"text": "Discover why thousands of professionals trust our platform to streamline their workflow and enhance productivity. Get started today and see the difference for yourself!",
+					"mode": "dark",
+					"bg": "cta-dark-bg.webp",
+					"badge": {
+						"path": "badge.svg",
+						"alt": "",
+						"highlight": "Product Hunt",
+                        "text":"#1 Product of the Year,"
+                    }
+				}
+			}
+
+		}
+	},
+	"leaderboard": {
+
+		"title": "排行榜",
+		"desciption": "查看您的贡献度",
+		"h1": "排行榜",
+		"col1": "排名",
+		"col2": "用户名称",
+		"col3": "灵石",
+		"col4": "消费贡献",
+		"col5": "数据贡献",
+		"col6": "加入时间",
+		"col7": "最后活跃"
+	},
+	"glossary": {
+		"title": "Foxi | Powerful Features for Modern Teams",
+		"description": "Explore Foxi's powerful features designed to enhance productivity, ensure top-notch security, and integrate seamlessly with your favorite tools. Transform your workflow today!"
+	},
+	"features": {
+		"title": "Foxi | Powerful Features for Modern Teams",
+		"description": "Explore Foxi's powerful features designed to enhance productivity, ensure top-notch security, and integrate seamlessly with your favorite tools. Transform your workflow today!"
+	},
+	"pricing": {
+		"title": "Foxi | Pricing made simple",
+		"description": "Discover the perfect SaaS pricing plan for your business. From startups to enterprises, our scalable solutions offer unparalleled features and 24/7 support.",
+		"headertitle": "Choose the plan that works for <strong>your</strong> needs",
+		"headertext": "All plans come with a 30-day money-back guarantee."
+
+	},
+	"changelog": {
+		"title": "Foxi | Version Updates and Improvements",
+		"description": "Stay informed about all the latest updates, improvements, and new features in Foxi. We're constantly evolving to serve you better.",
+		"headertitle": "Foxi Version Updates and <strong>Enhancements</strong>",
+
+		"headertext": "Stay informed about all the new updates and improvements in Foxi."
+
+	},
+	"tutorials": {
+		"title": "Foxi | Get inspirations from game videos",
+		"description": "xxxx",
+		"headertitle": "Interactive gameplay and Tutorials videos",
+
+		"headertext": "  - Gameplay walkthroughs.   - Music creation showcases."
+	},
+	"contact": {
+		"title": "Foxi | Get in Touch with Our Team",
+		"description": "Need help? Contact our support team for assistance. We're here to help you make the most of Foxi's powerful features.",
+		"headertitle": "Get Answers to Your <strong>Foxi</strong> Questions.",
+		"headertext": "Whether you have a question, need support, or just want to share your feedback, we're all ears. Reach out to us and we'll get back to you as soon as possible."
+
+	},
+	"faq": {
+		"title": "Foxi | Get Your Questions Answered with a Smile",
+		"description": "Dive into the Foxi FAQ Funhouse to get answers to all your questions about pricing, integrations, features, and more. Discover how Foxi can make your work life more productive and enjoyable.",
+		"headertitle": "Get Answers to Your <strong>Foxi</strong> Questions.",
+		"headertext": "Find answers to common questions about Foxi "
+	},
+	"support": {
+		"title": "捐赠支持",
+		"description": "您的支持让我们走得更远",
+		"h1": "捐赠支持",
+		"channel": "支持方式",
+		"record": "捐赠记录",
+		"recordCol1": "支持者",
+		"recordCol2": "金额",
+		"recordCol3": "留言",
+		"recordCol4": "平台",
+		"recordCol5": "时间"
+	},
+	"about": {
+		"title": "Foxi | Our Story and Mission",
+		"description": "Learn about Foxi's journey, our mission to simplify workflow automation, and the team behind the platform."
+	},
+	"privacy": {
+		"title": "Foxi | Privacy Policy",
+		"description": "Foxi's terms of service outlines the rules and regulations that govern your use of our services. Please read them carefully to understand your rights and responsibilities.",
+		"headertitle": "Terms and Conditions: Read, Relax, <strong>Enjoy!</strong>",
+		"headertext": "Please read them carefully to understand your rights and responsibilities."
+	},
+	"terms": {
+
+		"title": "Foxi | Terms of Service",
+		"description": "Foxi's terms of service outlines the rules and regulations that govern your use of our services. Please read them carefully to understand your rights and responsibilities.",
+		"headertitle": "Terms and Conditions: Read, Relax, <strong>Enjoy!</strong>",
+		"headertext": "Please read them carefully to understand your rights and responsibilities."
+
+	}
+
+}

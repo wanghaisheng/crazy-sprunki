@@ -14,7 +14,13 @@
         "mode": "auto",
         "scrollAnimations": true,
         "copyright": "© CrazySprunki 2024.",
-        "badge":"badge.svg"
+        "badge":"badge.svg",
+        "defaulti18":"en",
+        "supportLangs":{
+            "en": "English",
+            "zh": "中文"
+
+        }
     },
     "tracking": {
         "microsoftClarity": "hh1oixxx",

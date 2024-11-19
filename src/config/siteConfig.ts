@@ -3,7 +3,14 @@
 // Description: The configuration file for the website.
 
 import siteConfig from '../data/json-files/siteConfig.json'
+export const siteConfigData = siteConfig;
 
+export const languages = siteConfig.site.supportLangs;
+
+export const defaultLanguage = siteConfig.site.defaulti18;
+  
+export type Language = keyof typeof languages;
+  
 export interface Logo {
 	src: string
 	alt: string
@@ -32,7 +39,7 @@ export interface AdConfig {
 	testMode: boolean
 }
 
-export interface Config {
+export interface ConfigType {
 	siteTitle: string
 	siteDescription: string
 	ogImage: string
@@ -44,7 +51,7 @@ export interface Config {
 	ads: AdConfig
 }
 
-export const configData: Config = {
+export const configData: ConfigType = {
 	siteTitle: siteConfig.site.title,
 	siteDescription: siteConfig.site.description,
 	ogImage: siteConfig.site.ogImage,

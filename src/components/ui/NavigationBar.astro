@@ -16,8 +16,11 @@
 import { Icon } from 'astro-icon/components'
 import Button from './Button.astro'
 import Switcher from './ModeSwitcher.astro'
+import LanguagePicker from './LanguagePicker.astro'
 
 // Data
+import { languages } from '../../config/siteConfig'
+
 import { navigationBarData } from '../../config/navigationBar'
 const { logo, navItems, navActions } = navigationBarData
 
@@ -102,6 +105,7 @@ const savedNavActions = navActions.map((action) => ({
 
 			<!-- Theme Switcher -->
 			<Switcher />
+			<LanguagePicker langs={languages}/>
 
 			<!-- Navigation action buttons -->
 			<div class="header__actions">

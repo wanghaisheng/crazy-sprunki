@@ -19,9 +19,12 @@ import '../styles/global.css'
 // Fonts
 import '@fontsource-variable/inter'
 import '@fontsource-variable/outfit'
+import {getImage} from '../utils/helpers'
 
 // Data
-import { configData } from '../config/config'
+import { configData } from '../config/siteConfig'
+import type { ConfigType } from '../config/siteConfig'
+import type { Logo } from '../config/siteConfig'
 
 // Props
 interface Props {
@@ -29,16 +32,18 @@ interface Props {
   description?: string;
   ogImage?: string;
   noindex?: boolean;
+  // configData:Config;
+  // logo:Logo;
 }
 
 // Page Metadata
-const { title, description, ogImage, noindex } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en" class="scroll-animation mode-auto">
   <head>
-    <Header title={title} description={description} ogImage={ogImage} noindex={noindex} />
+    <Header title={title} description={description} logo={configData.logo}ogImage={configData.ogImage} noindex={configData.noindex} />
   </head>
   <body
     class:list={[

@@ -1,0 +1,190 @@
+---
+// Import required components
+import Section from '../../ui/Section.astro';
+import Row from '../../ui/Row.astro';
+import Col from '../../ui/Col.astro';
+import Testimonial from '../../ui/Testimonial.astro';
+import { getImage, formatNumber } from '../../../utils/helpers';
+
+// Define interfaces
+interface TestimonialType {
+  blockquote: string;
+  figcaption: string;
+  cite: string;
+  bg?: string; // Optional
+  bgPosition?: string;
+
+}
+
+interface HeaderType {
+  title?: string; // Optional
+  subtitle?: string; // Optional
+  bg?: string; // Optional
+  bgPosition?: string;
+}
+
+interface Props {
+  header?: HeaderType; // Optional
+  data: TestimonialType[]; // Required
+}
+
+// Get props
+const { header, data = [] } = Astro.props as Props;
+
+// Background logic
+const bgImage = header?.bg ? getImage(header.bg) : undefined;
+const bgPosition = header?.bgPosition || 'center';
+
+---
+
+<Section
+  id="slide-testimonial"
+  bg={bgImage}
+  bgPosition={bgPosition}
+  classes="dark:border-t border-y border-neutral-800 relative"
+>
+  <Row>
+    <Col span="12">
+      {header?.title || header?.subtitle ? (
+        <div class="header-section text-center mb-8">
+          {header.title && <h2 class="text-3xl font-bold">{header.title}</h2>}
+          {header.subtitle && <p class="text-lg text-neutral-500">{header.subtitle}</p>}
+        </div>
+      ) : null}
+      {data.length === 0 ? (
+        <p class="text-center text-neutral-500">No testimonials available.</p>
+      ) : (
+        <div class="testimonial-slider">
+          <div class="testimonial-slider__items">
+            {data.map((item, index) => (
+              <div
+                class="testimonial-slider__item"
+                id={`testimonial-${formatNumber(index)}`}
+              >
+                <Testimonial
+                  blockquote={item.blockquote}
+                  figcaption={item.figcaption}
+                  cite={item.cite}
+                  align="center"
+                  size="4xl"
+                  mobileSize="2xl"
+                  classes="!leading-tight font-bold xl:text-5xl max-w-4xl mx-auto"
+                  quoteSize={72}
+                />
+              </div>
+            ))}
+          </div>
+          <div class="testimonial-slider__dots">
+            {data.map((_, index) => (
+              <button
+                class={`testimonial-slider__dot ${index === 0 ? 'active' : ''}`}
+                data-index={index}
+                aria-label={`Slide ${index + 1}`}
+              ></button>
+            ))}
+          </div>
+        </div>
+      )}
+    </Col>
+  </Row>
+</Section>
+
+<style>
+  .testimonial-slider {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .testimonial-slider__items {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+    cursor: grab;
+  }
+
+  .testimonial-slider__item {
+    position: relative;
+    flex: 0 0 100%;
+    box-sizing: border-box;
+  }
+
+  .testimonial-slider__dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .testimonial-slider__dot {
+    width: 16px;
+    height: 16px;
+    background: rgba(255, 255, 255, 255);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .testimonial-slider__dot.active{
+    background: rgba(255,255,255,255);
+
+  }
+  .testimonial-slider__dot:hover {
+    background: rgba(255, 255, 255, 255);
+  }
+
+  @media (max-width: 768px) {
+    .testimonial-slider__item {
+      padding: 0 16px;
+    }
+  }
+
+  .header-section h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .header-section p {
+    color: var(--neutral-500);
+  }
+</style>
+
+<script>
+  // JavaScript logic unchanged
+  document.addEventListener('DOMContentLoaded', () => {
+    const sliderItems = document.querySelector('.testimonial-slider__items') as HTMLElement | null;
+    const dots = document.querySelectorAll('.testimonial-slider__dot');
+
+    if (!sliderItems || dots.length === 0) return;
+
+    let currentIndex = 0;
+
+    // Update the slider's position
+    const updateSlidePosition = (index: number) => {
+      const item = sliderItems.firstElementChild as HTMLElement | null;
+      if (!item) return;
+      const itemWidth = item.getBoundingClientRect().width;
+      sliderItems.style.transform = `translateX(-${index * itemWidth}px)`;
+      updateActiveDot(index);
+    };
+
+    // Update active dot
+    const updateActiveDot = (index: number) => {
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === index);
+      });
+    };
+
+    // Add click event for dots
+    dots.forEach((dot) => {
+      dot.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        const index = parseInt(target.dataset.index || '0', 10);
+        currentIndex = index;
+        updateSlidePosition(currentIndex);
+      });
+    });
+
+    window.addEventListener('resize', () => updateSlidePosition(currentIndex));
+
+    updateSlidePosition(currentIndex);
+  });
+</script>

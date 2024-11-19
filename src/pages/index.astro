@@ -1,13 +1,17 @@
 ---
 // Components
 // - Layout
+import type { Language } from '../config/siteConfig'
+import { languages, defaultLanguage } from '../config/siteConfig';
+import { getI18nContent } from '../utils/i18n'
+
 import Layout from '../layouts/Layout.astro'
 // - UI
-import Hero from '../components/blocks/hero/HomeCTA.astro'
+import HerowithCTA from '../components/blocks/CTA/HomeCTA.astro'
 import Gameframe from '../components/blocks/iframe/BasicGame.astro'
-import Features from '../components/blocks/features/FeatureCards.astro'
-import Mods from '../components/blocks/mods/ModCards.astro'
-import Characters from '../components/blocks/characters/CharacterCards.astro'
+import TextImageCardsGrid from '../components/blocks/basic/TextImageCardsGrid.astro'
+import TextSidebyImage from '../components/blocks/basic/TextSidebyImage.astro'
+
 
 
 import Featureslist from '../components/blocks/features/FeatureList.astro'
@@ -16,6 +20,8 @@ import ContactCards from '../components/blocks/contact/ContactCards.astro'
 import RewardCards from '../components/blocks/rewards/RewardCards.astro'
 
 import Testimonial from '../components/blocks/testimonials/BasicDark.astro'
+import TestimonialSlider from '../components/blocks/testimonials/Slider.astro'
+
 import HowtoBlocks from '../components/blocks/howto/HowtoRows.astro'
 
 import HighlightBlocks from '../components/blocks/highlights/HighlightRows.astro'
@@ -28,10 +34,36 @@ import HorizontalAd from '../components/blocks/ads/HorizontalAd.astro'
 // Content
 import SEOData from '../data/json-files/seoData.json'
 
+// import i18 from '../data/json-files/i18.json'
+// console.log('==========',SEOData.home)
+
+// console.log('==========',SEOData.home.sections.cta)
+// Generate static paths for each language
+export async function getStaticPaths() {
+    return Object.keys(languages).map((lang) => ({
+        params: { lang: lang === defaultLanguage ? undefined : lang },
+    }));
+}
+// Get the current language from the URL
+const { lang = defaultLanguage } = Astro.params;
+const currentLang = lang as Language;
+// Load the appropriate i18n content
+const i18 = await getI18nContent(currentLang);
+console.log('current display lang',currentLang)
+
+const ctaData = i18.home.sections.cta.data
+// console.log(ctaData)
+const heroData = i18.home.sections.hero
+const featuresData = i18.home.sections.features
+const charactersData = i18.home.sections.characters
+const modsData = i18.home.sections.mods
+const howtoData = i18.home.sections.howto
+const textoverlayimageData = i18.home.sections.textoverlayimage
+
 ---
 
 <Layout title={SEOData.home.title} description={SEOData.home.description}>
-    <Hero />
+    <HerowithCTA {...heroData} />
     
     <!-- Game section with side ads -->
     <div id='game' class="game-section max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -56,23 +88,28 @@ import SEOData from '../data/json-files/seoData.json'
         </div>
     </div>
     
-    <!-- <Features /> -->
-    <Mods />
-    <Characters />
-    <Featureslist/>
+    <TextImageCardsGrid {...featuresData} />
+    <!-- <Characters /> -->
+
+    <TextImageCardsGrid {...charactersData} />
+    <!-- <Mods /> -->
+
+    <TextImageCardsGrid {...modsData} />
+    <!-- <Featureslist/> -->
 	<RewardCards classes="dark:bg-neutral-950/80" />
     
 
     <!-- Ad between sections -->
     <HorizontalAd classes="max-w-screen-xl mx-auto bg-white dark:bg-neutral-900 shadow-sm rounded-lg" />
     
-    <Testimonial bg={SEOData.home.testimonialBackground} bgPosition="right" />
-    <HowtoBlocks />
-    
+    <!-- <Testimonial bg={SEOData.home.testimonialBackground} bgPosition="right" /> -->
+    <TextSidebyImage {...howtoData} />
+    <TestimonialSlider header={textoverlayimageData.header} data={textoverlayimageData.data} />
+        
     <!-- Ad before CTA -->
     <HorizontalAd classes="max-w-screen-xl mx-auto bg-neutral-50 dark:bg-neutral-900/40 rounded-lg" />
     
-    <CTA />
+    <CTA {...ctaData} />
 </Layout>
 
 <style>

@@ -1,0 +1,104 @@
+---
+// Home page CTA Section
+// ------------
+// Description: A centered call to action section that contains: a title, text, a user review snippet, a button and a image.
+
+// Components
+// - Layout
+import Section from '../../ui/Section.astro'
+import Row from '../../ui/Row.astro'
+import Col from '../../ui/Col.astro'
+// - UI
+import ChipNotification from '../../ui/ChipNotification.astro'
+import { Image } from 'astro:assets'
+import Button from '../../ui/Button.astro'
+import AvatarGroup from '../../ui/AvatarGroup.astro'
+import { formatNumber, formatDate, getImage } from '../../../utils/helpers';
+
+// Content
+// - Hero Image
+// - Avatars
+// import HeroData from '../../../data/json-files/HeroData.json'
+
+interface UserData{
+	image:string;
+	link?:string;
+	alt?:string
+}
+interface ProofData {
+	avatars: [UserData];
+	customercount:number;
+	customertext:string;
+}
+interface CtaData {
+	text:string;
+	link:string
+}
+interface HeaderData{
+	title:string;
+	subtitle:string
+}
+interface HeroData {
+	header:HeaderData,
+	proof:ProofData,
+	cta:CtaData,
+	imageinhero:UserData
+
+}
+
+const {
+header,
+proof,
+cta,
+imageinhero
+}
+= Astro.props
+// console.log('0000000',proof.avatars)
+
+const processedAvatars = proof.avatars.map((avatar:UserData) => ({
+	...avatar,
+	image: {
+		src:getImage(avatar.image).src, // Preprocess image using getImage function
+		alt:avatar.alt}
+	}));
+	// console.log('1111',proof.avatars)
+// console.log('333',imageinhero)
+// console.log('2222',getImage(imageinhero.image))
+// console.log('11111',processedAvatars)
+// console.log('=====',processedAvatars)
+// preprocess  avatars .src with getImage
+
+---
+
+<Section id="intro" padding="top" classes="bg-neutral-50 dark:bg-neutral-900">
+	<Row>
+		<Col span="2" />
+		<Col span="8" align="center">
+			<ChipNotification radius="rounded-full" classes="mb-6">
+				<strong>{proof.customercount}</strong> {proof.customertext} 
+				<AvatarGroup avatars={proof.avatars} radius="rounded-full" slot="button" />
+			</ChipNotification>
+			<h1 set:html=
+				{header.title}/>
+
+			<p class="pb-0 text-lg">
+				{header.subtitle}
+
+			</p>
+			<Button size="lg" link={cta.link}>
+				{cta.text}
+			</Button>
+		</Col>
+		<Col span="2" />
+		<Col span="2" />
+		<Col span="8">
+			<Image
+				src={getImage(imageinhero.image)}
+				alt=				{imageinhero.alt}
+				class="translate-y-8 shadow-2xl shadow-neutral-200 dark:shadow-neutral-950"
+				format="webp"
+			/>
+			</Col>
+		<Col span="2" />
+	</Row>
+</Section>

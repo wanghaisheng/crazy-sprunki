@@ -12,6 +12,7 @@
 // Components
 // - UI
 import Avatar from './Avatar.astro'
+import { getImage,formatNumber } from '../../utils/helpers';
 
 // Props
 type Props = {
@@ -28,7 +29,9 @@ const { size = 'base', avatars, radius = 'rounded', classes } = Astro.props
 		avatars.map((item) => (
 			<Avatar
 				size={size}
-				image={item.image}
+				imagesrc={getImage(item.image).src}
+				imagealt=''
+
 				link={item.link}
 				radius={radius}
 				classes="-mx-2 first:ml-0"

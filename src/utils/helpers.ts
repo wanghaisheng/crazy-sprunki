@@ -10,7 +10,7 @@ export function getImage(path: string): ImageMetadata {
   const image = images[fullPath];
   
   if (!image) {
-    throw new Error(`Image not found: ${path}---fullpath:${fullPath}`);
+    // throw new Error(`Image not found: ${path}---fullpath:${fullPath}`);
   }
   
   return image.default;
