@@ -1,0 +1,133 @@
+---
+export interface Tab {
+  title: string;
+  video: {
+    poster: string;
+    webm: string;
+    mp4: string;
+  };
+  description: string;
+}
+
+export interface Props {
+  tabs: Tab[];
+}
+
+const { tabs = [] } = Astro.props;
+let activeTab = 0;
+---
+
+<div class="video-tabs">
+  <!-- Tabs -->
+  <div class="tab-titles-container">
+    <div class="tab-titles">
+      {tabs.map((tab, index) => (
+        <button
+          class={`tab-title ${activeTab === index ? "active" : ""}`}
+          onClick={() => { activeTab = index; }}
+        >
+          {tab.title}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- Video Player -->
+  <div class="video-container">
+    {tabs.length > 0 && (
+      <video
+        class="video-player"
+        controls
+        poster={tabs[activeTab].video.poster}
+      >
+        <source src={tabs[activeTab].video.webm} type="video/webm" />
+        <source src={tabs[activeTab].video.mp4} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    )}
+  </div>
+
+  <!-- Description -->
+  <div class="description">
+    {tabs.length > 0 && tabs[activeTab].description}
+  </div>
+</div>
+
+<style>
+  .video-tabs {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .tab-titles-container {
+    overflow-x: auto;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+  }
+
+  .tab-titles-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar in WebKit */
+  }
+
+  .tab-titles {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+
+  .tab-title {
+    white-space: nowrap;
+    background: none;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    flex-shrink: 0; /* Prevent shrinking for scrolling */
+  }
+
+  .tab-title.active {
+    background: #f98101;
+    color: white;
+    border-color: #f98101;
+  }
+
+  .video-container {
+    margin: 20px 0;
+  }
+
+  .video-player {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+  }
+
+  .description {
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .tab-title {
+      font-size: 14px;
+      padding: 8px 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tab-title {
+      font-size: 12px;
+      padding: 6px 8px;
+    }
+  }
+</style>

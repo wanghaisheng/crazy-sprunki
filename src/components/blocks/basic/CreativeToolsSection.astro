@@ -1,0 +1,85 @@
+---
+export interface Props {
+  title: string;
+  subtitle: string;
+  backgroundColor: string;
+}
+
+const { title, subtitle, backgroundColor } = Astro.props;
+---
+
+<div class="section-content" style={`background-color: ${backgroundColor};`}>
+  <div class="atom-component">
+    <div class="style__hero-vertical-wrapper">
+      <div class="style__vertical-card-list">
+        <div class="style__vertical-card-col">
+          <div class="style__hero-vertical-card" style="border-radius: 4px; overflow: hidden;">
+            <div class="style__card-wrapper">
+              <div class="style__card-container">
+                <div class="style__text-content-container">
+                  <h2 class="subtitle">{subtitle}</h2>
+                  <h2 class="title">{title}</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-content {
+    padding-top: 320px;
+    padding-bottom: 0px;
+    width: 1200px;
+  }
+
+  .style__hero-vertical-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .style__vertical-card-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .style__hero-vertical-card {
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .style__card-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  .style__card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .style__text-content-container {
+    padding-bottom: 8px;
+    padding-left: 0px;
+  }
+
+  .subtitle {
+    font-size: 24px;
+    color: rgb(249, 129, 1);
+    max-width: 693px;
+  }
+
+  .title {
+    font-weight: 600;
+    font-size: 80px;
+    line-height: 88px;
+    color: white;
+    max-width: 1200px;
+  }
+</style>

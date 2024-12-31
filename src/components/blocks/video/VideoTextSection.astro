@@ -1,0 +1,101 @@
+---
+export interface VideoConfig {
+  poster: string;
+  webm: string;
+  mp4: string;
+}
+
+export interface Props {
+  title: string;
+  description: string;
+  video: VideoConfig;
+  position?: "text-left" | "video-left"; // New prop to configure positions
+}
+
+const { title, description, video, position = "text-left" } = Astro.props;
+---
+
+<div class={`section-container ${position}`}>
+  <div class="content-container">
+    <div class="text-content">
+      <h3 class="title">{title}</h3>
+      <p class="description">{description}</p>
+    </div>
+    <div class="video-content">
+      <video controls poster={video.poster} class="video-player">
+        <source src={video.webm} type="video/webm" />
+        <source src={video.mp4} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</div>
+
+<style>
+.section-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.content-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.text-content {
+  flex: 1;
+  max-width: 600px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.video-content {
+  flex: 1;
+}
+
+.video-player {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.text-left .text-content {
+  order: 1;
+}
+
+.text-left .video-content {
+  order: 2;
+}
+
+.video-left .text-content {
+  order: 2;
+}
+
+.video-left .video-content {
+  order: 1;
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .text-content,
+  .video-content {
+    max-width: 100%;
+  }
+}
+</style>

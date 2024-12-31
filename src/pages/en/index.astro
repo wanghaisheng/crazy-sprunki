@@ -1,0 +1,147 @@
+---
+// Components
+// - Layout
+import type { Language } from '@config/siteConfig'
+import { languages, defaultLanguage } from '@config/siteConfig';
+import { formatNumber, formatDate, getImage } from '@utils/helpers';
+import { getLangFromUrl, useUITranslations,i18n,i18nPath } from '@i18n/utils';
+
+import Layout from '@layouts/Layout.astro'
+// - UI
+import HerowithCTA from '@components/blocks/CTA/HomeCTA.astro'
+import Gameframe from '@components/blocks/iframe/BasicGame.astro'
+import TextImageCardsGrid from '@components/blocks/basic/TextImageCardsGrid.astro'
+import TextSidebyImage from '@components/blocks/basic/TextSidebyImage.astro'
+import TextImage from '@components/blocks/basic/TextImage.astro'
+
+
+
+import Featureslist from '@components/blocks/features/FeatureList.astro'
+// import FeatureSticky from '@components/blocks/features/FeatureSticky.astro'
+import ContactCards from '@components/blocks/contact/ContactCards.astro'
+import RewardCards from '@components/blocks/rewards/RewardCards.astro'
+
+import Testimonial from '@components/blocks/testimonials/BasicDark.astro'
+import TestimonialSlider from '@components/blocks/testimonials/Slider.astro'
+
+import HowtoBlocks from '@components/blocks/howto/HowtoRows.astro'
+
+import HighlightBlocks from '@components/blocks/highlights/HighlightRows.astro'
+import CTA from '@components/blocks/CTA/BasicDark.astro'
+
+// - Ads
+import VerticalAd from '@components/blocks/ads/VerticalAd.astro'
+import HorizontalAd from '@components/blocks/ads/HorizontalAd.astro'
+
+// Content
+import SEOData from '@data/json-files/seoData.json'
+
+// import i18 from '@data/json-files/i18.json'
+
+// console.log('==========',SEOData.home.sections.cta)
+// Generate static paths for each language
+export async function getStaticPaths() {
+    return Object.keys(languages).map((lang) => ({
+        params: { lang: lang === defaultLanguage ? undefined : lang },
+    }));
+}
+// Get the current language from the URL
+// const { lang = defaultLanguage } = Astro.params;
+// const currentLang = lang as Language;
+// Load the appropriate i18n content
+const lang = getLangFromUrl(Astro.url);
+const t = useUITranslations(lang);
+
+// const i18 = i18n();
+const dict = i18n();
+
+
+console.log('index page current display lang',lang)
+
+const ctaData =  i18nPath('home.sections.cta.data')
+
+
+// console.log(ctaData)
+const heroData = i18nPath('home.sections.hero',Astro.url)
+const featuresData = i18nPath('home.sections.features',Astro.url)
+const charactersData = i18nPath('home.sections.characters',Astro.url)
+const modsData = i18nPath('home.sections.mods',Astro.url)
+const howtoData = i18nPath('home.sections.howto',Astro.url)
+const textoverlayimageData = i18nPath('home.sections.textoverlayimage',Astro.url)
+
+---
+
+<Layout title={i18nPath('home.title')} description={i18nPath('home.description')}>
+    <!-- <HerowithCTA {...heroData} /> -->
+    <TextImage image=`${getImage('hero-01.png')}` text='test my image' title='image title' />
+    <!-- Game section with side ads -->
+    <div id='game' class="game-section max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Game container with side ads -->
+        <div class="grid grid-cols-1 xl:grid-cols-[160px_1fr_160px] gap-4 items-start">
+            <!-- Left ad -->
+            <div class="hidden xl:block">
+                <VerticalAd classes="sticky top-4" />
+            </div>
+            
+            <!-- Game frame -->
+            <div class="flex flex-col gap-4">
+                <!-- <Gameframe link={SEOData.home.link} /> -->
+                <!-- Horizontal ad under the game -->
+                <HorizontalAd classes="bg-neutral-50 dark:bg-neutral-900/40 rounded-lg" />
+            </div>
+            
+            <!-- Right ad -->
+            <div class="hidden xl:block">
+                <VerticalAd classes="sticky top-4" />
+            </div>
+        </div>
+    </div>
+    
+    <TextImageCardsGrid {...featuresData} />
+    <!-- <Characters /> -->
+
+    <TextImageCardsGrid {...charactersData} />
+    <!-- <Mods /> -->
+
+    <TextImageCardsGrid {...modsData} />
+    <!-- <Featureslist/> -->
+	<RewardCards classes="dark:bg-neutral-950/80" />
+    
+
+    <!-- Ad between sections -->
+    <HorizontalAd classes="max-w-screen-xl mx-auto bg-white dark:bg-neutral-900 shadow-sm rounded-lg" />
+    
+    <!-- <Testimonial bg={SEOData.home.testimonialBackground} bgPosition="right" /> -->
+    <TextSidebyImage {...howtoData} />
+    <TestimonialSlider header={textoverlayimageData.header} data={textoverlayimageData.data} />
+        
+    <!-- Ad before CTA -->
+    <HorizontalAd classes="max-w-screen-xl mx-auto bg-neutral-50 dark:bg-neutral-900/40 rounded-lg" />
+    
+    <CTA {...ctaData} />
+</Layout>
+
+<style>
+    /* Ensure ads don't overlap with fixed header if present */
+    .game-section {
+        scroll-margin-top: var(--header-height, 0px);
+    }
+    
+    /* Optional: Add smooth transitions for ads */
+    .google-ad {
+        @apply transition-opacity duration-300;
+    }
+    
+    /* Optional: Improve ad visibility on scroll */
+    @media (min-width: 1280px) {
+        .sticky {
+            animation: fade-in 0.3s ease-in-out;
+        }
+    }
+    
+    @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+</style>
+</Layout>

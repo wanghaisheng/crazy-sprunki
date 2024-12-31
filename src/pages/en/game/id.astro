@@ -1,0 +1,5 @@
+// Example: Filter entries by sub-directory in the collection
+import { getCollection } from 'astro:content';
+const englishDocsEntries = await getCollection('docs', ({ id }) => {
+  return id.startsWith('en/');
+});

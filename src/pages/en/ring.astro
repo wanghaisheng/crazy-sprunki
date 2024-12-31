@@ -1,0 +1,398 @@
+---
+import VideoSection from '@components/blocks/video/VideoSection.astro';
+import VideoSectionData from '@data/json-files/videosection.json'
+// import cardConfig from '@data/heroCardConfig.json';
+import LefttitlerightdesSection from '@components/blocks/text/lefttitlerightdes.astro';
+
+// JSON configuration for the section
+const lefttitlerightdesSectioconfig = {
+  id: "text-detail-section",
+  leftContent: {
+    title: "2-Inch Rotatable Screen",
+    description:
+      "Spin the Good Times: With a 2-inch full-color OLED touchscreen, Pocket 3 puts vibrant visuals and effortless control right at your fingertips."
+  },
+  rightContent: {
+    title: "Effortless Control",
+    description:
+      "Rotate to start shooting or simply tap to access parameter adjustments and other functions with ease."
+  }
+};
+import TextOverlayImageSection from '@components/blocks/basic/TextOverlayImage.astro';
+
+// JSON configuration for the section
+const TextOverlayImageConfig = {
+  id: "section-common-bgzoomout",
+  title: "A Big New Twist",
+  subtitle: "Intelligent Features",
+  description: "",
+  backgroundImage: "https://www-cdn.djiits.com/dps/481cb70458a4b140b5901f2427771fe0.jpg",
+  backgroundColor: "black",
+  gradientMask: true,
+};
+import VideoTabs from '@components/blocks/video/VideoTabSection.astro';
+
+const VideoTabsconfig = [
+  {
+    title: "Face Auto-Detect",
+    video: {
+      poster: "https://www-cdn.djiits.com/dps/0e1b60a59fa78c4174a92f9b54f2cb01.jpg",
+      webm: "https://www-cdn.djiits.com/reactor/assets/_next/static/videos/3fb478e3-175a-46cb-83c7-736f64f98409.webm",
+      mp4: "https://www-cdn.djiits.com/reactor/assets/_next/static/videos/6efff89b-25f4-4df9-bf49-c2ad29a23784.mp4"
+    },
+    description: "Stay in focus with ease. Tracked subjects are firmly locked in the center of the frame as the camera view moves automatically and smoothly."
+  },
+  {
+    title: "Dynamic Framing",
+    video: {
+      poster: "https://www-cdn.djiits.com/dps/b258b8e60fb801c9d05218e03e45fe7d.jpg",
+      webm: "https://www-cdn.djiits.com/reactor/assets/_next/static/videos/d9e50d00-57e9-4cf3-9569-2c43bdf3e6a6.webm",
+      mp4: "https://www-cdn.djiits.com/reactor/assets/_next/static/videos/1540326c-7e9e-40b3-b20a-b50517177967.mp4"
+    },
+    description: "Epic shots start with great composition. With the built-in golden ratio composition, professional camera movement can lock on the subject to shoot more aesthetic footage."
+  },
+  {
+    title: "Basic",
+    video: {
+      poster: "https://www-cdn.djiits.com/dps/0d4003ad030a290e5ceb36252c7ab969.jpg",
+      webm: "https://www-cdn.djiits.com/reactor/assets/_next/static/videos/dd2fe5c6-73a8-4d1f-befa-e5122b9fe00f.webm",
+      mp4: "https://www-cdn.djiits.com/reactor/assets/_next/static/videos/f612cdae-de9f-470e-bb52-bed4df9f0b02.mp4"
+    },
+    description: "Newly upgraded stability. Double-tap an object to trigger basic tracking. Even with casual holding and camera movement, the object being tracked remains steadily in the center of the frame."
+  }
+];
+import VideoTextSection from '@components/blocks/video/VideoTextSection.astro';
+
+const VideoTextSectionconfig = {
+  title: "Sound That Surrounds",
+  description: "Pocket 3 adopts a built-in three-mic array, which can effectively reduce wind noise and record omnidirectional stereo sound. Even in noisy environments like concerts, it can precisely identify sound sources to give you more immersive audio. It also supports USB Audio protocol, enabling quick connections to external mics and monitoring earphones.",
+  video: {
+    poster: "https://www-cdn.djiits.com/dps/e9abd9b60210e332859966d96755bdbf.jpg",
+    webm: "https://www-cdn.djiits.com/reactor/assets/_next/static/videos/a93b204d-d02a-4cdc-a760-573ac474ff63.webm",
+    mp4: "https://www-cdn.djiits.com/reactor/assets/_next/static/videos/4b6976c3-009e-47ea-a08c-ee45f111ad5d.mp4"
+  },
+  position: "text-left" as const
+  // or "video-left"
+};
+import FastChargingSection from '@components/blocks/basic/FastChargingSection.astro';
+
+const FastChargingSectionconfig = {
+  title: "Fast Charging, Long Lasting",
+  description: "Pocket 3 can be charged to 80% in just 16 minutes, providing up to two hours of shooting. When fully charged, it can record up to 116 minutes of 4K/60fps footage or up to 166 minutes of 1080p/24fps footage, giving you more time to get the shots you love.",
+  backgroundImage: "https://www-cdn.djiits.com/dps/272179bf51506a99bfef48aa19be2ad6.png",
+  icons: [
+    {
+      title: "16 Mins",
+      description: "80% Charge"
+    },
+    {
+      title: "3x",
+      description: "Faster Charging Speed*"
+    },
+    {
+      title: "166 Mins",
+      description: "Ultra-Long Operating Time"
+    },
+    {
+      title: "26 Mins",
+      description: "Operating Time Increase*"
+    }
+  ]
+};
+import EffortlessStorageSection from '@components/blocks/basic/EffortlessStorageSection.astro';
+
+const EffortlessStorageSectionconfig = {
+  title: "Effortless Storage with Automatic Axis Locks",
+  description: "After powering off Pocket 3, the gimbal automatically locks into a stored position, keeping it safe and ready for your next adventure.",
+  backgroundColor: "rgb(250, 250, 250)",
+  video: {
+    videoUrl: "https://www-cdn.djiits.com/reactor/assets/_next/static/videos/9748fe45-b07a-4fd2-b191-24c64bd45346.webm",
+    posterUrl: "https://www-cdn.djiits.com/dps/a0377e94f198ff8314f4ca8f066a6479.png"
+  }
+};
+import CreativeToolsSection from '@components/blocks/basic/CreativeToolsSection.astro';
+
+const CreativeToolsSectionconfig = {
+  title: "Be Inspired, Unleash Your Imagination",
+  subtitle: "Creative Tools",
+  backgroundColor: "black"
+};
+import SalePointSection from '@components/blocks/basic/SalePointSection.astro';
+
+const SalePointSectionconfig = {
+  title: "SpinShot",
+  description: "Get 180° smooth camera movements with one hand.",
+  videoSrcWebM: "https://www-cdn.djiits.com/reactor/assets/_next/static/videos/82eefef7-a3dc-4ba8-bbb1-4ebfad4e9871.webm",
+  videoSrcMP4: "https://www-cdn.djiits.com/reactor/assets/_next/static/videos/38f4a2b6-f436-4adc-87b9-d226bbcd11e5.mp4",
+  buttonText: "View in Full Screen"
+};
+import LivestreamSection from '@components/blocks/basic/LivestreamSection.astro';
+
+const LivestreamSectionconfig = {
+  title: "Livestream",
+  description: "Pocket 3 supports high-definition livestreaming.",
+  imageUrl: "https://www-cdn.djiits.com/dps/30924892eadbffeac30c42af38407878.jpg"
+};
+
+import AccessoriesSection from '@components/blocks/basic/Accessories.astro';  // Import the Accessories components
+
+import accessoriesData from "@data/json-files/acce.json"
+
+import ModelPreview from '@components/blocks/basic/ModelView.astro';
+
+const modelData = {
+  modelUrl: "https://www-cdn.djiits.com/reactor/assets/_next/static/3d/4983ebbf-a5a6-4da6-82c7-a037dfd0f74a.glb", // 3D Model URL
+  arModelUrl: "https://www-cdn.djiits.com/reactor/assets/_next/static/3d/e5fb3209-8449-4760-8325-9079e2b6830c.glb", // AR Model URL
+  title: "See for Yourself",
+  description: "Get a feel for what it’s like to own Osmo Pocket 3 in advance.",
+  arDescription: "Use your iOS camera to scan the QR code for an AR preview of Osmo Pocket 3.",
+  arQrCodeUrl: "https://www-cdn.djiits.com/dps/443990d0aafe741f18d807bad71320ef.png"
+};
+import OsmoPocket from '@components/blocks/basic/BuyNow.astro';
+
+const OsmoPocketdata = {
+  productName: "Osmo Pocket 3",
+  productImage: "https://www-cdn.djiits.com/cms/uploads/04770a3f6f743d8443bf23038d099e39.png",
+  productDesc: "For Moving Moments",
+  price: "HKD $3,799",
+  specs: [
+    "1-Inch CMOS & 4K/120fps",
+    "2-Inch Rotatable Screen & Smart Horizontal-Vertical Shooting",
+    "3-Axis Gimbal Mechanical Stabilization",
+    "ActiveTrack 6.0",
+    "Full-Pixel Fast Focusing",
+    "D-Log M & 10-Bit"
+  ],
+  buyLink: "https://store.dji.com/hk-en/product/osmo-pocket-3",
+  guides: [
+    {
+      label: "Pocket Series Comparison",
+      icon: "https://www-cdn.djiits.com/cms_uploads/shopping_guide_recommended_content/icon/7771/4b6b3e5871221c1b15c65df780d9903c.svg",
+      link: "/hk-en/products/comparison-op"
+    },
+    {
+      label: "DJI Care Refresh",
+      icon: "https://www-cdn.djiits.com/cms_uploads/shopping_guide_recommended_content/icon/7776/653af48cd0678401261c6ab1b89b94d6.png",
+      link: "/hk-en/service/djicare-refresh"
+    },
+    {
+      label: "DJI Mimo",
+      icon: "https://www-cdn.djiits.com/cms_uploads/shopping_guide_recommended_content/icon/7781/7c30c136824819b76bd6546f3d9fd01a.png",
+      link: "/hk-en/mimo"
+    },
+    {
+      label: "LightCut",
+      icon: "https://www-cdn.djiits.com/cms_uploads/shopping_guide_recommended_content/icon/7786/f96d90ac897ccdf56e559e5a4b62517a.svg",
+      link: "/hk-en/lightcut"
+    }
+  ]
+};
+// import HeroCard from '@components/blocks/basic/HeroCard.astro';
+
+const HeroCarddata = {
+  headline: "DJI Store App",
+  subHeadline: "A Must-Have App for DJI Users",
+  description: `· Get official products at launch, tracking your package whenever you want.
+  <br>· Manage your devices conveniently, checking your warranty and Care anytime.
+  <br>· Try Virtual Flight here, experiencing the thrill of flying today.`,
+  buttonLink: "https://store.dji.com/hk-en/pages/app?utm_source=OfficialSite&utm_medium=212&utm_campaign=app_download",
+  buttonText: "Learn more",
+  imageUrl: "https://www-cdn.djiits.com/dps/5d788790cab1e543bd7a0ad30ffe0995.jpg",
+  imageAlt: "DJI App Image",
+  backgroundColor: "black"
+};
+import CommentsSection from '@components/blocks/basic/CommentsSection.astro';
+
+const comments = [
+  "Note: The DJI Mimo app is required for activation when using this product for the first time.",
+  "1. 4K/120fps video recording is only supported in Slow Motion mode. Tested under 25° C (77° F) laboratory conditions, the max recording time of a single continuous video is approximately 22 minutes (approximately 18 minutes in Europe).",
+  "2. Osmo Pocket 3 has a built-in 1300mAh battery. It can be charged to 80% in 16 minutes and 100% in 32 minutes. The data was tested in a laboratory environment with the DJI 65W PD charger (sold separately).",
+  "3. Tested in a 25° C (77° F) laboratory environment with Wi-Fi off and screen off, and should be used for reference only.",
+  "4. Tested in a laboratory environment with a 5V/2A charger, DJI Pocket 2 can be charged to 80% in 48 minutes.",
+  "5. Tested in a laboratory environment, DJI Pocket 2 can continuously record 1080p/24fps video for 140 minutes. This data should be used for reference only.",
+  "6. Accessory sold separately.",
+  "7. Tested in a 25° C (77° F) laboratory environment, the fully charged Battery Handle can increase the operating time by approximately 62% when connected to Osmo Pocket 3 (an additional 103-min operating time at 1080p/24fps). This data should be used for reference only."
+];
+import Carousel from '@components/blocks/basic/Carousel.astro';
+
+const images = [
+  {
+    src: "https://www-cdn.djiits.com/dps/b36b7f888f46c63dc1958177ec00efeb.jpg",
+    alt: "Image 1"
+  },
+  {
+    src: "https://www-cdn.djiits.com/dps/0894030808e7e21bd20fcfe742a09d7b.jpg",
+    alt: "Image 2"
+  },
+  {
+    src: "https://www-cdn.djiits.com/dps/22039c7b06dfe57d815e548a8aa63576.jpg",
+    alt: "Image 3"
+  },
+  {
+    src: "https://www-cdn.djiits.com/dps/817f6657a754491bd8947a9f5ce0fe7e.jpg",
+    alt: "Image 4"
+  },
+  {
+    src: "https://www-cdn.djiits.com/dps/f6a0cccb0be81f73cc0a23c06fe6424d.jpg",
+    alt: "Image 5"
+  }
+];
+import HeroVerticalCards from '@components/blocks/basic/HeroVerticalCards.astro';
+
+const cards = [
+  {
+    heading: "1″ CMOS Primary Wide-Angle Camera",
+    description: "3.2μm Large Pixel Size\n24mm Format Equivalent\n50 MP\nf/1.8 Aperture",
+    backgroundImage: "https://www-cdn.djiits.com/dps/0e86f56877ec6834bc6b7adae0dc7602.jpg"
+  },
+  {
+    heading: "1/1.3″ CMOS Medium Tele Camera",
+    description: "2.4μm Large Pixel Size\n70mm Format Equivalent\n48 MP\nf/2.8 Aperture",
+    backgroundImage: "https://www-cdn.djiits.com/dps/0e86f56877ec6834bc6b7adae0dc7602.jpg"
+  }
+];
+import HeroVerticalPhotographers from '@components/blocks/basic/HeroVerticalPhotographers.astro';
+
+const photographers = [
+  {
+    title: "Wildlife & Nature Photographer",
+    name: "Paul Nicklen",
+    description: "I capture images of endangered megafauna to inspire the protection of fragile ecosystems. It's critical for me to follow high standards while creating stunning photos. With Mavic 3 Pro's tele lenses, I can shoot high-res photos without disturbing wildlife.",
+    backgroundImage: "https://www-cdn.djiits.com/dps/59aad1010104df47c8da14b0a139a96d.jpg"
+  },
+  {
+    title: "SkyPixel Creator",
+    name: "Jingyan",
+    description: "Mavic 3 Pro puts three widely used focal lengths into a compact aircraft to make my work more efficient and creative. The new 70mm lets me shoot unique scenes and delivers stunning image quality and spatial compression along with the 166mm, which supports my visual expression.",
+    backgroundImage: "https://www-cdn.djiits.com/dps/59aad1010104df47c8da14b0a139a96d.jpg"
+  },
+  {
+    title: "Travel & Landscape Photographer",
+    name: "Jason Charles Hill",
+    description: "My work explores off-beat locales on every continent. The triple camera system allows me to tell rich stories and document the wild and unknown. Also, the 28x hybrid zoom of the Mavic 3 Pro helps me capture wildlife from a safe and ethical distance.",
+    backgroundImage: "https://www-cdn.djiits.com/dps/59aad1010104df47c8da14b0a139a96d.jpg"
+  }
+];
+import Mavic3Pro from '@components/blocks/basic/Mavic3Pro.astro';
+// import config from './config.json';
+
+import ImageCarousel from '@components/blocks/basic//ImageCarousel.astro';
+const carouselItems = [
+  {
+    "imageUrl": "https://www-cdn.djiits.com/dps/495dad43c8f53af4cf43f02d41cb42b6.jpg",
+    "stickerUrl": "https://www-cdn.djiits.com/dps/e82787fc0a2dd1b66680824e148857b6.svg",
+    "downloadUrl": "https://terra-1-g.djicdn.com/851d20f7b9f64838a34cd02351370894/261%20sample/tab1/7x-DJI_20230331081001_0135.DNG",
+    "downloadLabel": "Download DNG (17.1 MB)"
+  },
+  {
+    "imageUrl": "https://www-cdn.djiits.com/dps/6dfda5691cc5fbf4916d7b086987ea9b.jpg",
+    "stickerUrl": "https://www-cdn.djiits.com/dps/b7759588d39c368bb7f45ce653342102.svg",
+    "downloadUrl": "https://terra-1-g.djicdn.com/851d20f7b9f64838a34cd02351370894/261%20sample/tab1/3x-DJI_20230331080947_0131.DNG",
+    "downloadLabel": "Download DNG (67.5 MB)"
+  }
+];
+import SpecificationSection from '@components/blocks/basic/Specification.astro';
+import Specificationconfig from '@data/json-files/Specificationconfig.json';
+import ProductSection from '@components/blocks/basic//ProductSection.astro';
+import ProductComparison from '@components/blocks/basic/ProductComparison.astro'
+const ProductSectionConfig = {
+  title: "DJI Mavic 3 Pro (DJI RC)",
+  price: 15359,
+  benefits: [
+    "Free Shipping",
+    "1% DJI Credit Reward",
+    "7-Day Returns"
+  ],
+  sellingPoints: [
+    "4/3 CMOS Hasselblad Camera",
+    "Dual Tele Cameras",
+    "43-Min Max Flight Time",
+    "Omnidirectional Obstacle Sensing",
+    "15km HD Video Transmission"
+  ],
+  galleryImages: [
+    {
+      large: {
+        webp: "https://se-cdn.djiits.com/tpc/uploads/carousel/image/d59de42ffe5da19dc2573d0cadeed38d@ultra.webp",
+        jpg: "https://se-cdn.djiits.com/tpc/uploads/carousel/image/d59de42ffe5da19dc2573d0cadeed38d@ultra.jpg",
+        alt: "DJI Mavic 3 Pro"
+      },
+      small: {
+        webp: "https://se-cdn.djiits.com/tpc/uploads/carousel/image/d59de42ffe5da19dc2573d0cadeed38d@small.webp",
+        jpg: "https://se-cdn.djiits.com/tpc/uploads/carousel/image/d59de42ffe5da19dc2573d0cadeed38d@small.jpg",
+        alt: "DJI Mavic 3 Pro Thumbnail"
+      }
+    },
+    // Add more images...
+  ],
+  variants: [
+    {
+      id: "137691",
+      title: "DJI Mavic 3 Pro (DJI RC)",
+      price: 15359,
+      description: "Includes the DJI RC and standard accessories, making it ready to fly.",
+      image: "//se-cdn.djiits.com/tpc/uploads/spu/cover/9b1bb4e6929cb9c5d0ea22bf33eedffd@small.png"
+    },
+    // Add more variants...
+  ],
+  accessories: [
+    {
+      id: "109851",
+      title: "DJI Mavic 3 Series Intelligent Flight Battery",
+      price: 1229,
+      description: "46 mins of max flight time with DJI Mavic 3, 43 mins of max flight time with DJI Mavic 3 Pro.",
+      image: "//se-cdn.djiits.com/tpc/uploads/spu/cover/a725d93f2ffd9f8cada18c515d384bd0@small.png"
+    },
+    // Add more accessories...
+  ]
+};
+import  Mavic3ProData from '@data/json-files/mar3.json'
+import ProductComparisonData from '@data/json-files/productcompa.json'
+---
+
+<AccessoriesSection accessories={accessoriesData} />
+ 
+<ProductSection config={ProductSectionConfig} />
+<!-- <SpecificationSection {...SpecificationSectionconfig} /> -->
+<ImageCarousel carouselItems={carouselItems} />
+<Mavic3Pro {...Mavic3ProData} />
+
+
+<HeroVerticalPhotographers photographers={photographers} />
+
+<HeroVerticalCards cards={cards} />
+
+<Carousel images={images} />
+
+<CommentsSection comments={comments} />
+
+<!-- <HeroCard {...HeroCarddata} /> -->
+
+<OsmoPocket {...OsmoPocketdata} />
+
+
+<ModelPreview {...modelData} />
+<ProductComparison products={ProductComparisonData.products} specs={ProductComparisonData.specs} tabs={ProductComparisonData.tabs} />
+
+
+<LivestreamSection {...LivestreamSectionconfig} />
+
+<SalePointSection {...SalePointSectionconfig} />
+
+<CreativeToolsSection {...CreativeToolsSectionconfig} />
+
+<EffortlessStorageSection {...EffortlessStorageSectionconfig} />
+
+<FastChargingSection {...FastChargingSectionconfig} />
+
+
+<VideoTextSection {...VideoTextSectionconfig} />
+
+
+<VideoTabs tabs={VideoTabsconfig} />
+
+
+<TextOverlayImageSection {...TextOverlayImageConfig} />
+
+<LefttitlerightdesSection {...lefttitlerightdesSectioconfig} />
+<VideoSection data={VideoSectionData} />

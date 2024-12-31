@@ -1,0 +1,129 @@
+---
+// Import required types
+interface VideoConfig {
+  poster: string;
+  videoSources: { src: string; type: string }[];
+  autoplay?: boolean;
+  controls?: boolean;
+  loop?: boolean;
+}
+
+interface HeroVerticalCardConfig {
+  title?: string;
+  description?: string;
+  video?: VideoConfig;
+  style?: {
+    backgroundColor?: string;
+    borderRadius?: string;
+    minHeight?: string;
+  };
+  link?: string; // Optional, in case the card links somewhere
+}
+
+interface Props {
+  data: HeroVerticalCardConfig;
+}
+
+const { data } = Astro.props as Props;
+---
+
+<div
+  class="hero-vertical-card"
+  style={{
+    backgroundColor: data.style?.backgroundColor || '#fafafa',
+    borderRadius: data.style?.borderRadius || '24px',
+    minHeight: data.style?.minHeight || '600px',
+  }}
+>
+  <div class="hero-card-wrapper">
+    {data.video && (
+      <div class="video-container">
+        <video
+          poster={data.video.poster}
+          autoplay={data.video.autoplay ? true : undefined}
+          controls={data.video.controls ? true : undefined}
+          loop={data.video.loop ? true : undefined}
+        >
+          {data.video.videoSources.map((source) => (
+            <source src={source.src} type={source.type} />
+          ))}
+        </video>
+        <div class="video-controls">
+          <button class="play-button"></button>
+          <button class="pause-button"></button>
+          <button class="replay-button"></button>
+        </div>
+      </div>
+    )}
+    <div class="text-content">
+      {data.title && <h2 class="title">{data.title}</h2>}
+      {data.description && <p class="description">{data.description}</p>}
+    </div>
+  </div>
+</div>
+
+<style>
+.hero-vertical-card {
+  overflow: hidden;
+  position: relative;
+  padding: 16px;
+}
+
+.hero-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.video-container video {
+  width: 100%;
+  border-radius: inherit;
+}
+
+.video-controls {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 8px;
+  visibility: hidden;
+}
+
+.video-container:hover .video-controls {
+  visibility: visible;
+}
+
+.play-button,
+.pause-button,
+.replay-button {
+  width: 32px;
+  height: 32px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.text-content {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.text-content .title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.text-content .description {
+  font-size: 1rem;
+  color: #555;
+}
+</style>

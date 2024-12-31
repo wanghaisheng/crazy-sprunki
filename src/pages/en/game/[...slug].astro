@@ -1,0 +1,55 @@
+---
+// game game Page
+// ------------
+// Description: The game game page.
+
+// Components
+// - Layout
+import GameLayout from '@layouts/IframeGameLayout.astro'
+// import HorizontalAd from '@components/blocks/ads/HorizontalAd.astro'
+// import VerticalAd from '@components/blocks/ads/VerticalAd.astro'
+
+// Data
+import { getCollection } from 'astro:content'
+const { slug } = Astro.params;
+
+if (slug === undefined) {
+	return Astro.redirect("/404");
+}
+const game = await getEntry("blog", slug);
+if (game === undefined) {
+	return Astro.redirect("/404");
+}
+const { Content } = await render(game);
+
+
+---
+
+<GameLayout frontmatter={game.data}>
+
+      
+    <!-- Game section with side ads -->
+    <!-- <div id='game' class="game-section max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> -->
+		<!-- Game container with side ads -->
+		<!-- <div class="grid grid-cols-1 xl:grid-cols-[160px_1fr_160px] gap-4 items-start"> -->
+			<!-- Left ad -->
+			<!-- <div class="hidden xl:block"> -->
+				<!-- <VerticalAd classes="sticky top-4" /> -->
+			<!-- </div> -->
+			
+			<!-- Game frame -->
+			<!-- <div class="flex flex-col gap-4"> -->
+				<!-- <Gameframe link={entry.iframe} /> -->
+  
+				<!-- Horizontal ad under the game -->
+				<!-- <HorizontalAd classes="bg-neutral-50 dark:bg-neutral-900/40 rounded-lg" /> -->
+			<!-- </div> -->
+			
+			<!-- Right ad -->
+			<!-- <div class="hidden xl:block"> -->
+				<!-- <VerticalAd classes="sticky top-4" /> -->
+			<!-- </div> -->
+		<!-- </div> -->
+	<!-- </div>     -->
+	<Content />
+</GameLayout>

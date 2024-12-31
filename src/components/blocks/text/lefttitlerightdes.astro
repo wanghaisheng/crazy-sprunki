@@ -1,0 +1,53 @@
+---
+import Section from '../../../components/ui/Section.astro'
+import Row from '../../../components/ui/Row.astro'
+import Col from '../../../components/ui/Col.astro'
+
+// Props
+type Props = {
+  id?: string; // Section ID
+  leftContent: {
+    title: string; // Title for the left column
+    description: string; // Description for the left column
+  };
+  rightContent: {
+    title: string; // Title for the right column
+    description: string; // Description for the right column
+  };
+  classes?: string; // Additional classes for styling
+};
+
+const { id, leftContent, rightContent, classes = '' } = Astro.props;
+---
+
+<Section id={id} classes={classes}>
+  <Row classes="gap-8">
+    <!-- Left Column -->
+    <Col span="6" classes="self-center">
+      <div>
+        <h3 class="text-2xl font-bold mb-4">{leftContent.title}</h3>
+        <p class="text-lg leading-relaxed">{leftContent.description}</p>
+      </div>
+    </Col>
+
+    <!-- Right Column -->
+    <Col span="6" classes="self-center">
+      <div>
+        <h3 class="text-2xl font-bold mb-4">{rightContent.title}</h3>
+        <p class="text-lg leading-relaxed">{rightContent.description}</p>
+      </div>
+    </Col>
+  </Row>
+</Section>
+
+<style>
+  .text-lg {
+    font-size: 1.125rem;
+  }
+  .leading-relaxed {
+    line-height: 1.75rem;
+  }
+  .gap-8 {
+    gap: 2rem;
+  }
+</style>

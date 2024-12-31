@@ -1,0 +1,164 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import type { ImageComponentLocalImageProps } from "astro:assets";
+import { isImageMetadata, processImage } from '../../utils/imageprocessing';
+
+type Props = {
+  id?: string;
+  onerror?: string;
+  src: ImageMetadata | string;
+  alt: string;
+  width?: number;
+  height?: number;
+  format?: string;
+  title?: string;
+  class?: string;
+  draggable?: "false" | "true";
+  loading?: "eager" | "lazy";
+  decoding?: 'async' | 'sync' | 'auto';
+  placeholder?: 'blur' | 'color' | 'none';
+  blurAmount?: number;
+  transitionDuration?: number;
+  style?: string;
+};
+
+const {
+  id,
+  onerror,
+  src,
+  alt,
+  width,
+  height,
+  format,
+  title,
+  decoding = 'async',
+  transitionDuration = 500,
+  blurAmount = 10,
+  placeholder = 'none',
+  loading = 'lazy',
+  class: className = '',
+  style,
+  draggable
+} = Astro.props;
+
+// Handle the image source
+let imageToUse: ImageMetadata | string = src;
+let finalWidth = width;
+let finalHeight = height;
+
+// If it's a string path and not a URL, process it
+if (typeof src === 'string' && !src.startsWith('http')) {
+  const processed = await processImage(src, { width, height, format: format as any });
+  if (processed?.src) {
+    imageToUse = processed.src;
+    finalWidth = width || processed.width;
+    finalHeight = height || processed.height;
+  }
+}
+
+// Common props for both Image and img
+const commonProps = {
+  id,
+  alt,
+  title,
+  class: className,
+  style,
+  loading,
+  decoding,
+  ...(draggable && { draggable }),
+  ...(finalWidth && { width: finalWidth }),
+  ...(finalHeight && { height: finalHeight }),
+  ...(onerror && { onerror })
+};
+
+// Determine if we should use inferSize
+const shouldInferSize = isImageMetadata(imageToUse) && !finalWidth && !finalHeight;
+
+// Type guard for ImageMetadata
+const isValidImageMetadata = (img: unknown): img is ImageMetadata => {
+  return isImageMetadata(img);
+};
+
+// Prepare image props based on type
+const getImageProps = (img: ImageMetadata | string) => {
+  if (isValidImageMetadata(img)) {
+    return {
+      src: img,
+      ...commonProps,
+      ...(format && { format }),
+      ...(shouldInferSize && { inferSize: true })
+    } satisfies ImageComponentLocalImageProps;
+  }
+  return {
+    src: typeof img === 'string' ? img : img.src,
+    ...commonProps
+  };
+};
+
+// Remote image dimensions detection
+const getRemoteImageDimensions = async (url: string): Promise<{ width: number; height: number } | null> => {
+  if (typeof window === 'undefined') return null;
+  
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      resolve({
+        width: img.naturalWidth,
+        height: img.naturalHeight
+      });
+    };
+    img.onerror = () => {
+      resolve(null);
+    };
+    img.src = url;
+  });
+};
+
+// If it's a remote image and we don't have dimensions, try to get them
+if (typeof imageToUse === 'string' && imageToUse.startsWith('http') && !finalWidth && !finalHeight) {
+  const dimensions = await getRemoteImageDimensions(imageToUse);
+  if (dimensions) {
+    finalWidth = dimensions.width;
+    finalHeight = dimensions.height;
+  }
+}
+---
+
+{
+  isValidImageMetadata(imageToUse) ? (
+    <Image {...(getImageProps(imageToUse) as ImageComponentLocalImageProps)} />
+  ) : (
+    <img {...getImageProps(imageToUse)} />
+  )
+}
+
+<style>
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+</style>
+
+<script>
+  // Client-side dimension inference for remote images
+  document.addEventListener('DOMContentLoaded', () => {
+    const imgs = document.querySelectorAll('img:not([width]):not([height])') as NodeListOf<HTMLImageElement>;
+    
+    imgs.forEach(img => {
+      if (img.complete) {
+        setNaturalDimensions(img);
+      } else {
+        img.addEventListener('load', () => setNaturalDimensions(img));
+      }
+    });
+  });
+
+  function setNaturalDimensions(img: HTMLImageElement) {
+    if (!img.getAttribute('width') && !img.getAttribute('height')) {
+      img.setAttribute('width', String(img.naturalWidth));
+      img.setAttribute('height', String(img.naturalHeight));
+    }
+  }
+</script>

@@ -1,0 +1,14 @@
+---
+const { comments } = Astro.props;
+---
+
+<div data-hydration-on-demand="true" class="section-content" style="content-visibility: visible; contain-intrinsic-size: auto 1px auto 326px;">
+  <section class="style__section-comments-component___bQMLM style__section-comment-dark___2PMSj">
+    <div class="style__container___1pbF3">
+      {comments.map((comment) => (
+        <p class="style__comment-item___1ZFK5">{comment}</p>
+      ))}
+    </div>
+    <div class="style__horizontal-line___1pQNn"></div>
+  </section>
+</div>

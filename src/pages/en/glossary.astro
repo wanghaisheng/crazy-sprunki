@@ -1,0 +1,55 @@
+---
+import Layout from '@layouts/Layout.astro'
+import Hero from '@components/blocks/hero/PageHeader.astro'
+import FAQ from '@components/blocks/FAQ/FaqSticky.astro'
+import TextImage from '@components/blocks/basic/TextImage.astro'
+import CTA from '@components/blocks/CTA/BasicDark.astro'
+import type { ImageMetadata } from 'astro';
+
+// Content
+import FAQData from '@data/json-files/faqData.json'
+import SEOData from '@data/json-files/seoData.json'
+import { formatNumber, formatDate, getImage } from '@utils/helpers';
+
+// Get categories and valueSection data
+const { categories, valueSection } = FAQData;
+
+// Track if we've shown the value section
+let hasShownValueSection = false;
+---
+
+<Layout title={SEOData.faq.title} description={SEOData.faq.description}>
+  <Hero
+    title={SEOData.faq.headertitle}
+    text={SEOData.faq.headertext}
+  />
+
+  {/* Render valueSection before FAQ and only once */}
+  {valueSection && !hasShownValueSection && (
+    <>
+      <TextImage
+        title={valueSection.title}
+        alttext={valueSection.alttext}
+        text={valueSection.text}
+        image={getImage(valueSection.image)}
+        mobileImage={getImage(valueSection.mobileImage)}
+        imagePosition="left"
+        offsetImage
+        classes="bg-neutral-50 dark:bg-neutral-900 lg:!py-64"
+      />
+      {hasShownValueSection = true} {/* Update flag here */}
+    </>
+  )}
+
+  {/* Render FAQs */}
+  {Object.entries(categories).map(([categoryKey, category]) => (
+    <FAQ
+      title={category.title}
+      text={category.text}
+      data={category.questions}
+    />
+  ))}
+
+  {/* CTA Section */}
+  <CTA />
+</Layout>

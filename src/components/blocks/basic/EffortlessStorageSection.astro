@@ -1,0 +1,108 @@
+---
+export interface VideoConfig {
+  videoUrl: string;
+  posterUrl: string;
+}
+
+export interface Props {
+  title: string;
+  description: string;
+  backgroundColor: string;
+  video: VideoConfig;
+}
+
+const { title, description, backgroundColor, video } = Astro.props;
+---
+
+<div class="section-content" style={`background-color: ${backgroundColor};`}>
+  <div class="atom-component">
+    <div class="style__hero-horizontal-wrapper">
+      <div class="style__horizontal-card-list">
+        <div class="style__horizontal-card-col">
+          <div class="style__card-container">
+            <a style="display: contents;">
+              <div class="style__card-wrapper">
+                <div class="style__card-content">
+                  <h3 class="title">{title}</h3>
+                  <p class="description">{description}</p>
+                </div>
+                <div class="style__card-media">
+                  <a target="_self" style="display: contents;">
+                    <div class="video-player-box">
+                      <div class="style__media-video">
+                        <video poster={video.posterUrl} style="border-radius: 16px; overflow: hidden;">
+                          <source type="video/webm" src={video.videoUrl} />
+                          <source type="video/mp4" src={video.videoUrl} />
+                        </video>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-content {
+    padding-top: 150px;
+    padding-bottom: 200px;
+    width: 1200px;
+  }
+
+  .style__hero-horizontal-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .style__horizontal-card-list {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .style__card-container {
+    border-radius: 24px;
+    background-color: rgb(240, 240, 240);
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .style__card-wrapper {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .style__card-content {
+    padding-left: 64px;
+    width: 592px;
+  }
+
+  .title {
+    font-size: 48px;
+    line-height: 56px;
+    color: rgba(0, 0, 0, 0.85);
+  }
+
+  .description {
+    font-size: 24px;
+    line-height: 32px;
+    color: rgba(0, 0, 0, 0.65);
+  }
+
+  .style__card-media {
+    width: calc(100% - 592px);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .style__media-video {
+    border-radius: 16px;
+  }
+</style>

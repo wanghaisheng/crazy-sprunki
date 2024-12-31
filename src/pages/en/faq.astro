@@ -1,0 +1,86 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Hero from '@components/blocks/hero/PageHeader.astro';
+import FAQ from '@components/blocks/FAQ/FaqSticky.astro';
+import TextImage from '@components/blocks/basic/TextImage.astro';
+import CTA from '@components/blocks/CTA/BasicDark.astro';
+import type { ImageMetadata } from 'astro';
+import type { Language } from '@config/siteConfig';
+
+import SEOData from '@data/json-files/seoData.json';
+import { formatNumber, formatDate, getImage } from '@utils/helpers';
+import { getI18nContent } from '@utils/config';
+import { languages, defaultLanguage } from '@config/siteConfig';
+
+export async function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({
+    params: { lang: lang === defaultLanguage ? undefined : lang },
+  }));
+}
+
+// Types
+interface Question {
+  question: string;
+  reply: string;
+  open: boolean;
+}
+
+interface CategoryQA {
+  type:string;
+  title: string;
+  text: string;
+  questions: Question[];
+}
+
+// Get language-specific data
+const { lang = defaultLanguage } = Astro.params;
+const currentLang = lang as Language;
+const i18 = await getI18nContent(currentLang);
+
+const valueSection = i18.faq.sections.valueSection;
+const ctaData = i18.faq.sections.cta;
+const categoryQAData: CategoryQA[] = i18.faq.sections.categoryQA || []; // Typed as an array
+
+console.log('FAQ page current display lang:', currentLang);
+console.log('-- FAQ page categoriesData:', categoryQAData);
+
+// Track if valueSection has rendered
+let hasShownValueSection = false;
+
+---
+<Layout title={SEOData.faq.title} description={SEOData.faq.description}>
+  <Hero
+    title={SEOData.faq.headertitle}
+    text={SEOData.faq.headertext}
+  />
+
+  {/* Render Value Section */}
+  {valueSection && !hasShownValueSection && (
+    <>
+      <TextImage
+        title={valueSection.title || ''}
+        alttext={valueSection.alttext || ''}
+        text={valueSection.text || ''}
+        image={getImage(valueSection.image) || ''}
+        mobileImage={getImage(valueSection.mobileImage) || ''}
+        imagePosition="left"
+        offsetImage
+        classes="bg-neutral-50 dark:bg-neutral-900 lg:!py-64"
+      />
+      {hasShownValueSection = true}
+    </>
+  )}
+
+  {/* Render FAQ Categories */}
+  {categoryQAData.map((category, index) => (
+    <FAQ
+
+      title={category.title || ''}
+      text={category.text || ''}
+      data={category.questions || []}
+    />
+  ))}
+
+  {/* CTA Section */}
+  <CTA {...ctaData} />
+</Layout>

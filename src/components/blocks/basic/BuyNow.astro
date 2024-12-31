@@ -1,0 +1,337 @@
+---
+interface Guide {
+  label: string;
+  icon: string;
+  link: string;
+}
+
+interface Props {
+  productName: string;
+  productImage: string;
+  productDesc: string;
+  price: string;
+  specs: string[];
+  buyLink: string;
+  guides: Guide[];
+  className?: string;
+  gaCategory?: string;
+}
+
+const {
+  productName,
+  productImage,
+  productDesc,
+  price,
+  specs,
+  buyLink,
+  guides,
+  className = '',
+  gaCategory = ''
+} = Astro.props;
+
+const sectionId = 'buy-now-' + Math.random().toString(36).substr(2, 9);
+---
+
+<div 
+  data-hydration-on-demand="true" 
+  class={`section-content ${className}`}
+  data-ga-category={gaCategory}
+  id={sectionId}
+>
+  <section class="buy-now-section">
+    <div class="container">
+      <div class="product-box">
+        <div class="content-card-list">
+          <div class="content-card">
+            {/* Product Name and Logo */}
+            <div class="product-name">
+              <img 
+                src={productImage} 
+                alt={productName}
+                width="200"
+                height="40"
+                loading="lazy"
+              />
+            </div>
+
+            {/* Product Description */}
+            <p class="product-desc">{productDesc}</p>
+
+            {/* Product Image */}
+            <a class="product-cover" href={buyLink} target="_blank" rel="noopener noreferrer">
+              <img 
+                src={productImage} 
+                alt={productName}
+                loading="lazy"
+                width="600"
+                height="400"
+              />
+            </a>
+
+            {/* Specifications List */}
+            <div class="spec-list-wrapper">
+              {specs.map((spec: string) => (
+                <ul class="spec-list">
+                  <li class="spec-item">{spec}</li>
+                </ul>
+              ))}
+            </div>
+
+            {/* Price */}
+            <div class="product-price">
+              <span>From&nbsp;</span>
+              <span>{price}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Buy Button */}
+        <div class="buy-box">
+          <a href={buyLink} target="_blank" rel="noopener noreferrer" class="button-anchor">
+            <button type="button" class="buy-button">Buy Now</button>
+          </a>
+        </div>
+      </div>
+
+      {/* Guide Links */}
+      <ul class="guide-list">
+        {guides.map((guide: Guide) => (
+          <li>
+            <div class="guide-icon">
+              <img 
+                src={guide.icon} 
+                alt={guide.label}
+                loading="lazy"
+                width="48"
+                height="48"
+              />
+            </div>
+            <label>{guide.label}</label>
+            <a 
+              href={guide.link} 
+              target="_self" 
+              class="learn-more-link"
+            >
+              <span>Learn More</span>
+              <span class="arrow">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</div>
+
+<style>
+  .buy-now-section {
+    background-color: var(--color-background, #ffffff);
+    padding: 4rem 0;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .product-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .content-card {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .product-name img {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  .product-desc {
+    font-size: 1.125rem;
+    line-height: 1.5;
+    color: var(--color-text, #333);
+    margin-bottom: 2rem;
+  }
+
+  .product-cover {
+    display: block;
+    margin-bottom: 2rem;
+  }
+
+  .product-cover img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .spec-list-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .spec-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .spec-item {
+    font-size: 1rem;
+    color: var(--color-text-secondary, #666);
+    padding: 0.5rem 1rem;
+    background: var(--color-background-secondary, #f5f5f5);
+    border-radius: 4px;
+  }
+
+  .product-price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text, #333);
+    margin-bottom: 2rem;
+  }
+
+  .buy-box {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .buy-button {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: white;
+    background: var(--color-primary, #000);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .buy-button:hover {
+    background: var(--color-primary-dark, #333);
+  }
+
+  .guide-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .guide-list li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .guide-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+  }
+
+  .guide-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text, #333);
+    margin-bottom: 0.5rem;
+  }
+
+  .learn-more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-primary, #000);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.3s ease;
+  }
+
+  .learn-more-link:hover {
+    color: var(--color-primary-dark, #333);
+  }
+
+  .arrow {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+  }
+
+  .learn-more-link:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 768px) {
+    .buy-now-section {
+      padding: 2rem 0;
+    }
+
+    .product-desc {
+      font-size: 1rem;
+    }
+
+    .spec-list-wrapper {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .guide-list {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>
+
+<script define:vars={{ sectionId }}>
+document.addEventListener('DOMContentLoaded', () => {
+  const section = document.getElementById(sectionId);
+  if (!section) return;
+
+  // Add intersection observer for animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  // Observe elements for animation
+  const animatedElements = section.querySelectorAll('.content-card, .guide-list li');
+  animatedElements.forEach(element => observer.observe(element));
+
+  // Add click tracking if GA is available
+  const buyButton = section.querySelector('.buy-button');
+  if (buyButton && window.gtag) {
+    buyButton.addEventListener('click', () => {
+      gtag('event', 'click', {
+        event_category: section.dataset.gaCategory,
+        event_label: 'Buy Now Button'
+      });
+    });
+  }
+});
+</script>

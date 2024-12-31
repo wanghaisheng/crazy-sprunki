@@ -1,0 +1,137 @@
+---
+const { modelUrl, arModelUrl, title, description, arDescription, arQrCodeUrl } = Astro.props;
+let activeTab = '3D'; // Default to 3D tab
+---
+
+<section class="section-content">
+  <div class="style__wm161-model-container">
+    <div class="style__model-wrapper">
+      <!-- Title and Description -->
+      <div class="style__model-title">
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </div>
+
+      <!-- Tab Navigation -->
+      <div class="style__model-tabs">
+        <div class={`tab ${activeTab === '3D' ? 'active' : ''}`} onclick={() => activeTab = '3D'}>3D</div>
+        <div class={`tab ${activeTab === 'AR' ? 'active' : ''}`} onclick={() => activeTab = 'AR'}>AR</div>
+      </div>
+
+      <!-- 3D Model Tab -->
+      {activeTab === '3D' && (
+        <div class="style__model-content">
+          <model-viewer
+            src={modelUrl}
+            exposure="1"
+            environment-image="https://www-cdn.djiits.com/reactor/assets/_next/static/3d/d7822b43-e2ec-4cee-a000-cd60249bbb4d.hdr"
+            shadow-intensity="1"
+            camera-controls="true"
+            interaction-policy="allow-when-focused"
+            camera-orbit="-60deg 90deg 100%"
+            min-camera-orbit="auto auto 4m"
+            max-camera-orbit="auto auto 4m"
+            max-field-of-view="10deg"
+            loading="eager"
+            reveal="manual"
+            ar-status="not-presenting"
+          >
+            <div slot="progress-bar"></div>
+          </model-viewer>
+        </div>
+      )}
+
+      <!-- AR Tab -->
+      {activeTab === 'AR' && (
+        <div class="style__model-ar-content">
+          <h3>{arDescription}</h3>
+          <p>Use your iOS camera to scan the QR code for an AR preview of Osmo Pocket 3.</p>
+          <div class="ar-qr-codes">
+            <img src={arQrCodeUrl} alt="QR code for AR" class="style__model-qc-code" />
+          </div>
+
+          <!-- AR Model with QR code or AR button -->
+          <model-viewer
+            src={arModelUrl}
+            exposure="1"
+            environment-image="https://www-cdn.djiits.com/reactor/assets/_next/static/3d/d7822b43-e2ec-4cee-a000-cd60249bbb4d.hdr"
+            shadow-intensity="1"
+            camera-controls="true"
+            interaction-policy="allow-when-focused"
+            camera-orbit="-60deg 90deg 100%"
+            min-camera-orbit="auto auto 4m"
+            max-camera-orbit="auto auto 4m"
+            max-field-of-view="10deg"
+            loading="eager"
+            reveal="manual"
+            ar
+          >
+            <div slot="progress-bar"></div>
+          </model-viewer>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<!-- Styles for Tabs and Content -->
+<style>
+  .section-content {
+    margin: 20px;
+    background-color: white;
+  }
+
+  .style__wm161-model-container {
+    background-color: white;
+  }
+
+  .style__model-wrapper {
+    padding: 20px;
+  }
+
+  .style__model-title h3 {
+    font-size: 24px;
+  }
+
+  .style__model-title p {
+    font-size: 16px;
+  }
+
+  .style__model-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 18px;
+    background-color: lightgray;
+    border: 1px solid #ccc;
+    margin-right: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .tab:hover {
+    background-color: #ddd;
+  }
+
+  .tab.active {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+  }
+
+  .style__model-content, .style__model-ar-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+  }
+
+  .ar-qr-codes img {
+    max-width: 100px;
+    margin: 10px 0;
+  }
+</style>

@@ -1,0 +1,27 @@
+--- 
+const { id, gaCategory, backgroundColor, text, fontWeight, fontSize, lineHeight, textColor, paddingTop, paddingBottom, maxWidth } = Astro.props;
+---
+
+<div class="section-content" id={id} data-ga-category={gaCategory}>
+  <div class="atom-component" role="button" tabindex="0">
+    <div class="atom-design-v1" style={`background-color: ${backgroundColor}; background-position: center; background-size: cover;`}>
+      <div class="style__hero-vertical-wrapper___2mUEj" style={`padding-top: ${paddingTop}; padding-bottom: ${paddingBottom};`}>
+        <div class="style__vertical-card-list___LceQJ aos-init aos-animate" data-aos="fade-in" data-aos-once="true">
+          <div class="style__vertical-card-col___3agtC">
+            <div class="atom-design-v1">
+              <div class="style__card-wrapper___3yqfZ style__vertical-top-align___3w7Dp style__horizontal-left-align___3tk_z">
+                <div class="style__card-container___KPQkl style__size-xxxxxl___3-JTI">
+                  <div class="style__text-content-container___1aLKY" style={`padding-bottom: 8px;`}>
+                    <p class="text-ms-24 style__description___2V1Q7" style={`font-weight: ${fontWeight}; font-size: ${fontSize}; line-height: ${lineHeight}; color: ${textColor}; max-width: ${maxWidth};`}>
+                      {text}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

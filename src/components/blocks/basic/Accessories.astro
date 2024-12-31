@@ -1,0 +1,344 @@
+---
+// File: src/components/blocks/basic/Accessories.astro
+
+interface AccessoryVideo {
+  videoLink: string;
+  videoPoster: string;
+}
+
+interface Accessory {
+  id?: string;
+  title: string;
+  description: string;
+  image: string;
+  price?: string;
+  video?: AccessoryVideo;
+  buyLink?: string;
+  isNew?: boolean;
+}
+
+interface Props {
+  accessories: Accessory[];
+  defaultSelected?: number;
+}
+
+const { 
+  accessories, 
+  defaultSelected = 0
+} = Astro.props;
+---
+
+<section class="accessories-section">
+  <div class="accessories-container">
+    <!-- Left Section - Detail View -->
+    <div class="detail-section" id="detail-section">
+      <!-- Content will be dynamically updated via JavaScript -->
+    </div>
+
+    <!-- Right Section - Accessories Grid -->
+    <div class="accessories-grid">
+      {accessories.map((accessory, index) => (
+        <button
+          class="accessory-card"
+          data-accessory-index={index}
+          data-is-selected={index === defaultSelected}
+        >
+          <div class="accessory-card-content">
+            {accessory.isNew && <span class="new-badge">New</span>}
+            <img 
+              src={accessory.image} 
+              alt={accessory.title}
+              loading="lazy"
+              class="accessory-image" 
+            />
+            <h3 class="accessory-title">{accessory.title}</h3>
+            {accessory.price && (
+              <p class="accessory-price">{accessory.price}</p>
+            )}
+          </div>
+        </button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ accessories, defaultSelected }}>
+  // Helper function to update detail section
+  function updateDetailSection(accessory) {
+    const detailSection = document.getElementById('detail-section');
+    if (!detailSection) return;
+
+    const template = `
+      <div class="detail-content">
+        <h2 class="detail-title">${accessory.title}</h2>
+        <p class="detail-description">${accessory.description}</p>
+        
+        <div class="detail-media">
+          <img 
+            src="${accessory.image}" 
+            alt="${accessory.title}"
+            class="detail-image" 
+          />
+          
+          ${accessory.video ? `
+            <div class="video-preview">
+              <a href="${accessory.video.videoLink}" class="video-link">
+                <img 
+                  src="${accessory.video.videoPoster}" 
+                  alt="Video preview"
+                  class="video-poster" 
+                />
+                <div class="play-button">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+              </a>
+            </div>
+          ` : ''}
+        </div>
+
+        ${accessory.buyLink ? `
+          <a href="${accessory.buyLink}" class="buy-button" target="_blank">
+            Buy Now
+          </a>
+        ` : ''}
+      </div>
+    `;
+
+    detailSection.innerHTML = template;
+  }
+
+  // Initialize with default accessory
+  updateDetailSection(accessories[defaultSelected]);
+
+  // Add click handlers to accessory cards
+  document.querySelectorAll('.accessory-card').forEach(card => {
+    card.addEventListener('click', () => {
+      // Remove selected state from all cards
+      document.querySelectorAll('.accessory-card').forEach(c => {
+        c.dataset.isSelected = 'false';
+      });
+
+      // Set selected state on clicked card
+      card.dataset.isSelected = 'true';
+
+      // Update detail view using index
+      const accessoryIndex = parseInt(card.dataset.accessoryIndex);
+      if (accessories[accessoryIndex]) {
+        updateDetailSection(accessories[accessoryIndex]);
+      }
+    });
+  });
+</script>
+
+<style>
+  .accessories-section {
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .accessories-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  /* Detail Section Styles */
+  .detail-section {
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+  }
+
+  .detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .detail-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .detail-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+  }
+
+  .detail-media {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .detail-image,
+  .video-poster {
+    width: 100%;
+    border-radius: 12px;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+
+  /* Accessories Grid Styles */
+  .accessories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .accessory-card {
+    position: relative;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: none;
+    text-align: left;
+    width: 100%;
+  }
+
+  .accessory-card[data-is-selected="true"] {
+    border-color: #0066cc;
+    box-shadow: 0 0 0 2px #0066cc20;
+  }
+
+  .accessory-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .accessory-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .new-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #ff3b30;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .accessory-image {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+  }
+
+  .accessory-title {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .accessory-price {
+    font-weight: bold;
+    color: #0066cc;
+    margin: 0;
+  }
+
+  .buy-button {
+    display: inline-block;
+    background: #0066cc;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    text-align: center;
+  }
+
+  .buy-button:hover {
+    background: #0052a3;
+  }
+
+  /* Video Preview Styles */
+  .video-preview {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .video-link {
+    display: block;
+    position: relative;
+  }
+
+  .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 64px;
+    height: 64px;
+    background: rgba(0,0,0,0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .video-link:hover .play-button {
+    background: rgba(0,0,0,0.9);
+  }
+
+  .play-button svg {
+    width: 32px;
+    height: 32px;
+    fill: white;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .accessories-container {
+      grid-template-columns: 1fr;
+    }
+
+    .detail-section {
+      position: static;
+      order: -1;
+    }
+
+    .accessories-section {
+      padding: 3rem 1.5rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .accessories-section {
+      padding: 2rem 1rem;
+    }
+
+    .accessories-grid {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+
+    .detail-title {
+      font-size: 1.5rem;
+    }
+
+    .detail-description {
+      font-size: 1rem;
+    }
+
+    .buy-button {
+      padding: 0.875rem 1.5rem;
+      font-size: 0.875rem;
+    }
+  }
+</style>

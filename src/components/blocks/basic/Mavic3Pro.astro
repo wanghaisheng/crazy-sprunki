@@ -1,0 +1,56 @@
+---
+import type { Mavic3ProData } from '../../../types/basic';
+
+interface Props {
+  title: string;
+  description: string;
+  cameraSpecs: Mavic3ProData;
+}
+const { title, description, cameraSpecs } = Astro.props;
+---
+
+<div class="section-content" data-hydration-on-demand="true" data-ga-category="hk-en/mavic-3-pro_44083">
+  <section class="style__banner___3GU3j" style="height: 1523px;">
+    <div class="style__sticky___3ThWK">
+      <div class="style__sticky-wrapper___3yU69">
+        <div class="style__frame-wrapper___QWr92">
+          <div class="style__frame-container___3KU0U" style="z-index: 0;">
+            <canvas width="1920" height="1080" style="opacity: 1;"></canvas>
+            <div class="style__backup-frames___1-Pfn" style="transition: none; opacity: 0;">
+              {cameraSpecs.backgroundImages.map((image, index) => (
+                <div class={`bg-cover ${index === 0 ? 'style__show___HkbVf' : ''}`} style={`background-image: url(${image});`} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="style__desc-text___1yKdX">
+      <p style="font-size: 24px; line-height: 32px; font-weight: 450; letter-spacing: -0.03em; color: white;">
+        {description}
+      </p>
+    </div>
+    <div class="style__frame-text-wrapper___33gS-">
+      {cameraSpecs.items.map((camera, index) => (
+        <div class="style__line-text-box___2lKKl" style={index % 2 === 0 ? 'left: 177.125px;' : 'right: 177.125px;'}>
+          <p style={index % 2 === 0 ? 'text-align: left;' : 'text-align: right;'}>
+            <div class="style__line-text-title___3heSp" style="font-size: 32px; line-height: 40px; font-weight: 600; letter-spacing: -0.03em; color: transparent; background-image: linear-gradient(90deg, rgb(217, 94, 0), rgb(255, 178, 110), rgb(217, 94, 0)); background-clip: text; width: 300px;">
+              {camera.title}
+            </div>
+            <div class="style__line___1h1bo" style="background-color: rgba(255, 255, 255, 0.65); width: 472.33px;"></div>
+            <div class="style__line-text-desc___10dbc" style="font-size: 16px; line-height: 24px; font-weight: 400; letter-spacing: -0.02em; color: rgba(255, 255, 255, 0.65); width: 300px;">
+              {camera.specs}
+            </div>
+          </p>
+        </div>
+      ))}
+    </div>
+    <div class="style__title-text___2BqSS" style="width: 1417px; height: 262px; pointer-events: none;">
+      <div class="style__title-text-content___1OCu_" style="opacity: 0; transform: scale(3) translateZ(0px);">
+        <h2 style="font-size: 72px; line-height: 80px; font-weight: 600; letter-spacing: -0.03em; color: transparent; background-image: linear-gradient(135deg, rgb(84, 84, 88), white, rgb(84, 84, 88)); background-clip: text;">
+          {title}
+        </h2>
+      </div>
+    </div>
+  </section>
+</div>

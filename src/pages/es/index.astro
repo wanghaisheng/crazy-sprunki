@@ -1,0 +1,10 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+// defaultLocale is "es"
+const aboutURL = getRelativeLocaleUrl("es", "about");
+---
+
+<a href="/get-started/">¡Vamos!</a>
+<a href={getRelativeLocaleUrl('es', 'blog')}>Blog</a>
+<a href={aboutURL}>Acerca</a>

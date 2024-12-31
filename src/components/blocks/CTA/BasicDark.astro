@@ -6,9 +6,12 @@ import CTA from '../../ui/CTA.astro';
 import Button from '../../ui/Button.astro';
 import ChipNotification from '../../ui/ChipNotification.astro';
 import { Image } from 'astro:assets';
+import OptimizedImage  from '../../ui/OptimizedImage.astro';
+
 import Highlight from '../../ui/Highlight.astro';
 import type { ImageMetadata } from 'astro';
 import { getImage } from '../../../utils/helpers';
+import { processImage } from '../../../utils/imageprocessing';
 
 // Define interfaces
 interface ButtonData {
@@ -60,7 +63,12 @@ const {
 } = badge || {};
 
 // Get images
-const bgImage = getImage(bg);
+const bgImage = await processImage(bg);
+if (bgImage){
+
+  console.log('cta bg path',bg,bgImage)
+
+}
 const badgeImage = badgePath ? getImage(badgePath) : null;
 
 // Check if badge data is complete
@@ -79,7 +87,7 @@ const hasBadge = badge && badgeText && badgeAlt && badgeImage;
       >
         {hasBadge && (
           <ChipNotification radius="rounded-full" classes="mb-6 box">
-            <Image
+            <OptimizedImage
               src={badgeImage.src}
               alt={badgeAlt}
               width={48}

@@ -1,0 +1,23 @@
+{
+    "carouselItems": [
+      {
+        "imageUrl": "https://www-cdn.djiits.com/dps/495dad43c8f53af4cf43f02d41cb42b6.jpg",
+        "stickerUrl": "https://www-cdn.djiits.com/dps/e82787fc0a2dd1b66680824e148857b6.svg",
+        "downloadUrl": "https://terra-1-g.djicdn.com/851d20f7b9f64838a34cd02351370894/261%20sample/tab1/7x-DJI_20230331081001_0135.DNG",
+        "downloadLabel": "Download DNG (17.1 MB)"
+      },
+      {
+        "imageUrl": "https://www-cdn.djiits.com/dps/6dfda5691cc5fbf4916d7b086987ea9b.jpg",
+        "stickerUrl": "https://www-cdn.djiits.com/dps/b7759588d39c368bb7f45ce653342102.svg",
+        "downloadUrl": "https://terra-1-g.djicdn.com/851d20f7b9f64838a34cd02351370894/261%20sample/tab1/3x-DJI_20230331080947_0131.DNG",
+        "downloadLabel": "Download DNG (67.5 MB)"
+      },
+      {
+        "imageUrl": "https://www-cdn.djiits.com/dps/43bf56f32641bd5b3573afe8909ea0c9.jpg",
+        "stickerUrl": "https://www-cdn.djiits.com/dps/a6b9c146ccfa719b3f169163b7891d5f.svg",
+        "downloadUrl": "https://terra-1-g.djicdn.com/851d20f7b9f64838a34cd02351370894/261%20sample/tab1/1x-DJI_20230331081029_0140.DNG",
+        "downloadLabel": "Download DNG (27.9 MB)"
+      }
+    ]
+  }
+  

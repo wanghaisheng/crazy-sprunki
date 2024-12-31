@@ -58,7 +58,7 @@ imageinhero
 const processedAvatars = proof.avatars.map((avatar:UserData) => ({
 	...avatar,
 	image: {
-		src:getImage(avatar.image).src, // Preprocess image using getImage function
+		src:avatar.image, // Preprocess image using getImage function
 		alt:avatar.alt}
 	}));
 	// console.log('1111',proof.avatars)

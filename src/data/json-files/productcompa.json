@@ -1,0 +1,59 @@
+{
+    "tabs": [
+      "3D",
+      "AR"
+    ],
+    "products": [
+      {
+        "name": "Osmo Pocket 3",
+        "tag": "New",
+        "price": "HKD $3,799",
+        "image": "https://www-cdn.djiits.com/cms/uploads/8c6ec9b0dc4e170120dfd4ebf9f0ffd6.png",
+        "link": "https://store.dji.com/hk-en/product/osmo-pocket-3",
+        "learnMoreLink": "https://www.dji.com/hk-en/osmo-pocket-3"
+      },
+      {
+        "name": "DJI Pocket 2",
+        "tag": "",
+        "price": "HKD $2,149",
+        "image": "https://www-cdn.djiits.com/cms/uploads/99319cc99a9fa82d519a48b975b4a4f9.png",
+        "link": "https://store.dji.com/hk-en/product/pocket-2",
+        "learnMoreLink": "https://www.dji.com/hk-en/pocket-2"
+      },
+      {
+        "name": "Osmo Pocket",
+        "tag": "",
+        "price": "Not in stock",
+        "image": "https://www-cdn.djiits.com/cms/uploads/023aea0d80a5031ca6f356e068695644.png",
+        "link": "https://www.dji.com/hk-en/osmo-pocket",
+        "learnMoreLink": "https://www.dji.com/hk-en/osmo-pocket"
+      }
+    ],
+    "specs": [
+      [
+        {
+          "name": "1-inch CMOS",
+          "description": "Image Sensor",
+          "icon": "https://www-cdn.djiits.com/dps/b3aea791458b75360f480d1b91ddea7a.svg"
+        },
+        {
+          "name": "1/1.7-inch CMOS",
+          "description": "Image Sensor",
+          "icon": "https://www-cdn.djiits.com/dps/93f2dbfdaa9649a0566ad0639bb785f0.svg"
+        }
+      ],
+      [
+        {
+          "name": "Full-Pixel PDAF",
+          "description": "Focusing",
+          "icon": "https://www-cdn.djiits.com/dps/2f81820901bc670feebbac94e9debe8b.svg"
+        },
+        {
+          "name": "Hybrid Focusing",
+          "description": "Focusing",
+          "icon": "https://www-cdn.djiits.com/dps/b04a38a974348c586ae5614bb0d59033.svg"
+        }
+      ]
+    ]
+  }
+  

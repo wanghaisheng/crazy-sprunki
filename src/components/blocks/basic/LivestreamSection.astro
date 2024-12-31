@@ -1,0 +1,91 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  imageUrl: string;
+}
+
+const { title, description, imageUrl } = Astro.props;
+---
+
+<div class="section-content">
+  <section class="style__section-sale-point">
+    <div class="background__bg-wrapper">
+      <div style="padding: 64px 0px 0px; background-color: black;">
+        <div class="style__layout-wrapper">
+          <div class="style__layout-content">
+            <div class="background__bg-wrapper">
+              <div class="background__bg-image" style={`border-radius: 24px; background-image: url(${imageUrl});`}>
+                <span style="display: none;"></span>
+                <a style="display: contents;">
+                  <div class="style__card-wrapper" style="padding: 24px 0px 0px 24px; min-height: 400px;">
+                    <div class="style__card-content">
+                      <h3>{title}</h3>
+                    </div>
+                    <div class="style__card-content" style="padding-top: 8px;">
+                      <p>{description}</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .section-content {
+    width: 1200px;
+  }
+
+  .style__section-sale-point {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .background__bg-wrapper {
+    overflow: hidden;
+    border-radius: 24px;
+  }
+
+  .background__bg-image {
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+  }
+
+  .style__link-button___1pM2o {
+    width: 100%;
+    display: block;
+  }
+
+  .style__card-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+  }
+
+  .style__card-content {
+    color: white;
+  }
+
+  h3 {
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: rgba(255, 255, 255, 0.65);
+  }
+</style>

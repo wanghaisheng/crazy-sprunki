@@ -1,0 +1,27 @@
+{
+    "title": "Unrivaled Tri-Camera Flagship Imaging",
+    "description": "One camera drone, three lenses, and infinite imagination. Mavic 3 Pro, with the triple-camera system's multiple focal lengths, can achieve an even richer camera language and fully express creativity with superior multi-scenario capabilities. You can tap the display to switch between various focal lengths and easily incorporate distinct composition styles for different scenarios. Turn your inspiration into ingenuity with the improved efficiency of tri-camera aerial photography.",
+    "cameraSpecs": {
+      "backgroundImages": [
+        "https://www-cdn.djiits.com/pre/reactor/assets/uploads/p/1f2bbc69-67d2-40cd-95ea-532e58afc243/0.jpg",
+        "https://www-cdn.djiits.com/pre/reactor/assets/uploads/p/1f2bbc69-67d2-40cd-95ea-532e58afc243/300.jpg",
+        "https://www-cdn.djiits.com/pre/reactor/assets/uploads/p/1f2bbc69-67d2-40cd-95ea-532e58afc243/375.jpg",
+        "https://www-cdn.djiits.com/pre/reactor/assets/uploads/p/1f2bbc69-67d2-40cd-95ea-532e58afc243/450.jpg"
+      ],
+      "items": [
+        {
+          "title": "4/3 CMOS<br>Hasselblad Camera",
+          "specs": "24mm eq.<br>f/2.8-f/11<br>20 MP"
+        },
+        {
+          "title": "1/1.3″ CMOS<br>Medium Tele Camera",
+          "specs": "70mm eq.<br>3x Optical Zoom<br>f/2.8<br>48 MP"
+        },
+        {
+          "title": "1/2″ CMOS<br>Tele Camera",
+          "specs": "166mm eq.<br>7x Optical Zoom<br>28x Hybrid Zoom<br>f/3.4<br>12 MP"
+        }
+      ]
+    }
+  }
+  

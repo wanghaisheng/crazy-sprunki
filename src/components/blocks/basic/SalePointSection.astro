@@ -1,0 +1,123 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  videoSrcWebM: string;
+  videoSrcMP4: string;
+  buttonText: string;
+}
+
+const { title, description, videoSrcWebM, videoSrcMP4, buttonText } = Astro.props;
+---
+
+<div class="section-content">
+  <section class="style__section-sale-point">
+    <div class="background__bg-wrapper">
+      <div style="padding: 64px 0px 0px; background-color: black;">
+        <div class="style__layout-wrapper">
+          <div class="style__layout-content">
+            <div class="background__bg-wrapper" style="border-radius: 40px;">
+              <div class="background__bg-video-wrapper">
+                <div class="video-player-box">
+                  <video class="bgvideo" autoplay style="opacity: 0.99;">
+                    <source type="video/webm" src={videoSrcWebM} />
+                    <source type="video/mp4" src={videoSrcMP4} />
+                  </video>
+                </div>
+              </div>
+              <a style="display: contents;">
+                <div class="atom-design-v1" style="width: 100%;">
+                  <a class="style__link-button___1pM2o" href="javascript:;" tabindex="0">
+                    <div class="style__card-wrapper">
+                      <div class="style__video-player-button-position">
+                        <div class="atom-design-v1" style="width: 100%;">
+                          <a class="style__link-button___1pM2o" href="javascript:;" tabindex="0">
+                            <button type="button" class="style__dji-btn">
+                              <div class="style__video-player-button-container">
+                                <span class="style__video-btn-text">{buttonText}</span>
+                              </div>
+                            </button>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="style__card-content___2Xnq1" style="margin-top: 0px;">
+                        <h4>{title}</h4>
+                      </div>
+                      <div class="style__card-content___2Xnq1" style="padding-top: 8px;">
+                        <p>{description}</p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .section-content {
+    width: 1200px;
+  }
+
+  .style__section-sale-point {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .background__bg-wrapper {
+    border-radius: 40px;
+    overflow: hidden;
+  }
+
+  .video-player-box {
+    width: 100%;
+    height: 100%;
+  }
+
+  video.bgvideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .style__link-button___1pM2o {
+    width: 100%;
+    display: block;
+  }
+
+  .style__dji-btn {
+    border-radius: 60px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .style__video-player-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .style__video-btn-text {
+    font-size: 18px;
+    color: #333;
+  }
+
+  .style__card-content___2Xnq1 h4 {
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: white;
+  }
+
+  .style__card-content___2Xnq1 p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+</style>

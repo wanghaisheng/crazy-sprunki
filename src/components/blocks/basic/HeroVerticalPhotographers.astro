@@ -1,0 +1,39 @@
+---
+const { photographers } = Astro.props;
+---
+
+<div data-hydration-on-demand="true" class="section-content">
+  <div class="atom-component" role="button" tabindex="0" style="outline: none;">
+    <div class="atom-design-v1 style__hero-vertical-component___2JEHR" style="background-color: black; background-position: center center; background-size: cover; background-repeat: no-repeat; background-attachment: scroll;">
+      <span style="display: none;"></span>
+      <div class="style__hero-vertical-wrapper___2mUEj" style="min-height: 600px; padding-top: 0px; padding-bottom: 0px; width: 1200px;">
+        <div data-aos="fade-in" data-aos-once="true" class="style__vertical-card-list___LceQJ style__vertical-top-align___3JPlu aos-init aos-animate">
+          {photographers.map((photographer, index) => (
+            <div class="style__vertical-card-col___3agtC" style={index === 0 ? 'margin-left: 0px;' : 'margin-left: 16px;'}>
+              <div class="atom-design-v1 style__hero-vertical-card___2B64y" style="border-radius: 8px; overflow: hidden;">
+                <span style="display: none;"></span>
+                <div style="display: contents; cursor: initial;">
+                  <div role="button" tabindex="0" class="style__card-wrapper___3yqfZ style__vertical-top-align___3w7Dp style__horizontal-left-align___3tk_z" style="padding: 96px 32px 0px 0px; outline: none;">
+                    <div class="style__card-container___KPQkl style__size-xl___30LZE">
+                      <div class="style__text-content-container___1aLKY" style="padding-top: 120px; cursor: initial;">
+                        <h3 data-aos="fade-in" data-aos-once="true" class="text-ms-16 style__eyebrow-text___1gRhT style__eyebrow___3m_hp aos-init aos-animate" style="font-size: 16px; color: rgba(255, 255, 255, 0.65); max-width: 693px;">
+                          {photographer.title}
+                        </h3>
+                        <h4 data-aos="fade-in" data-aos-once="true" class="style__headline___1ripS style__headline-text___1tW5r aos-init aos-animate" style="color: white; max-width: 693px;">
+                          {photographer.name}
+                        </h4>
+                        <p data-aos="fade-in" data-aos-once="true" class="style__description___2V1Q7 aos-init aos-animate" style="color: rgba(255, 255, 255, 0.65); max-width: 693px;">
+                          {photographer.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

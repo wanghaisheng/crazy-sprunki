@@ -1,0 +1,27 @@
+{
+    "style": {
+      "backgroundColor": "rgb(250, 250, 250)",
+      "minHeight": "600px",
+      "borderRadius": "24px"
+    },
+    "video": {
+      "poster": "https://www-cdn.djiits.com/dps/7227db83ec8473dc5bf7fc735293956b.jpg",
+      "videoSources": [
+        {
+          "src": "https://www-cdn.djiits.com/reactor/assets/_next/static/videos/596fe771-5758-4238-994b-b8995abd49b2.webm",
+          "type": "video/webm"
+        },
+        {
+          "src": "https://www-cdn.djiits.com/reactor/assets/_next/static/videos/cd6046cb-17be-408d-8003-9d2e3ec20921.mp4",
+          "type": "video/mp4"
+        }
+      ],
+      "autoplay": false,
+      "controls": false,
+      "loop": false
+    },
+    "title": "",
+    "description": "",
+    "link": ""
+  }
+  

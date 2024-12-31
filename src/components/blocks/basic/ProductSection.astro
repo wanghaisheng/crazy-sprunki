@@ -1,0 +1,212 @@
+---
+import type { ProductConfig } from '../../../utils/product';
+
+interface Props {
+  config: ProductConfig;
+}
+
+const { config } = Astro.props;
+---
+
+<section class="container product-section" data-test-locator="sectionProductContainer" id="product-container">
+  <div>
+    <article class="product-container">
+      <div class="slider-container">
+        <section class="gallery">
+          <div class="gallery-content">
+            <div class="media-box">
+              <!-- Gallery Carousel -->
+              <section class="carousel-preview">
+                <div class="carousel">
+                  {config.galleryImages.map((image, index) => (
+                    <div class={`slide ${index === 0 ? 'active' : ''}`}>
+                      <picture>
+                        <source srcset={image.large.webp} type="image/webp">
+                        <img 
+                          loading={index === 0 ? "eager" : "lazy"}
+                          src={image.large.jpg} 
+                          alt={image.large.alt}
+                          class="progressive"
+                        />
+                      </picture>
+                    </div>
+                  ))}
+                </div>
+                
+                <!-- Thumbnail Navigation -->
+                <ul class="thumbnail-nav">
+                  {config.galleryImages.map((image, index) => (
+                    <li class={index === 0 ? 'active' : ''}>
+                      <picture>
+                        <source srcset={image.small.webp} type="image/webp">
+                        <img 
+                          src={image.small.jpg} 
+                          alt={`thumbnail-${index + 1}`}
+                        />
+                      </picture>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="info-container">
+        <section class="info-section">
+          <h1 class="product-title">{config.title}</h1>
+          
+          <div class="price-wrapper">
+            <div class="price">HKD ${config.price}</div>
+          </div>
+
+          <!-- Benefits -->
+          <div class="benefits-block">
+            <div class="benefits-item">
+              <ul>
+                {config.benefits.map(benefit => (
+                  <li>{benefit}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Variants -->
+          <section class="variants-section">
+            <h3>Select Option</h3>
+            <ul class="variants-list">
+              {config.variants.map(variant => (
+                <li>
+                  <label class="variant-item">
+                    <input type="radio" name="variant" value={variant.id}>
+                    <div class="variant-content">
+                      {variant.isBestseller && <span class="bestseller-flag">Bestseller</span>}
+                      <img src={variant.image} alt={variant.title}>
+                      <div class="variant-details">
+                        <h4>{variant.title}</h4>
+                        <div class="price">HKD ${variant.price}</div>
+                        <p>{variant.description}</p>
+                      </div>
+                    </div>
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <!-- Accessories -->
+          <section class="accessories-section">
+            <h3>Don't Miss Top Accessories</h3>
+            <ul class="accessories-list">
+              {config.accessories.map(accessory => (
+                <li>
+                  <label class="accessory-item">
+                    <input type="checkbox" name="accessories" value={accessory.id}>
+                    <div class="accessory-content">
+                      {accessory.isEssential && 
+                        <span class="essential-flag">Essential but Not Included</span>
+                      }
+                      <img src={accessory.image} alt={accessory.title}>
+                      <div class="accessory-details">
+                        <h4>{accessory.title}</h4>
+                        <div class="price">
+                          <span>HKD ${accessory.price}</span>
+                          {accessory.originalPrice && 
+                            <span class="original-price">HKD ${accessory.originalPrice}</span>
+                          }
+                        </div>
+                        <p>{accessory.description}</p>
+                      </div>
+                    </div>
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </section>
+      </div>
+    </article>
+  </div>
+</section>
+
+<style>
+  .product-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .gallery {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .carousel {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide {
+    display: none;
+  }
+
+  .slide.active {
+    display: block;
+  }
+
+  .thumbnail-nav {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  .thumbnail-nav li {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+  }
+
+  .thumbnail-nav li.active {
+    opacity: 1;
+  }
+
+  .product-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .variants-list,
+  .accessories-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .variant-item,
+  .accessory-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+
+  .variant-item:hover,
+  .accessory-item:hover {
+    border-color: #666;
+  }
+
+  /* Add more styles as needed */
+</style>

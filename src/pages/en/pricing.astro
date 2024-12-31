@@ -1,0 +1,71 @@
+---
+// Components
+// - Layout
+import Layout from '@layouts/Layout.astro'
+// - UI
+import Hero from '@components/blocks/hero/PageHeader.astro'
+import Price from '@components/blocks/pricing/PricingColumns.astro'
+import CompareTable from '@components/blocks/comparison/BasicTable.astro'
+import compareData from '@data/json-files/compare.json';
+
+import SocialProof from '@components/blocks/socialproof/Basic.astro'
+import FAQ from '@components/blocks/FAQ/Basic.astro'
+import Testimonial from '@components/blocks/testimonials/BasicDark.astro'
+import Feature from '@components/blocks/features/FeatureList.astro'
+import CTA from '@components/blocks/CTA/BasicDark.astro'
+import CompetitorComparisonTable from '@components/blocks/comparison/CompetitorTable.astro';
+import CompetitorTableData from '@data/json-files/competitor.json';
+
+import type { Language } from '@config/siteConfig'
+import { getI18nContent } from '@utils/config'
+import { languages, defaultLanguage } from '@config/siteConfig';
+
+
+// Content
+import SEOData from '@data/json-files/seoData.json'
+import PricingContent from '@data/json-files/pricingContent.json'
+export async function getStaticPaths() {
+    return Object.keys(languages).map((lang) => ({
+        params: { lang: lang === defaultLanguage ? undefined : lang },
+    }));
+}
+
+
+const { lang = defaultLanguage } = Astro.params;
+const currentLang = lang as Language;
+
+const i18 = await getI18nContent(currentLang);
+
+console.log('index page current display lang',currentLang)
+
+const ctaData = i18.home.sections.cta.data
+
+// Get SEO data
+---
+
+<Layout title={SEOData.pricing.title} description={SEOData.pricing.description}>
+	<Hero 
+		title={SEOData.pricing.headertitle} 
+		text={SEOData.pricing.headertext} 
+	/>
+	<Price />
+
+	<CompareTable plans={compareData.plans} features={compareData.features} />
+	<CompetitorComparisonTable
+    plans={CompetitorTableData.plans}
+    competitors={CompetitorTableData.competitors}
+    features={CompetitorTableData.features}
+	/>
+
+	<!-- <SocialProof /> -->
+	<Feature />
+	<Testimonial
+		bg={PricingContent.testimonial.background}
+		bgPosition="left"
+		blockquote={PricingContent.testimonial.quote}
+		figcaption={PricingContent.testimonial.author}
+		cite={PricingContent.testimonial.role}
+	/>
+	<FAQ classes="bg-slate-50 dark:bg-neutral-900/40" />
+    <CTA {...ctaData} />
+</Layout>

@@ -12,7 +12,7 @@
 
 // Props
 import { formatNumber, formatDate, getImage } from '../../utils/helpers';
-
+import OptimizedImage  from './OptimizedImage.astro';
 type Props = {
 	size?: 'lg' | 'base' | 'sm' | 'xs'
 	link?: string
@@ -28,7 +28,7 @@ const { size = 'base', link = '#', radius, imagesrc,imagealt, classes } = Astro.
 	href={link}
 	class:list={['avatar', { ['avatar--' + `${size}`]: size }, , { [`${classes}`]: classes }]}
 >
-	<img src={imagesrc} alt={imagealt} title={imagealt} class={radius} />
+	<OptimizedImage src={imagesrc} alt={imagealt} title={imagealt} class={radius} />
 </a>
 
 <style>

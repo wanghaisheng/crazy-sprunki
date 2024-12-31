@@ -1,0 +1,117 @@
+---
+export interface IconConfig {
+  title: string;
+  description: string;
+}
+
+export interface Props {
+  title: string;
+  description: string;
+  backgroundImage: string;
+  icons: IconConfig[];
+}
+
+const { title, description, backgroundImage, icons } = Astro.props;
+---
+
+<div class="section-content" style={`background-image: url(${backgroundImage});`}>
+  <div class="atom-component">
+    <div class="style__hero-vertical-wrapper">
+      <div class="style__vertical-card-list">
+        <div class="style__vertical-card-col">
+          <div class="atom-design-v1">
+            <div class="style__card-wrapper">
+              <div class="style__card-container">
+                <div class="style__text-content-container">
+                  <h3 class="title">{title}</h3>
+                  <p class="description">{description}</p>
+
+                  <div class="style__icons-container">
+                    {icons.map((icon) => (
+                      <div class="style__icon-row-container">
+                        <div class="style__icon-col-container">
+                          <div class="style__icon-item">
+                            <p class="icon-title">{icon.title}</p>
+                            <p class="icon-desc">{icon.description}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-content {
+    background-size: cover;
+    background-position: center;
+    padding: 40px 20px;
+  }
+
+  .style__hero-vertical-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .style__vertical-card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .style__text-content-container {
+    max-width: 800px;
+  }
+
+  .title {
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 56px;
+    color: rgba(0, 0, 0, 0.85);
+  }
+
+  .description {
+    font-size: 24px;
+    line-height: 32px;
+    color: rgba(0, 0, 0, 0.65);
+    max-width: 640px;
+  }
+
+  .style__icons-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  .style__icon-row-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .style__icon-item {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .icon-title {
+    font-size: 56px;
+    font-weight: 600;
+    color: rgb(249, 129, 1);
+  }
+
+  .icon-desc {
+    font-size: 24px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.65);
+  }
+</style>

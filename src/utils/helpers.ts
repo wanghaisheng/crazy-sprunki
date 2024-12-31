@@ -6,9 +6,15 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{j
 });
 
 export function getImage(path: string): ImageMetadata {
+  if(path==undefined){
+    console.log('load imagee path emtpy')
+    // return 
+  }
   const fullPath = `/src/assets/${path}`;
   const image = images[fullPath];
-  
+  console.log('load image path',path)
+  console.log('load image fullpath',path)
+
   if (!image) {
     // throw new Error(`Image not found: ${path}---fullpath:${fullPath}`);
   }

@@ -12,7 +12,7 @@ import Col from '../../ui/Col.astro'
 import Card from '../../ui/cards/BasicCard.astro'
 
 // Content
-import ContactData from '../../../data/json-files/contactData.json'
+// import ContactData from '../../../data/json-files/contactData.json'
 
 interface ContactCard {
     title: string
@@ -20,19 +20,28 @@ interface ContactCard {
     icon: string
     link: string
 }
+
+interface ContactData{
+    title:string;
+    subtitle:string;
+    cards:ContactCard[];
+}
+const {data} = Astro.props;
+
+
 ---
 
 <Section id="requests">
     <Row>
         <Col span="12" align="center" classes="mb-12 max-w-4xl mx-auto">
-            <h2 class="text-balance" set:html={ContactData.title} />
+            <h2 class="text-balance" set:html={data.title} />
             <p class="pb-0 text-lg">
-                {ContactData.subtitle}
+                {data.subtitle}
             </p>
         </Col>
     </Row>
     <Row>
-        {ContactData.cards.map((card: ContactCard) => (
+        {data.cards.map((card: ContactCard) => (
             <Col span="3">
                 <Card
                     title={card.title}

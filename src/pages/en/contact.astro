@@ -1,0 +1,50 @@
+---
+// Components
+// - Layout
+import Layout from '@layouts/Layout.astro'
+// - UI
+import FormHero from '@components/blocks/hero/ContactHero.astro'
+import CTA from '@components/blocks/CTA/BasicDark.astro'
+import ContactCards from '@components/blocks/contact/ContactCards.astro'
+import SocialProof from '@components/blocks/socialproof/Basic.astro'
+
+
+import ScrollButtons from '@components/ui/ScrollButton.astro'
+import { languages, defaultLanguage } from '@config/siteConfig';
+import { getI18nContent } from '@utils/config';
+
+// Content
+import type { Language } from '@config/siteConfig'
+
+// - Page Header
+export async function getStaticPaths() {
+	return Object.keys(languages).map((lang) => ({
+		params: { lang: lang === defaultLanguage ? undefined : lang },
+	}));
+}
+const { lang = defaultLanguage } = Astro.params;
+const currentLang = lang as Language;
+const i18 = await getI18nContent(currentLang);
+const contactpage=i18.contact
+const formHeroData = i18.contact.sections.formhero;
+
+const contactcardsData = i18.contact.sections.contactcards;
+const socialproofData = i18.contact.sections.socialproof;
+const ctaData = i18.contact.sections.cta;
+console.log('cta in contact',ctaData)
+
+---
+
+<Layout title={contactpage.title} description={contactpage.description}>
+	<FormHero
+		title={formHeroData.headertitle}
+		text={formHeroData.headertext}
+		id="contact"
+		classes="bg-neutral-50 dark:bg-neutral-950/80"
+	/>
+	<ContactCards data={contactcardsData} />
+	<SocialProof data={socialproofData} />
+	<CTA {...ctaData} />
+	<ScrollButtons />
+
+</Layout>

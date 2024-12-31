@@ -1,0 +1,87 @@
+---
+import type { Product, Spec } from '../../../types/basic';
+import { formatNumber } from '../../../utils/helpers';
+
+interface Props {
+  products: Product[];
+  specs: Spec[][];
+  tabs: string[];
+}
+
+const { products, specs, tabs } = Astro.props;
+---
+
+<section class="comparison-section" style="padding-top: 48px; background-color: white;">
+  <!-- Title Section -->
+  <div class="style__container___1VJiz">
+    <h2 class="style__headline___Oq3it" style="font-size: 48px; font-weight: 600; letter-spacing: -0.03em; color: black; padding: 0px 0px 40px;">
+      Osmo Pocket Series Product Comparison
+    </h2>
+
+    <!-- Tabs Section -->
+    <div class="quark-tab-default-tab-container" style="text-align: center; display: flex;">
+      {tabs.map((tab, index) => (
+        <div id={formatNumber(index)} class="quark-tab-default-tab-bar-wrap">
+          <div class="quark-tab-default-tab-bar">
+            <div class="zPFdO" style="width: 0px;"></div>
+            <div class="_28KUW _1Ltud">{tab}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Product List Section -->
+    <div class="_3Qm4W">
+      <div class="style__product-list___3x48T">
+        {products.map((product, index) => (
+          <div id={formatNumber(index)} class="style__product-item___3L2Dr style__basic-info___3W7TH style__need-line___2Cpjm" style="padding-bottom: 164px;">
+            <a href={product.link} target="_blank" style="display: contents;">
+              <img alt={product.name} decoding="async" loading="lazy" class="style__product-cover___WX2rj" src={product.image} style="min-height: auto;">
+            </a>
+            <h3 class="style__product-name___1eaZ9">
+              <span class="style__eyebrow___2AP0X">{product.tag}</span>
+              <span>{product.name}</span>
+            </h3>
+            <div class="style__basic-info-bottom___2aYP7">
+              <p class="style__product-price___EwZYs"><span>{product.price}</span></p>
+              <div class="style__product-buy-now___1BLI4">
+                <a class="style__product-buy-now-btn___24LU_" href={product.link} target="_blank">Buy Now</a>
+              </div>
+              <a class="style__product-learn-more___3CwJ9" href={product.learnMoreLink} target="_self">
+                <span>Learn More</span>
+                <i class="_27RtX _3c0Qz" style="font-family: quark;"></i>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Product Specifications Section -->
+      {specs.map((specGroup, index) => (
+        <div id={formatNumber(index)} class="style__product-list___3x48T">
+          {specGroup.map((spec, specIndex) => (
+            <div id={formatNumber(specIndex)} class="style__product-item___3L2Dr style__spec-item___1Nq2Y">
+              <div class="style__spec-icon___3Dy50"  style={`background-image: url(${spec.icon})`}>
+                <span style="display: none;"></span>
+              </div>
+              <p class="style__spec-name___2Z4yV"><span>{spec.name}</span></p>
+              <p class="style__spec-desc___3mAsK"><span>{spec.description}</span></p>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="style__button-box___2CIuc">
+      <a class="style__comparison-btn___nl4mL" href="https://www.dji.com/hk-en/products/comparison-op" target="_self">
+        <span>Osmo Pocket Series Comparison</span>
+        <i class="_27RtX _3c0Qz" style="font-family: quark;"></i>
+      </a>
+      <a class="style__buy-btn___1LotJ" target="_blank" href="https://store.dji.com/hk-en/selection/handheld">
+        <span>Shop Osmo Pocket</span>
+        <i class="_27RtX _3c0Qz" style="font-family: quark;"></i>
+      </a>
+    </div>
+  </div>
+</section>
